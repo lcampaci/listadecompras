@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Impressão - Lista de Compras</title>
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #fff;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 18px;
+      margin-bottom: 15px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+    }
+
+    th {
+      background: #007bff;
+      color: #fff;
+      padding: 8px;
+    }
+
+    td {
+      border: 1px solid #ddd;
+      padding: 6px;
+      text-align: center;
+    }
+
+    .total {
+      margin-top: 15px;
+      text-align: right;
+      font-weight: bold;
+      font-size: 14px;
+    }
+
+    @media print {
+      button {
+        display: none;
+      }
+    }
+
+    .btn-print {
+      margin-bottom: 10px;
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+<button class="btn-print" onclick="window.print()">Imprimir</button>
+
+<h1>LISTA DE COMPRAS</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Produto</th>
+      <th>Qtd</th>
+      <th>Valor</th>
+      <th>Total</th>
+    </tr>
+  </thead>
+
+  <tbody id="tabela"></tbody>
+</table>
+
+<div class="total">
+  Total Geral: R$ <span id="total"></span>
+</div>
+
+<script>
+  let lista = JSON.parse(localStorage.getItem("lista")) || [];
+
+  let tbody = document.getElementById("tabela");
+  let totalGeral = 0;
+
+  lista.forEach(item => {
+
+    let subtotal = item.quantidade * item.valor;
+    totalGeral += subtotal;
+
+    tbody.innerHTML += `
+      <tr>
+        <td>${item.produto}</td>
+        <td>${item.quantidade}</td>
+        <td>${item.valor.toFixed(2)}</td>
+        <td>${subtotal.toFixed(2)}</td>
+      </tr>
+    `;
+  });
+
+  document.getElementById("total").innerText = totalGeral.toFixed(2);
+</script>
+
+</body>
+</html>

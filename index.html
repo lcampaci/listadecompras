@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+  <title>Lista de Compras</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #f2f4f8;
+      padding: 20px;
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 1100px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    /* TÍTULO */
+    h1 {
+      text-align: center;
+      margin-bottom: 15px;
+      font-size: 22px;
+      color: #333;
+    }
+
+    /* PESQUISA */
+    #pesquisa {
+      width: 100%;
+      padding: 6px 10px;
+      margin-bottom: 12px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 13px;
+      height: 34px;
+      outline: none;
+      transition: 0.2s;
+    }
+
+    #pesquisa:focus {
+      border-color: #007bff;
+    }
+
+    /* MOBILE mais compacto ainda */
+    @media(max-width:768px) {
+
+      #pesquisa {
+        padding: 5px 8px;
+        font-size: 12px;
+        height: 32px;
+        margin-bottom: 10px;
+      }
+    }
+
+    /* FORMULÁRIO */
+    .formulario {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr auto;
+      gap: 8px;
+      margin-bottom: 15px;
+    }
+
+    /* campos mais compactos */
+    .formulario input,
+    .formulario select {
+      padding: 6px 8px;
+      border: 1px solid #ddd;
+      border-radius: 6px;
+      font-size: 13px;
+      height: 34px;
+    }
+
+    /* botão menor e mais compacto */
+    .formulario button {
+      padding: 6px 10px;
+      font-size: 13px;
+      border-radius: 6px;
+      height: 34px;
+    }
+
+    /* MOBILE: ainda mais compacto */
+    @media(max-width:768px) {
+
+      .formulario {
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+      }
+
+      /* inputs ocupam menos espaço vertical */
+      .formulario input,
+      .formulario select {
+        padding: 5px 6px;
+        font-size: 12px;
+        height: 32px;
+      }
+
+      /* botão ocupa linha inteira */
+      .formulario button {
+        grid-column: span 2;
+        height: 32px;
+      }
+    }
+
+    /* BOTÃO SALVAR */
+    .formulario button {
+      background: #28a745;
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 15px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .formulario button:hover {
+      background: #218838;
+    }
+
+    /* BOTÕES AÇÃO */
+    button {
+      border: none;
+      padding: 8px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 13px;
+    }
+
+    /* TABELA */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 10px;
+      font-size: 14px;
+    }
+
+    th,
+    td {
+      padding: 10px;
+      border-bottom: 1px solid #eee;
+      text-align: center;
+    }
+
+    th {
+      background: #007bff;
+      color: #fff;
+      font-size: 13px;
+    }
+
+    /* LINHAS */
+    tr:hover {
+      background: #f5f7fa;
+    }
+
+    /* TOTAL */
+    .total {
+      margin-top: 15px;
+      text-align: right;
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+    }
+
+    /* BOTÕES EXPORTAÇÃO */
+    .btn-exportar {
+      background: #6c757d;
+      color: #fff;
+    }
+
+    .btn-pdf {
+      background: #dc3545;
+      color: #fff;
+    }
+
+    .btn-imprimir {
+      background: #17a2b8;
+      color: #fff;
+    }
+
+    /* BOTÕES EDITAR E EXCLUIR */
+    .btn-editar,
+    .btn-excluir {
+      border: none;
+      padding: 7px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 12px;
+      font-weight: bold;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    /* EDITAR */
+    .btn-editar {
+      background: #22c55e;
+      color: white;
+      box-shadow: 0 2px 6px rgba(34, 197, 94, 0.3);
+    }
+
+    .btn-editar:hover {
+      background: #16a34a;
+      transform: translateY(-1px);
+    }
+
+    /* EXCLUIR */
+    .btn-excluir {
+      background: #ef4444;
+      color: white;
+      box-shadow: 0 2px 6px rgba(239, 68, 68, 0.3);
+    }
+
+    .btn-excluir:hover {
+      background: #dc2626;
+      transform: translateY(-1px);
+    }
+
+    /* MOBILE */
+    @media(max-width:768px) {
+
+      .btn-editar,
+      .btn-excluir {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 4px;
+        padding: 6px;
+        font-size: 11px;
+      }
+    }
+
+    /* MOBILE */
+    @media(max-width:768px) {
+
+      .btn-editar,
+      .btn-excluir {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 4px;
+        padding: 6px;
+        font-size: 11px;
+      }
+    }
+
+    /* RESPONSIVO */
+    @media(max-width:768px) {
+
+      body {
+        padding: 10px;
+      }
+
+      .container {
+        padding: 15px;
+      }
+
+      .formulario {
+        grid-template-columns: 1fr;
+      }
+
+      table {
+        font-size: 12px;
+      }
+
+      th,
+      td {
+        padding: 6px;
+      }
+
+      .total {
+        font-size: 16px;
+        text-align: center;
+      }
+    }
+
+    @media print {
+
+      body {
+        background: #fff;
+        padding: 0;
+      }
+
+      .container {
+        box-shadow: none;
+        border-radius: 0;
+        padding: 0;
+        max-width: 100%;
+      }
+
+      h1,
+      #pesquisa,
+      .formulario,
+      button,
+      .btn-exportar,
+      .btn-pdf,
+      .btn-imprimir {
+        display: none !important;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 10px;
+      }
+
+      th {
+        background: #007bff !important;
+        color: #fff !important;
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
+      }
+
+      th,
+      td {
+        border: 1px solid #ddd;
+        padding: 6px;
+        text-align: center;
+      }
+
+      .total {
+        margin-top: 10px;
+        font-size: 12px;
+        text-align: right;
+        font-weight: bold;
+      }
+    }
+
+    .comprado td {
+      text-decoration: line-through;
+      opacity: 0.6;
+      background: #e8f5e9;
+    }
+
+    input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      cursor: pointer;
+    }
+
+    /* ÁREA DOS BOTÕES */
+    .acoes-topo {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 14px;
+      flex-wrap: wrap;
+    }
+
+    /* BOTÕES */
+    .acoes-topo button {
+      border: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: bold;
+      color: white;
+      transition: all 0.2s ease;
+    }
+
+    /* TODOS BOTÕES MESMO TAMANHO */
+    .acoes-topo button {
+      flex: 1;
+      min-width: 140px;
+      height: 32px;
+    }
+
+    /* HOVER */
+    .acoes-topo button:hover {
+      transform: translateY(-2px);
+      opacity: 0.92;
+    }
+
+    /* CORES */
+    .btn-exportar {
+      background: #6b7280;
+    }
+
+    .btn-pdf {
+      background: #dc2626;
+    }
+
+    .btn-imprimir {
+      background: #0891b2;
+    }
+
+    .btn-exportar-lista {
+      background: #2563eb;
+    }
+
+    .btn-importar {
+      background: #16a34a;
+    }
+
+    /* MOBILE */
+    @media(max-width:768px) {
+
+      .acoes-topo {
+        display: grid;
+        grid-template-columns: repeat(5, 1fr);
+        gap: 4px;
+      }
+
+      .acoes-topo button {
+        width: 100%;
+        min-width: 100%;
+        height: 38px;
+        padding: 4px;
+        font-size: 10px;
+        border-radius: 6px;
+      }
+    }
+
+    @media(max-width:768px) {
+
+      td:last-child {
+        white-space: nowrap;
+      }
+
+      .btn-editar,
+      .btn-excluir {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 4px 6px;
+        font-size: 10px;
+        margin: 0 2px;
+      }
+
+    }
+
+    td:last-child {
+      display: flex;
+      justify-content: center;
+      gap: 4px;
+      align-items: center;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <h1>Lista de Compras</h1>
+
+    <div class="formulario">
+      <input type="text" id="produto" placeholder="Produto">
+      <input type="number" id="quantidade" placeholder="Qtd">
+      <input type="number" id="valor" placeholder="Valor">
+      <select id="tipo">
+        <option>Unidade</option>
+        <option>Peso</option>
+      </select>
+      <button onclick="salvarItem()">Salvar</button>
+    </div>
+
+    <div class="acoes-topo">
+
+      <button class="btn-exportar" onclick="exportarTXT()">
+        📄 TXT
+      </button>
+
+      <button class="btn-pdf" onclick="exportarPDF()">
+        📕 PDF
+      </button>
+      <button class="btn-exportar" onclick="exportarTXT2();">📄 TXT Mobile</button>
+<button class="btn-pdf" onclick="exportarPDF2()">📕 PDF Mobile</button>
+      <!-- <button class="btn-txt-mobile">📄 TXT Mobile</button>
+      <button class="btn-pdf-mobile">📕 PDF Mobile</button> -->
+      <button class="btn-imprimir" onclick="imprimirLista()">
+        🖨️ Imprimir
+      </button>
+
+      <button class="btn-exportar-lista" onclick="exportarLista()">
+        ⬇️ Exportar
+      </button>
+
+      <button class="btn-importar" onclick="document.getElementById('importarArquivo').click()">
+        ⬆️ Importar
+      </button>
+
+      <input type="file" id="importarArquivo" hidden accept=".json">
+    </div>
+    <input type="text" id="pesquisa" placeholder="Pesquisar produto...">
+    <table>
+      <thead>
+        <tr>
+          <th>Produto</th>
+          <th>Qtd</th>
+          <th>Valor</th>
+          <th>Total</th>
+          <th>Comprado</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+
+      <tbody id="tabelaItens"></tbody>
+    </table>
+
+    <div class="total">
+      Total: R$ <span id="totalLista">0.00</span>
+    </div>
+
+  </div>
+
+  <script>
+
+    let lista = JSON.parse(localStorage.getItem("lista")) || [];
+    let idAtual = parseInt(localStorage.getItem("id")) || 1;
+    let editando = null;
+
+    function salvarStorage() {
+      localStorage.setItem("lista", JSON.stringify(lista));
+      localStorage.setItem("id", idAtual);
+    }
+
+    function salvarItem() {
+
+      const produto = document.getElementById("produto").value;
+      const quantidade = parseFloat(document.getElementById("quantidade").value);
+      const valor = parseFloat(document.getElementById("valor").value);
+      const tipo = document.getElementById("tipo").value;
+
+      if (!produto || quantidade <= 0 || valor <= 0) return;
+
+      if (editando === null) {
+
+        lista.push({
+          id: idAtual++,
+          produto,
+          quantidade,
+          valor,
+          tipo,
+          comprado: false
+        });
+
+      } else {
+
+        const i = lista.findIndex(x => x.id === editando);
+
+        lista[i] = {
+          id: editando,
+          produto,
+          quantidade,
+          valor,
+          tipo,
+          comprado: lista[i].comprado
+        };
+
+        editando = null;
+      }
+
+      salvarStorage();
+      limpar();
+      renderizarTabela();
+    }
+
+    function renderizarTabela(listaFiltrada = lista) {
+
+      const tbody = document.getElementById("tabelaItens");
+      tbody.innerHTML = "";
+
+      let total = 0;
+
+      listaFiltrada.forEach(item => {
+
+        const subtotal = item.quantidade * item.valor;
+        total += subtotal;
+
+        tbody.innerHTML += `
+      <tr class="${item.comprado ? 'comprado' : ''}">
+        <td>${item.produto}</td>
+        <td>${item.quantidade}</td>
+        <td>${item.valor.toFixed(2)}</td>
+        <td>${subtotal.toFixed(2)}</td>
+        <td><input 
+  type="checkbox"
+  ${item.comprado ? "checked" : ""}
+  onchange="toggleComprado(${item.id})"
+></td>
+        <td>
+          <button class="btn-editar" onclick="editar(${item.id})">✏️</button>
+          <button class="btn-excluir" onclick="excluir(${item.id})">🗑️</button>
+        </td>
+      </tr>
+    `;
+      });
+
+      document.getElementById("totalLista").innerText = total.toFixed(2);
+    }
+
+    function editar(id) {
+
+      const item = lista.find(x => x.id === id);
+
+      document.getElementById("produto").value = item.produto;
+      document.getElementById("quantidade").value = item.quantidade;
+      document.getElementById("valor").value = item.valor;
+      document.getElementById("tipo").value = item.tipo;
+
+      editando = id;
+    }
+
+    function excluir(id) {
+
+      lista = lista.filter(x => x.id !== id);
+      salvarStorage();
+      renderizarTabela();
+    }
+
+    function exportarLista() {
+      const dados = JSON.stringify(lista, null, 2);
+      const blob = new Blob([dados], {
+        type: "application/json"
+      });
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "lista_compras.json";
+      link.click();
+    }
+
+    document
+      .getElementById("importarArquivo")
+      .addEventListener("change", importarLista);
+
+    function importarLista(event) {
+
+      const arquivo = event.target.files[0];
+
+      if (!arquivo) return;
+
+      const leitor = new FileReader();
+
+      leitor.onload = function (e) {
+
+        try {
+
+          const dados = JSON.parse(e.target.result);
+
+          if (!Array.isArray(dados)) {
+            alert("Arquivo inválido");
+            return;
+          }
+
+          lista = dados;
+
+          idAtual = lista.length
+            ? Math.max(...lista.map(i => i.id)) + 1
+            : 1;
+
+          salvarStorage();
+
+          renderizarTabela();
+
+          alert("Lista importada com sucesso!");
+
+        } catch {
+
+          alert("Erro ao importar arquivo");
+        }
+      };
+
+      leitor.readAsText(arquivo);
+    }
+
+    function toggleComprado(id) {
+      const item = lista.find(x => x.id === id);
+      item.comprado = !item.comprado;
+      salvarStorage();
+      renderizarTabela();
+    }
+
+    function limpar() {
+      document.getElementById("produto").value = "";
+      document.getElementById("quantidade").value = "";
+      document.getElementById("valor").value = "";
+    }
+
+    document.getElementById("pesquisa").addEventListener("input", function () {
+
+      const termo = this.value.toLowerCase();
+
+      const filtrado = lista.filter(i =>
+        i.produto.toLowerCase().includes(termo)
+      );
+
+      renderizarTabela(filtrado);
+    });
+
+    function exportarTXT() {
+
+      let conteudo = "";
+      let totalGeral = 0;
+
+      conteudo += "==========================================\n";
+      conteudo += "        LISTA DE COMPRAS\n";
+      conteudo += "==========================================\n\n";
+
+      conteudo += "PRODUTO               QTD   VALOR   TOTAL\n";
+      conteudo += "------------------------------------------\n";
+
+      lista.forEach(item => {
+
+        const subtotal = item.quantidade * item.valor;
+        totalGeral += subtotal;
+
+        const produto = item.produto.padEnd(20, " ").substring(0, 20);
+        const qtd = String(item.quantidade).padEnd(5, " ");
+        const valor = item.valor.toFixed(2).padEnd(7, " ");
+        const total = subtotal.toFixed(2);
+
+        conteudo += `${produto} ${qtd} ${valor} ${total}\n`;
+      });
+
+      conteudo += "------------------------------------------\n";
+      conteudo += `TOTAL DA COMPRA: R$ ${totalGeral.toFixed(2)}\n`;
+      conteudo += "==========================================\n";
+
+      const blob = new Blob([conteudo], { type: "text/plain;charset=utf-8" });
+
+      const link = document.createElement("a");
+      link.href = URL.createObjectURL(blob);
+      link.download = "lista_compras.txt";
+      link.click();
+    }
+
+    async function exportarPDF() {
+
+      const { jsPDF } = window.jspdf;
+      const doc = new jsPDF();
+      let totalGeral = 0;
+      const linhas = lista.map(item => {
+        const subtotal = item.quantidade * item.valor;
+        totalGeral += subtotal;
+
+        return [
+          item.produto,
+          item.quantidade,
+          item.valor.toFixed(2),
+          subtotal.toFixed(2)
+        ];
+      });
+
+      // TÍTULO
+      doc.setFontSize(14);
+      doc.text("LISTA DE COMPRAS", 14, 15);
+
+      // TABELA
+      doc.autoTable({
+        startY: 20,
+        head: [["Produto", "Qtd", "Valor", "Total"]],
+        body: linhas,
+        styles: {
+          fontSize: 8,
+          cellPadding: 2
+        },
+        headStyles: {
+          fillColor: [0, 123, 255]
+        },
+        theme: "grid"
+      });
+
+      // PEGAR FINAL DA TABELA
+      const finalY = doc.lastAutoTable.finalY || 20;
+
+      // TOTAL FINAL
+      doc.setFontSize(10);
+      doc.text(
+        `TOTAL GERAL: R$ ${totalGeral.toFixed(2)}`,
+        14,
+        finalY + 10
+      );
+
+      doc.save("lista_compras.pdf");
+    }
+
+    function imprimirLista() {
+      window.open("print.html", "_blank");
+    }
+
+    renderizarTabela();
+
+    
+function exportarTXT2() {
+  if (!lista.length) return alert("Lista vazia");
+
+  let conteudo = "";
+  let total = 0;
+
+  conteudo += "==========================================\n";
+  conteudo += "        LISTA DE COMPRAS\n";
+  conteudo += "==========================================\n\n";
+
+  conteudo += "PRODUTO               QTD   VALOR   TOTAL\n";
+  conteudo += "------------------------------------------\n";
+
+  lista.forEach(item => {
+    const subtotal = item.quantidade * item.valor;
+    total += subtotal;
+
+    const produto = item.produto.padEnd(20, " ").substring(0, 20);
+    const qtd = String(item.quantidade).padEnd(5, " ");
+    const valor = ("R$ " + item.valor.toFixed(2)).padEnd(7, " ");
+    const subtotalFormatado = ("R$ " + subtotal.toFixed(2));
+
+    conteudo += `${produto} ${qtd} ${valor} ${subtotalFormatado}\n`;
+  });
+
+  conteudo += "------------------------------------------\n";
+  conteudo += `TOTAL DA COMPRA: R$ ${total.toFixed(2)}\n`;
+  conteudo += "==========================================\n";
+
+  const novaAba = window.open("", "_blank");
+  if (!novaAba) {
+    alert("O navegador bloqueou a abertura. Copie o texto manualmente.");
+    return;
+  }
+
+  novaAba.document.write(`
+    <html>
+      <head>
+        <title>Lista de Compras</title>
+        <style>
+          body { font-family: Arial; padding: 15px; }
+          button { margin: 5px; padding: 10px; font-size: 14px; }
+          pre { white-space: pre-wrap; font-size: 16px; }
+
+          /* ESCONDE BOTÕES NA IMPRESSÃO */
+          @media print {
+            button { display: none; }
+          }
+        </style>
+      </head>
+      <body style="font-family: Arial; padding: 15px;">
+        <pre style="white-space: pre-wrap; font-size: 16px;">${conteudo}</pre>
+        <button onclick="navigator.clipboard.writeText(\`${conteudo.replace(/`/g,'')}\`)">Copiar lista</button>
+        <button onclick="window.print()">Imprimir</button>
+        <button onclick="window.close();">Voltar</button>
+      </body>
+    </html>
+  `);
+
+  novaAba.document.close();
+}
+
+function exportarPDF2() {
+  if (!lista.length) return alert("Lista vazia");
+
+  const { jsPDF } = window.jspdf;
+  const doc = new jsPDF();
+
+  let total = 0;
+
+  const linhas = lista.map(item => {
+    const subtotal = item.quantidade * item.valor;
+    total += subtotal;
+
+    return [
+      item.produto,
+      item.quantidade.toString(),
+      item.valor.toFixed(2),
+      subtotal.toFixed(2)
+    ];
+  });
+
+  doc.text("LISTA DE COMPRAS", 14, 15);
+
+  doc.autoTable({
+    startY: 20,
+    head: [["Produto", "Qtd", "Valor", "Total"]],
+    body: linhas,
+    styles: { fontSize: 10 },
+    headStyles: { fillColor: [0, 123, 255] },
+    theme: "grid"
+  });
+
+  const finalY = doc.lastAutoTable.finalY || 20;
+  doc.text(`TOTAL: R$ ${total.toFixed(2)}`, 14, finalY + 10);
+
+  // 🔥 solução mais estável em celular
+  const blob = doc.output("blob");
+  const url = URL.createObjectURL(blob);
+
+  const iframe = document.createElement("iframe");
+  iframe.style.width = "100%";
+  iframe.style.height = "100vh";
+  iframe.src = url;
+
+  document.body.innerHTML = "";
+  document.body.appendChild(iframe);
+}
+  </script>
+
+</body>
+
+</html>
