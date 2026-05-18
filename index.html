@@ -431,28 +431,23 @@
 
     @media(max-width:768px) {
 
-      td:last-child {
-        white-space: nowrap;
-      }
+  .btn-editar,
+  .btn-excluir {
+    padding: 4px 6px;
+    font-size: 10px;
+  }
 
-      .btn-editar,
-      .btn-excluir {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 4px 6px;
-        font-size: 10px;
-        margin: 0 2px;
-      }
-
-    }
+}
 
     td:last-child {
-      display: flex;
-      justify-content: center;
-      gap: 4px;
-      align-items: center;
-    }
+  white-space: nowrap;
+  text-align: center;
+}
+
+td:last-child button {
+  display: inline-block;
+  margin: 0 2px;
+}
   </style>
 </head>
 
