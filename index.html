@@ -48,18 +48,25 @@
     }
 
     .formulario {
-  display: grid;
-  grid-template-columns: 2fr 1fr 1fr 1fr auto;
+  display: flex;
   gap: 8px;
-  margin-bottom: 15px;
+  flex-wrap: nowrap;
+  align-items: center;
 }
 
 /* evita overflow dos inputs */
 .formulario input,
-.formulario select,
-.formulario button {
-  width: 100%;
+.formulario select {
+  flex: 1;
   min-width: 0;
+  height: 36px;
+}
+
+    .formulario button {
+  flex: 0 0 auto;
+  height: 36px;
+  padding: 0 14px;
+  white-space: nowrap;
 }
 
     input,
@@ -191,18 +198,20 @@
   box-sizing: border-box;
 }
 
-      .formulario {
-    grid-template-columns: 1fr;
+       .formulario {
+    gap: 6px;
   }
 
   .formulario input,
-  .formulario select,
-  .formulario button {
-    width: 100%;
+  .formulario select {
+    font-size: 12px;
+    height: 34px;
   }
 
   .formulario button {
-    grid-column: auto;
+    font-size: 12px;
+    height: 34px;
+    padding: 0 10px;
   }
 
       .acoes-topo{
