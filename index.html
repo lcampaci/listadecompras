@@ -145,7 +145,6 @@ select {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  justify-content: space-between;
 }
 
 .acoes-topo button {
@@ -246,10 +245,9 @@ select {
     width: 100%;
   }
 
-      .acoes-topo {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 6px;
+     .acoes-topo button {
+    flex: 1 1 48%;
+    min-width: 120px;
   }
 
   .acoes-topo button {
