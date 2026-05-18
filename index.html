@@ -48,6 +48,7 @@
     }
 
    .formulario {
+      margin-bottom: 12px;
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -68,16 +69,16 @@
 /* campos menores na linha */
 .linha-secundaria input,
 .linha-secundaria select {
-  flex: 1;
-  min-width: 0;
-  height: 36px;
+  height: 32px;
+  font-size: 12px;
 }
 
 /* botão */
 .linha-secundaria button {
   flex: 0 0 auto;
-  padding: 0 14px;
-  height: 36px;
+  height: 32px;
+  padding: 0 10px;
+  font-size: 12px;
   white-space: nowrap;
 }
 
@@ -137,17 +138,20 @@
       padding:5px 8px;
     }
 
-    .acoes-topo{
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-      margin-bottom:15px;
-    }
+    .acoes-topo {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  justify-content: space-between;
+}
 
-    .acoes-topo button{
-      flex:1;
-      min-width:120px;
-    }
+.acoes-topo button {
+  flex: 1;
+  min-width: 90px;
+  height: 30px;
+  font-size: 11px;
+  padding: 4px 6px;
+}
 
     #pesquisa{
       width:100%;
@@ -240,10 +244,17 @@
     font-size: 12px;
   }
 
-      .acoes-topo{
-        display:grid;
-        grid-template-columns:repeat(2,1fr);
-      }
+      .acoes-topo {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+  }
+
+  .acoes-topo button {
+    width: 100%;
+    font-size: 10px;
+    height: 32px;
+  }
 
       table{
         font-size:11px;
