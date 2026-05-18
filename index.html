@@ -47,25 +47,37 @@
       color:#333;
     }
 
-    .formulario {
+   .formulario {
   display: flex;
+  flex-direction: column;
   gap: 8px;
-  flex-wrap: nowrap;
-  align-items: center;
 }
 
-/* evita overflow dos inputs */
-.formulario input,
-.formulario select {
+/* produto sozinho em cima */
+#produto {
+  width: 100%;
+  height: 36px;
+}
+
+/* linha inferior */
+.linha-secundaria {
+  display: flex;
+  gap: 8px;
+}
+
+/* campos menores na linha */
+.linha-secundaria input,
+.linha-secundaria select {
   flex: 1;
   min-width: 0;
   height: 36px;
 }
 
-    .formulario button {
+/* botão */
+.linha-secundaria button {
   flex: 0 0 auto;
-  height: 36px;
   padding: 0 14px;
+  height: 36px;
   white-space: nowrap;
 }
 
@@ -214,6 +226,20 @@
     padding: 0 10px;
   }
 
+      .linha-secundaria {
+    flex-wrap: nowrap;
+    gap: 6px;
+  }
+
+  .linha-secundaria input,
+  .linha-secundaria select {
+    font-size: 12px;
+  }
+
+  .linha-secundaria button {
+    font-size: 12px;
+  }
+
       .acoes-topo{
         display:grid;
         grid-template-columns:repeat(2,1fr);
@@ -276,24 +302,28 @@
 
     <h1>Lista de Compras</h1>
 
-    <div class="formulario">
+   <div class="formulario">
 
-      <input type="text" id="produto" placeholder="Produto">
+  <input type="text" id="produto" placeholder="Produto">
 
-      <input type="number" id="quantidade" placeholder="Qtd">
+  <div class="linha-secundaria">
 
-      <input type="number" id="valor" placeholder="Valor">
+    <input type="number" id="quantidade" placeholder="Qtd">
 
-      <select id="tipo">
-        <option>Unidade</option>
-        <option>Peso</option>
-      </select>
+    <input type="number" id="valor" placeholder="Valor">
 
-      <button class="btn-salvar" onclick="salvarItem()">
-        Salvar
-      </button>
+    <select id="tipo">
+      <option>Unidade</option>
+      <option>Peso</option>
+    </select>
 
-    </div>
+    <button type="button" onclick="salvarItem()">
+      Salvar
+    </button>
+
+  </div>
+
+</div>
 
     <div class="acoes-topo">
 
