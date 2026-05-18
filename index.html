@@ -15,6 +15,11 @@
 
   <style>
 
+    html, body {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
     *{
       margin:0;
       padding:0;
@@ -42,12 +47,20 @@
       color:#333;
     }
 
-    .formulario{
-      display:grid;
-      grid-template-columns:2fr 1fr 1fr 1fr auto;
-      gap:8px;
-      margin-bottom:15px;
-    }
+    .formulario {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr auto;
+  gap: 8px;
+  margin-bottom: 15px;
+}
+
+/* evita overflow dos inputs */
+.formulario input,
+.formulario select,
+.formulario button {
+  width: 100%;
+  min-width: 0;
+}
 
     input,
     select,
@@ -130,6 +143,7 @@
     table{
       width:100%;
       border-collapse:collapse;
+      table-layout: fixed;
     }
 
     th,
@@ -137,6 +151,7 @@
       padding:8px;
       border-bottom:1px solid #eee;
       text-align:center;
+      word-break: break-word;
     }
 
     th{
@@ -171,13 +186,24 @@
         padding:15px;
       }
 
-      .formulario{
-        grid-template-columns:1fr 1fr;
-      }
+      input, select {
+  max-width: 100%;
+  box-sizing: border-box;
+}
 
-      .formulario button{
-        grid-column:span 2;
-      }
+      .formulario {
+    grid-template-columns: 1fr;
+  }
+
+  .formulario input,
+  .formulario select,
+  .formulario button {
+    width: 100%;
+  }
+
+  .formulario button {
+    grid-column: auto;
+  }
 
       .acoes-topo{
         display:grid;
