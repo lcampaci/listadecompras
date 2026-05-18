@@ -94,37 +94,66 @@
       margin-bottom: 15px;
     }
 
-    .tabela-wrapper {
-      overflow-x: auto;
-    }
+    ```css id="izfr8f"
+/* WRAPPER */
+.tabela-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
 
-    table {
-      width: 100%;
-      min-width: 700px;
-      border-collapse: collapse;
-    }
+/* TABELA */
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
 
-    th {
-      background: #007bff;
-      color: white;
-    }
+/* CÉLULAS */
+th,
+td {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+  text-align: center;
+  white-space: nowrap;
+}
 
-    th,
-    td {
-      padding: 10px;
-      border-bottom: 1px solid #eee;
-      text-align: center;
-    }
+/* CABEÇALHO */
+th {
+  background: #007bff;
+  color: white;
+}
 
-    tr:hover {
-      background: #f5f7fa;
-    }
+/* MOBILE */
+@media(max-width:768px){
 
-    .comprado td {
-      text-decoration: line-through;
-      opacity: .6;
-      background: #e8f5e9;
-    }
+  table {
+    font-size: 11px;
+  }
+
+  th,
+  td {
+    padding: 5px;
+  }
+
+  /* produto quebra linha */
+  td:first-child {
+    min-width: 120px;
+    white-space: normal;
+    text-align: left;
+  }
+
+  /* ações */
+  td:last-child {
+    min-width: 80px;
+  }
+
+  .btn-editar,
+  .btn-excluir {
+    padding: 4px 6px;
+    font-size: 10px;
+  }
+}
+```
+
 
     .btn-editar {
       background: #22c55e;
@@ -369,7 +398,7 @@
         }
 
         tr.innerHTML = `
-          <td></td>
+  <td>${item.produto}</td>
           <td>${item.quantidade}</td>
           <td>R$ ${item.valor.toFixed(2)}</td>
           <td>R$ ${subtotal.toFixed(2)}</td>
@@ -386,8 +415,6 @@
               onclick="excluir(${item.id})">🗑️</button>
           </td>
         `;
-
-        tr.children[0].textContent = item.produto;
 
         tbody.appendChild(tr);
       });
