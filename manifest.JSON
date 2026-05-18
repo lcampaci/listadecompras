@@ -2,7 +2,7 @@
   "name": "Lista de Compras",
   "short_name": "Lista",
   "start_url": "./",
-  "display": "standalone",
+  "display": "fullscreen",
   "background_color": "#0f172a",
   "theme_color": "#22c55e",
   "orientation": "portrait",
