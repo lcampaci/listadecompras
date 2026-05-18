@@ -35,7 +35,12 @@
       padding: 20px;
       border-radius: 12px;
       box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+       overflow-x: auto;
     }
+
+table {
+  min-width: 700px;
+}
 
     /* TÍTULO */
     h1 {
@@ -448,6 +453,11 @@ td:last-child button {
   display: inline-block;
   margin: 0 2px;
 }
+
+    .tabela-wrapper {
+  width: 100%;
+  overflow-x: auto;
+}
   </style>
 </head>
 
@@ -496,20 +506,22 @@ td:last-child button {
       <input type="file" id="importarArquivo" hidden accept=".json">
     </div>
     <input type="text" id="pesquisa" placeholder="Pesquisar produto...">
-    <table>
-      <thead>
-        <tr>
-          <th>Produto</th>
-          <th>Qtd</th>
-          <th>Valor</th>
-          <th>Total</th>
-          <th>Comprado</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
+    <div class="tabela-wrapper">
+  <table>
+    <thead>
+      <tr>
+        <th>Produto</th>
+        <th>Qtd</th>
+        <th>Valor</th>
+        <th>Total</th>
+        <th>Comprado</th>
+        <th>Ações</th>
+      </tr>
+    </thead>
 
-      <tbody id="tabelaItens"></tbody>
-    </table>
+    <tbody id="tabelaItens"></tbody>
+  </table>
+</div>
 
     <div class="total">
       Total: R$ <span id="totalLista">0.00</span>
@@ -588,39 +600,51 @@ td:last-child button {
   renderizarTabela();
 }
 
-    function renderizarTabela(listaFiltrada = lista) {
+   function renderizarTabela(listaFiltrada = lista) {
 
-      const tbody = document.getElementById("tabelaItens");
-      tbody.innerHTML = "";
+  const tbody = document.getElementById("tabelaItens");
 
-      let total = 0;
+  tbody.innerHTML = "";
 
-      listaFiltrada.forEach(item => {
+  let total = 0;
 
-        const subtotal = item.quantidade * item.valor;
-        total += subtotal;
+  listaFiltrada.forEach(item => {
 
-        tbody.innerHTML += `
-      <tr class="${item.comprado ? 'comprado' : ''}">
-        <td>${item.produto}</td>
-        <td>${item.quantidade}</td>
-        <td>${item.valor.toFixed(2)}</td>
-        <td>${subtotal.toFixed(2)}</td>
-        <td><input 
-  type="checkbox"
-  ${item.comprado ? "checked" : ""}
-  onchange="toggleComprado(${item.id})"
-></td>
-        <td>
-          <button class="btn-editar" onclick="editar(${item.id})">✏️</button>
-          <button class="btn-excluir" onclick="excluir(${item.id})">🗑️</button>
-        </td>
-      </tr>
-    `;
-      });
+    const subtotal = item.quantidade * item.valor;
 
-      document.getElementById("totalLista").innerText = total.toFixed(2);
+    total += subtotal;
+
+    const tr = document.createElement("tr");
+
+    if (item.comprado) {
+      tr.classList.add("comprado");
     }
+
+    tr.innerHTML = `
+      <td>${item.produto}</td>
+      <td>${item.quantidade}</td>
+      <td>${item.valor.toFixed(2)}</td>
+      <td>${subtotal.toFixed(2)}</td>
+      <td>
+        <input
+          type="checkbox"
+          ${item.comprado ? "checked" : ""}
+          onchange="toggleComprado(${item.id})"
+        >
+      </td>
+      <td>
+        <button class="btn-editar" onclick="editar(${item.id})">✏️</button>
+        <button class="btn-excluir" onclick="excluir(${item.id})">🗑️</button>
+      </td>
+    `;
+
+    tbody.appendChild(tr);
+
+  });
+
+  document.getElementById("totalLista").innerText =
+    total.toFixed(2);
+}
 
     function editar(id) {
 
