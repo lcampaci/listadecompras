@@ -10,9 +10,8 @@
 
   <link rel="manifest" href="manifest.json">
 
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+ <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
 
   <style>
 
@@ -322,8 +321,21 @@
 
   <script>
 
-    let lista =
-      JSON.parse(localStorage.getItem("lista")) || [];
+    window.onload = () => {
+  console.log("Página carregou");
+  console.log(lista);
+  renderizarTabela();
+};
+
+    let lista = [];
+
+try {
+  const data = localStorage.getItem("lista");
+  lista = data ? JSON.parse(data) : [];
+} catch (e) {
+  console.log("erro storage, resetando lista");
+  lista = [];
+}
 
     let editando = null;
 
@@ -426,7 +438,7 @@
     function renderizarTabela(
       filtro = lista
     ){
-
+console.log("renderizando...");
       const tbody =
         $("tabelaItens");
 
@@ -775,6 +787,8 @@
 
     renderizarTabela();
 
+    console.log("lista:", lista);
+renderizarTabela();
   </script>
 
 </body>
