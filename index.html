@@ -1,3 +1,4 @@
+```html id="k1oq31"
 <!DOCTYPE html>
 <html lang="pt-BR">
 
@@ -11,225 +12,228 @@
   <link rel="manifest" href="manifest.json">
 
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
   <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
+
+    *{
+      margin:0;
+      padding:0;
+      box-sizing:border-box;
+      font-family:Arial,sans-serif;
     }
 
-    body {
-      background: #f2f4f8;
-      padding: 20px;
+    body{
+      background:#f2f4f8;
+      padding:15px;
     }
 
-    .container {
-      max-width: 1100px;
-      margin: auto;
-      background: white;
-      padding: 20px;
-      border-radius: 12px;
-      box-shadow: 0 4px 20px rgba(0,0,0,.08);
+    .container{
+      max-width:1100px;
+      margin:auto;
+      background:#fff;
+      padding:20px;
+      border-radius:12px;
+      box-shadow:0 4px 20px rgba(0,0,0,.08);
     }
 
-    h1 {
-      text-align: center;
-      margin-bottom: 15px;
-      color: #333;
+    h1{
+      text-align:center;
+      margin-bottom:15px;
+      color:#333;
     }
 
-    .formulario {
-      display: grid;
-      grid-template-columns: 2fr 1fr 1fr 1fr auto;
-      gap: 8px;
-      margin-bottom: 15px;
+    .formulario{
+      display:grid;
+      grid-template-columns:2fr 1fr 1fr 1fr auto;
+      gap:8px;
+      margin-bottom:15px;
     }
 
     input,
     select,
-    button {
-      height: 36px;
-      border-radius: 6px;
-      border: 1px solid #ddd;
-      padding: 6px 10px;
-      font-size: 13px;
+    button{
+      height:36px;
+      border-radius:6px;
+      border:1px solid #ddd;
+      padding:6px 10px;
+      font-size:13px;
     }
 
-    button {
-      border: none;
-      cursor: pointer;
-      font-weight: bold;
-      color: white;
-      transition: .2s;
+    button{
+      border:none;
+      cursor:pointer;
+      font-weight:bold;
+      color:#fff;
+      transition:.2s;
     }
 
-    button:hover {
-      opacity: .9;
+    button:hover{
+      opacity:.9;
     }
 
-    .btn-salvar { background: #22c55e; }
-    .btn-pdf { background: #dc2626; }
-    .btn-txt { background: #6b7280; }
-    .btn-print { background: #0891b2; }
-    .btn-export { background: #2563eb; }
-    .btn-import { background: #16a34a; }
-
-    .acoes-topo {
-      display: flex;
-      gap: 8px;
-      flex-wrap: wrap;
-      margin-bottom: 15px;
+    .btn-salvar{
+      background:#22c55e;
     }
 
-    .acoes-topo button {
-      flex: 1;
-      min-width: 120px;
+    .btn-txt{
+      background:#6b7280;
     }
 
-    #pesquisa {
-      width: 100%;
-      margin-bottom: 15px;
+    .btn-pdf{
+      background:#dc2626;
     }
 
-    ```css id="izfr8f"
-/* WRAPPER */
-.tabela-wrapper {
-  width: 100%;
-  overflow-x: auto;
-}
-
-/* TABELA */
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-
-/* CÉLULAS */
-th,
-td {
-  padding: 10px;
-  border-bottom: 1px solid #eee;
-  text-align: center;
-  white-space: nowrap;
-}
-
-/* CABEÇALHO */
-th {
-  background: #007bff;
-  color: white;
-}
-
-/* MOBILE */
-@media(max-width:768px){
-
-  table {
-    font-size: 11px;
-  }
-
-  th,
-  td {
-    padding: 5px;
-  }
-
-  /* produto quebra linha */
-  td:first-child {
-    min-width: 120px;
-    white-space: normal;
-    text-align: left;
-  }
-
-  /* ações */
-  td:last-child {
-    min-width: 80px;
-  }
-
-  .btn-editar,
-  .btn-excluir {
-    padding: 4px 6px;
-    font-size: 10px;
-  }
-}
-```
-
-
-    .btn-editar {
-      background: #22c55e;
+    .btn-print{
+      background:#0891b2;
     }
 
-    .btn-excluir {
-      background: #ef4444;
+    .btn-export{
+      background:#2563eb;
     }
 
-    .total {
-      margin-top: 15px;
-      text-align: right;
-      font-size: 18px;
-      font-weight: bold;
+    .btn-import{
+      background:#16a34a;
+    }
+
+    .btn-editar{
+      background:#22c55e;
+      padding:5px 8px;
+    }
+
+    .btn-excluir{
+      background:#ef4444;
+      padding:5px 8px;
+    }
+
+    .acoes-topo{
+      display:flex;
+      gap:8px;
+      flex-wrap:wrap;
+      margin-bottom:15px;
+    }
+
+    .acoes-topo button{
+      flex:1;
+      min-width:120px;
+    }
+
+    #pesquisa{
+      width:100%;
+      margin-bottom:15px;
+    }
+
+    .tabela-wrapper{
+      width:100%;
+      overflow-x:auto;
+    }
+
+    table{
+      width:100%;
+      border-collapse:collapse;
+    }
+
+    th,
+    td{
+      padding:8px;
+      border-bottom:1px solid #eee;
+      text-align:center;
+    }
+
+    th{
+      background:#007bff;
+      color:#fff;
+    }
+
+    tr:hover{
+      background:#f5f7fa;
+    }
+
+    .comprado td{
+      text-decoration:line-through;
+      opacity:.6;
+      background:#e8f5e9;
+    }
+
+    .total{
+      margin-top:15px;
+      text-align:right;
+      font-size:18px;
+      font-weight:bold;
     }
 
     @media(max-width:768px){
 
-      body {
-        padding: 10px;
+      body{
+        padding:10px;
       }
 
-      .container {
-        padding: 15px;
+      .container{
+        padding:15px;
       }
 
-      .formulario {
-        grid-template-columns: 1fr 1fr;
+      .formulario{
+        grid-template-columns:1fr 1fr;
       }
 
-      .formulario button {
-        grid-column: span 2;
+      .formulario button{
+        grid-column:span 2;
       }
 
-      .acoes-topo {
-        grid-template-columns: repeat(2,1fr);
-        display: grid;
+      .acoes-topo{
+        display:grid;
+        grid-template-columns:repeat(2,1fr);
       }
 
-      table {
-        font-size: 12px;
+      table{
+        font-size:11px;
       }
 
       th,
-      td {
-        padding: 6px;
+      td{
+        padding:4px;
+      }
+
+      td:first-child{
+        min-width:120px;
+        text-align:left;
+        word-break:break-word;
+      }
+
+      td:last-child{
+        white-space:nowrap;
       }
 
       .btn-editar,
-      .btn-excluir {
-        padding: 5px;
-        font-size: 11px;
+      .btn-excluir{
+        padding:4px 6px;
+        font-size:10px;
       }
 
-      .total {
-        text-align: center;
+      .total{
+        text-align:center;
       }
     }
 
-    @media print {
+    @media print{
 
-      body {
-        background: white;
-        padding: 0;
+      body{
+        background:#fff;
+        padding:0;
       }
 
       .formulario,
       .acoes-topo,
-      #pesquisa {
-        display: none;
+      #pesquisa{
+        display:none;
       }
 
-      .container {
-        box-shadow: none;
+      .container{
+        box-shadow:none;
       }
     }
+
   </style>
 </head>
 
@@ -240,9 +244,13 @@ th {
     <h1>Lista de Compras</h1>
 
     <div class="formulario">
+
       <input type="text" id="produto" placeholder="Produto">
+
       <input type="number" id="quantidade" placeholder="Qtd">
+
       <input type="number" id="valor" placeholder="Valor">
+
       <select id="tipo">
         <option>Unidade</option>
         <option>Peso</option>
@@ -251,6 +259,7 @@ th {
       <button class="btn-salvar" onclick="salvarItem()">
         Salvar
       </button>
+
     </div>
 
     <div class="acoes-topo">
@@ -280,7 +289,9 @@ th {
 
     </div>
 
-    <input type="text" id="pesquisa" placeholder="Pesquisar produto...">
+    <input type="text"
+      id="pesquisa"
+      placeholder="Pesquisar produto...">
 
     <div class="tabela-wrapper">
 
@@ -304,82 +315,121 @@ th {
     </div>
 
     <div class="total">
-      Total: R$ <span id="totalLista">0.00</span>
+      Total: R$
+      <span id="totalLista">0.00</span>
     </div>
 
   </div>
 
   <script>
 
-    let lista = JSON.parse(localStorage.getItem("lista")) || [];
+    let lista =
+      JSON.parse(localStorage.getItem("lista")) || [];
+
     let editando = null;
-    let idAtual = Number(localStorage.getItem("id")) || 1;
 
-    const $ = id => document.getElementById(id);
+    let idAtual =
+      Number(localStorage.getItem("id")) || 1;
 
-    function salvarStorage() {
-      localStorage.setItem("lista", JSON.stringify(lista));
-      localStorage.setItem("id", idAtual);
+    const $ = id =>
+      document.getElementById(id);
+
+    function salvarStorage(){
+
+      localStorage.setItem(
+        "lista",
+        JSON.stringify(lista)
+      );
+
+      localStorage.setItem(
+        "id",
+        idAtual
+      );
     }
 
-    function limparCampos() {
+    function limparCampos(){
+
       $("produto").value = "";
       $("quantidade").value = "";
       $("valor").value = "";
       $("tipo").value = "Unidade";
+
       editando = null;
     }
 
-    function salvarItem() {
+    function salvarItem(){
 
-      const produto = $("produto").value.trim();
+      const produto =
+        $("produto").value.trim();
 
-      const quantidade = parseFloat(
-        $("quantidade").value.replace(",", ".")
-      );
+      const quantidade =
+        parseFloat(
+          $("quantidade").value.replace(",", ".")
+        );
 
-      const valor = parseFloat(
-        $("valor").value.replace(",", ".")
-      );
+      const valor =
+        parseFloat(
+          $("valor").value.replace(",", ".")
+        );
 
-      const tipo = $("tipo").value;
+      const tipo =
+        $("tipo").value;
 
-      if (!produto || quantidade <= 0 || valor <= 0) {
+      if(
+        !produto ||
+        quantidade <= 0 ||
+        valor <= 0
+      ){
         alert("Preencha os campos corretamente.");
         return;
       }
 
       const item = {
+
         id: editando || idAtual++,
+
         produto,
+
         quantidade,
+
         valor,
+
         tipo,
-        comprado: false
+
+        comprado:false
       };
 
-      if (editando) {
+      if(editando){
 
-        const index = lista.findIndex(i => i.id === editando);
+        const index =
+          lista.findIndex(
+            i => i.id === editando
+          );
 
-        item.comprado = lista[index].comprado;
+        item.comprado =
+          lista[index].comprado;
 
         lista[index] = item;
 
-      } else {
+      }else{
 
         lista.push(item);
 
       }
 
       salvarStorage();
+
       limparCampos();
+
       renderizarTabela();
     }
 
-    function renderizarTabela(filtro = lista) {
+    function renderizarTabela(
+      filtro = lista
+    ){
 
-      const tbody = $("tabelaItens");
+      const tbody =
+        $("tabelaItens");
 
       tbody.innerHTML = "";
 
@@ -387,100 +437,156 @@ th {
 
       filtro.forEach(item => {
 
-        const subtotal = item.quantidade * item.valor;
+        const subtotal =
+          item.quantidade * item.valor;
 
         total += subtotal;
 
-        const tr = document.createElement("tr");
+        const tr =
+          document.createElement("tr");
 
-        if (item.comprado) {
+        if(item.comprado){
           tr.classList.add("comprado");
         }
 
         tr.innerHTML = `
-  <td>${item.produto}</td>
-          <td>${item.quantidade}</td>
-          <td>R$ ${item.valor.toFixed(2)}</td>
-          <td>R$ ${subtotal.toFixed(2)}</td>
-          <td>
-            <input type="checkbox"
-              ${item.comprado ? "checked" : ""}
-              onchange="toggleComprado(${item.id})">
-          </td>
-          <td>
-            <button class="btn-editar"
-              onclick="editar(${item.id})">✏️</button>
 
-            <button class="btn-excluir"
-              onclick="excluir(${item.id})">🗑️</button>
+          <td>${item.produto}</td>
+
+          <td>
+            ${item.quantidade}
+          </td>
+
+          <td>
+            R$ ${item.valor.toFixed(2)}
+          </td>
+
+          <td>
+            R$ ${subtotal.toFixed(2)}
+          </td>
+
+          <td>
+
+            <input
+              type="checkbox"
+
+              ${item.comprado ? "checked" : ""}
+
+              onchange="toggleComprado(${item.id})"
+            >
+
+          </td>
+
+          <td>
+
+            <button
+              class="btn-editar"
+              onclick="editar(${item.id})"
+            >
+              ✏️
+            </button>
+
+            <button
+              class="btn-excluir"
+              onclick="excluir(${item.id})"
+            >
+              🗑️
+            </button>
+
           </td>
         `;
 
         tbody.appendChild(tr);
+
       });
 
-      $("totalLista").textContent = total.toFixed(2);
+      $("totalLista").textContent =
+        total.toFixed(2);
     }
 
-    function editar(id) {
+    function editar(id){
 
-      const item = lista.find(i => i.id === id);
+      const item =
+        lista.find(i => i.id === id);
 
-      if (!item) return;
+      if(!item) return;
 
-      $("produto").value = item.produto;
-      $("quantidade").value = item.quantidade;
-      $("valor").value = item.valor;
-      $("tipo").value = item.tipo;
+      $("produto").value =
+        item.produto;
+
+      $("quantidade").value =
+        item.quantidade;
+
+      $("valor").value =
+        item.valor;
+
+      $("tipo").value =
+        item.tipo;
 
       editando = id;
     }
 
-    function excluir(id) {
+    function excluir(id){
 
-      lista = lista.filter(i => i.id !== id);
-
-      salvarStorage();
-
-      renderizarTabela();
-    }
-
-    function toggleComprado(id) {
-
-      const item = lista.find(i => i.id === id);
-
-      if (!item) return;
-
-      item.comprado = !item.comprado;
+      lista =
+        lista.filter(i => i.id !== id);
 
       salvarStorage();
 
       renderizarTabela();
     }
 
-    $("pesquisa").addEventListener("input", function(){
+    function toggleComprado(id){
 
-      const termo = this.value.toLowerCase();
+      const item =
+        lista.find(i => i.id === id);
 
-      const filtrado = lista.filter(i =>
-        i.produto.toLowerCase().includes(termo)
-      );
+      if(!item) return;
+
+      item.comprado =
+        !item.comprado;
+
+      salvarStorage();
+
+      renderizarTabela();
+    }
+
+    $("pesquisa")
+      .addEventListener("input", function(){
+
+      const termo =
+        this.value.toLowerCase();
+
+      const filtrado =
+        lista.filter(i =>
+          i.produto
+          .toLowerCase()
+          .includes(termo)
+        );
 
       renderizarTabela(filtrado);
+
     });
 
-    function gerarTXT() {
+    function gerarTXT(){
 
       let texto = "";
+
       let total = 0;
 
-      texto += "====================================\n";
-      texto += "       LISTA DE COMPRAS\n";
-      texto += "====================================\n\n";
+      texto +=
+        "=============================\n";
+
+      texto +=
+        "      LISTA DE COMPRAS\n";
+
+      texto +=
+        "=============================\n\n";
 
       lista.forEach(item => {
 
-        const subtotal = item.quantidade * item.valor;
+        const subtotal =
+          item.quantidade * item.valor;
 
         total += subtotal;
 
@@ -488,62 +594,92 @@ th {
           `${item.produto} | ` +
           `Qtd: ${item.quantidade} | ` +
           `R$ ${subtotal.toFixed(2)}\n`;
+
       });
 
-      texto += "\n====================================\n";
-      texto += `TOTAL: R$ ${total.toFixed(2)}\n`;
+      texto +=
+        "\n=============================\n";
+
+      texto +=
+        `TOTAL: R$ ${total.toFixed(2)}\n`;
 
       return texto;
     }
 
-    function exportarTXT() {
+    function exportarTXT(){
 
-      const blob = new Blob(
-        [gerarTXT()],
-        { type: "text/plain;charset=utf-8" }
-      );
+      const blob =
+        new Blob(
+          [gerarTXT()],
+          { type:"text/plain;charset=utf-8" }
+        );
 
-      const link = document.createElement("a");
+      const link =
+        document.createElement("a");
 
-      link.href = URL.createObjectURL(blob);
+      link.href =
+        URL.createObjectURL(blob);
 
-      link.download = "lista_compras.txt";
+      link.download =
+        "lista_compras.txt";
 
       link.click();
     }
 
-    function gerarPDF() {
+    function gerarPDF(){
 
-      const { jsPDF } = window.jspdf;
+      const { jsPDF } =
+        window.jspdf;
 
-      const doc = new jsPDF();
+      const doc =
+        new jsPDF();
 
       let total = 0;
 
-      const linhas = lista.map(item => {
+      const linhas =
+        lista.map(item => {
 
-        const subtotal = item.quantidade * item.valor;
+        const subtotal =
+          item.quantidade * item.valor;
 
         total += subtotal;
 
         return [
+
           item.produto,
+
           item.quantidade,
+
           item.valor.toFixed(2),
+
           subtotal.toFixed(2)
+
         ];
+
       });
 
-      doc.text("LISTA DE COMPRAS", 14, 15);
+      doc.text(
+        "LISTA DE COMPRAS",
+        14,
+        15
+      );
 
       doc.autoTable({
-        startY: 20,
-        head: [["Produto","Qtd","Valor","Total"]],
-        body: linhas,
-        theme: "grid"
+
+        startY:20,
+
+        head:[
+          ["Produto","Qtd","Valor","Total"]
+        ],
+
+        body:linhas,
+
+        theme:"grid"
+
       });
 
-      const y = doc.lastAutoTable.finalY || 20;
+      const y =
+        doc.lastAutoTable.finalY || 20;
 
       doc.text(
         `TOTAL: R$ ${total.toFixed(2)}`,
@@ -554,50 +690,71 @@ th {
       return doc;
     }
 
-    function exportarPDF() {
-      gerarPDF().save("lista_compras.pdf");
+    function exportarPDF(){
+
+      gerarPDF()
+        .save("lista_compras.pdf");
     }
 
-    function exportarLista() {
+    function exportarLista(){
 
-      const blob = new Blob(
-        [JSON.stringify(lista, null, 2)],
-        { type: "application/json" }
-      );
+      const blob =
+        new Blob(
 
-      const link = document.createElement("a");
+          [JSON.stringify(lista,null,2)],
 
-      link.href = URL.createObjectURL(blob);
+          {
+            type:"application/json"
+          }
 
-      link.download = "lista_compras.json";
+        );
+
+      const link =
+        document.createElement("a");
+
+      link.href =
+        URL.createObjectURL(blob);
+
+      link.download =
+        "lista_compras.json";
 
       link.click();
     }
 
-    $("arquivo").addEventListener("change", importarLista);
+    $("arquivo")
+      .addEventListener(
+        "change",
+        importarLista
+      );
 
-    function importarLista(event) {
+    function importarLista(event){
 
-      const arquivo = event.target.files[0];
+      const arquivo =
+        event.target.files[0];
 
-      if (!arquivo) return;
+      if(!arquivo) return;
 
-      const leitor = new FileReader();
+      const leitor =
+        new FileReader();
 
       leitor.onload = e => {
 
-        try {
+        try{
 
-          const dados = JSON.parse(e.target.result);
+          const dados =
+            JSON.parse(e.target.result);
 
-          if (!Array.isArray(dados)) {
+          if(!Array.isArray(dados)){
+
             alert("Arquivo inválido");
+
             return;
           }
 
           lista = dados;
 
-          idAtual = lista.length
+          idAtual =
+            lista.length
             ? Math.max(...lista.map(i => i.id)) + 1
             : 1;
 
@@ -607,7 +764,7 @@ th {
 
           alert("Lista importada com sucesso!");
 
-        } catch {
+        }catch{
 
           alert("Erro ao importar arquivo");
 
@@ -622,5 +779,5 @@ th {
   </script>
 
 </body>
-
 </html>
+```
