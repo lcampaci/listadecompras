@@ -64,26 +64,21 @@
 .linha-secundaria {
   display: flex;
   gap: 8px;
+  flex-wrap: nowrap;
+  align-items: center;
 }
 
 /* campos menores na linha */
 .linha-secundaria input,
 .linha-secundaria select {
-  height: 32px;
-  font-size: 12px;
+  flex: 1;
+  min-width: 0;
 }
 
 /* botão */
 .linha-secundaria button {
-  flex: 0 0 auto;
-  height: 32px;
-  padding: 0 12px;
-  font-size: 12px;
-  background: #22c55e;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
+  flex: 0 0 90px;
+  white-space: nowrap;
 }
     input,
 select {
@@ -233,16 +228,16 @@ select {
   }
 
       .linha-secundaria {
-    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .linha-secundaria button {
+    flex: 0 0 80px;
   }
 
   .linha-secundaria input,
   .linha-secundaria select {
-    flex: 1 1 30%;
-  }
-
-  .linha-secundaria button {
-    width: 100%;
+    font-size: 12px;
   }
 
      .acoes-topo button {
