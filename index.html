@@ -535,44 +535,63 @@
 
     function salvarItem() {
 
-      const produto = document.getElementById("produto").value;
-      const quantidade = parseFloat(document.getElementById("quantidade").value);
-      const valor = parseFloat(document.getElementById("valor").value);
-      const tipo = document.getElementById("tipo").value;
+  const produto = document.getElementById("produto").value.trim();
 
-      if (!produto || quantidade <= 0 || valor <= 0) return;
+  const quantidade = parseFloat(
+    document.getElementById("quantidade").value
+      .replace(",", ".")
+  );
 
-      if (editando === null) {
+  const valor = parseFloat(
+    document.getElementById("valor").value
+      .replace(",", ".")
+  );
 
-        lista.push({
-          id: idAtual++,
-          produto,
-          quantidade,
-          valor,
-          tipo,
-          comprado: false
-        });
+  const tipo = document.getElementById("tipo").value;
 
-      } else {
+  // validação
+  if (
+    produto === "" ||
+    isNaN(quantidade) ||
+    isNaN(valor) ||
+    quantidade <= 0 ||
+    valor <= 0
+  ) {
+    alert("Preencha todos os campos corretamente.");
+    return;
+  }
 
-        const i = lista.findIndex(x => x.id === editando);
+  if (editando === null) {
 
-        lista[i] = {
-          id: editando,
-          produto,
-          quantidade,
-          valor,
-          tipo,
-          comprado: lista[i].comprado
-        };
+    lista.push({
+      id: idAtual++,
+      produto,
+      quantidade,
+      valor,
+      tipo,
+      comprado: false
+    });
 
-        editando = null;
-      }
+  } else {
 
-      salvarStorage();
-      limpar();
-      renderizarTabela();
-    }
+    const i = lista.findIndex(x => x.id === editando);
+
+    lista[i] = {
+      id: editando,
+      produto,
+      quantidade,
+      valor,
+      tipo,
+      comprado: lista[i].comprado
+    };
+
+    editando = null;
+  }
+
+  salvarStorage();
+  limpar();
+  renderizarTabela();
+}
 
     function renderizarTabela(listaFiltrada = lista) {
 
