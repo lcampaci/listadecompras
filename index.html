@@ -579,6 +579,44 @@ select {
 
   <script>
 
+	   /* =========================
+   TEMA CLARO / ESCURO
+========================= */
+
+function aplicarTema(tema){
+
+  if(tema === "dark"){
+
+    document.body.classList.add("dark");
+
+    $("toggleTema").textContent = "☀️";
+
+  }else{
+
+    document.body.classList.remove("dark");
+
+    $("toggleTema").textContent = "🌙";
+  }
+
+  localStorage.setItem("tema", tema);
+}
+
+function toggleTema(){
+
+  const escuro =
+    document.body.classList.contains("dark");
+
+  aplicarTema(
+    escuro ? "light" : "dark"
+  );
+}
+
+/* carregar tema salvo imediatamente */
+const temaSalvo =
+  localStorage.getItem("tema") || "light";
+
+aplicarTema(temaSalvo);
+
     window.onload = () => {
   console.log("Página carregou");
   console.log(lista);
@@ -1115,47 +1153,7 @@ function excluirItemModal(){
     console.log("lista:", lista);
 renderizarTabela();
 
-	  /* =========================
-   TEMA CLARO / ESCURO
-========================= */
-
-function aplicarTema(tema){
-
-  if(tema === "dark"){
-
-    document.body.classList.add("dark");
-
-    $("toggleTema").textContent = "☀️";
-
-  }else{
-
-    document.body.classList.remove("dark");
-
-    $("toggleTema").textContent = "🌙";
-  }
-
-  localStorage.setItem("tema", tema);
-}
-
-function toggleTema(){
-
-  const escuro =
-    document.body.classList.contains("dark");
-
-  aplicarTema(
-    escuro ? "light" : "dark"
-  );
-}
-
-/* carregar tema salvo */
-window.addEventListener("load", () => {
-
-  const temaSalvo =
-    localStorage.getItem("tema") || "light";
-
-  aplicarTema(temaSalvo);
-
-});
+	 
 
 
      if ("serviceWorker" in navigator) {
