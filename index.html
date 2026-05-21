@@ -600,72 +600,69 @@ function excluirItemModal(){
       renderizarTabela();
     }
 
-    function renderizarTabela(
-      filtro = lista
-    ){
-console.log("renderizando...");
-      const tbody =
-        $("tabelaItens");
+    function renderizarTabela(filtro = lista){
 
-      tbody.innerHTML = "";
+  const tbody = $("tabelaItens");
 
-      let total = 0;
+  tbody.innerHTML = "";
 
-      filtro.forEach(item => {
+  let total = 0;
 
-        const subtotal =
-          item.quantidade * item.valor;
+  filtro.forEach(item => {
 
-        total += subtotal;
+    const subtotal =
+      item.quantidade * item.valor;
 
-        const tr =
-          document.createElement("tr");
+    total += subtotal;
 
-        if(item.comprado){
-          tr.classList.add("comprado");
-        }
+    const tr =
+      document.createElement("tr");
 
-        tr.onclick = () => abrirModal(item.id);
-
-tr.innerHTML = ` `
-
-          <td>${item.produto}</td>
-
-          <td>
-            ${item.quantidade}
-          </td>
-
-          <td>
-            R$ ${item.valor.toFixed(2)}
-          </td>
-
-          <td>
-            R$ ${subtotal.toFixed(2)}
-          </td>
-
-          <td>
-
-            <input
-              type="checkbox"
-
-              ${item.comprado ? "checked" : ""}
-
-              onchange="toggleComprado(${item.id})"
-            >
-
-          </td>
-
-        
-        `;
-
-        tbody.appendChild(tr);
-
-      });
-
-      $("totalLista").textContent =
-        total.toFixed(2);
+    if(item.comprado){
+      tr.classList.add("comprado");
     }
 
+    tr.onclick = () => abrirModal(item.id);
+
+    tr.innerHTML = `
+
+      <td>${item.produto}</td>
+
+      <td>
+        ${item.quantidade}
+      </td>
+
+      <td>
+        R$ ${item.valor.toFixed(2)}
+      </td>
+
+      <td>
+        R$ ${subtotal.toFixed(2)}
+      </td>
+
+      <td>
+
+        <input
+          type="checkbox"
+
+          ${item.comprado ? "checked" : ""}
+
+          onchange="toggleComprado(${item.id})"
+
+          onclick="event.stopPropagation()"
+        >
+
+      </td>
+
+    `;
+
+    tbody.appendChild(tr);
+
+  });
+
+  $("totalLista").textContent =
+    total.toFixed(2);
+}
     function editar(id){
 
       const item =
