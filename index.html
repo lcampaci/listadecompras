@@ -169,6 +169,60 @@ body.dark #toggleTema{
   flex: 0 0 120px;
   height: 36px;
 }
+
+	  /* =========================
+   CHECKBOX BONITO
+========================= */
+
+.check-container{
+  position:relative;
+  display:inline-block;
+  width:24px;
+  height:24px;
+  cursor:pointer;
+}
+
+.check-container input{
+  opacity:0;
+  width:0;
+  height:0;
+}
+
+.checkmark{
+  position:absolute;
+  inset:0;
+  background:#e5e7eb;
+  border-radius:6px;
+  transition:.2s;
+  border:2px solid #cbd5e1;
+}
+
+.checkmark::after{
+  content:"";
+  position:absolute;
+  display:none;
+
+  left:7px;
+  top:2px;
+
+  width:5px;
+  height:10px;
+
+  border:solid white;
+  border-width:0 3px 3px 0;
+
+  transform:rotate(45deg);
+}
+
+.check-container input:checked + .checkmark{
+  background:#22c55e;
+  border-color:#22c55e;
+}
+
+.check-container input:checked + .checkmark::after{
+  display:block;
+}
+	  
     input,
 select {
   height: 36px;
@@ -580,6 +634,33 @@ function abrirModal(id){
     "flex";
 }
 
+	  /* =========================
+   VIBRAÇÃO
+========================= */
+
+function vibrar(tempo = 40){
+
+  if(navigator.vibrate){
+
+    navigator.vibrate(tempo);
+
+  }
+}
+
+/* vibração em TODOS os botões */
+document.addEventListener("click", e => {
+
+  if(
+    e.target.tagName === "BUTTON" ||
+    e.target.type === "checkbox"
+  ){
+
+    vibrar();
+
+  }
+
+});
+
 function fecharModal(){
 
   $("modalAcoes").style.display =
@@ -730,15 +811,18 @@ function excluirItemModal(){
 
       <td>
 
-        <input
-          type="checkbox"
+        <label class="check-container">
 
-          ${item.comprado ? "checked" : ""}
+  <input
+    type="checkbox"
+    ${item.comprado ? "checked" : ""}
+    onchange="toggleComprado(${item.id})"
+    onclick="event.stopPropagation()"
+  >
 
-          onchange="toggleComprado(${item.id})"
+  <span class="checkmark"></span>
 
-          onclick="event.stopPropagation()"
-        >
+</label>
 
       </td>
 
