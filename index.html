@@ -44,57 +44,7 @@
   cursor:pointer;
 }
 
-/* =========================
-   TEMA ESCURO
-========================= */
 
-body.dark{
-  background:#111827;
-  color:#f3f4f6;
-}
-
-body.dark .container{
-  background:#1f2937;
-  color:#fff;
-}
-
-body.dark input,
-body.dark select{
-  background:#374151;
-  color:#fff;
-  border:1px solid #4b5563;
-}
-
-body.dark table{
-  color:#fff;
-}
-
-body.dark th{
-  background:#2563eb;
-}
-
-body.dark td{
-  border-bottom:1px solid #374151;
-}
-
-body.dark tr:hover{
-  background:#2d3748;
-}
-
-body.dark .modal-conteudo{
-  background:#1f2937;
-  color:#fff;
-}
-
-body.dark #pesquisa{
-  background:#374151;
-  color:#fff;
-}
-
-body.dark #toggleTema{
-  background:#f3f4f6;
-  color:#111827;
-}
 
     html, body {
   max-width: 100%;
@@ -512,10 +462,6 @@ select {
 
     <div class="topo-app">
   <h1>Lista de Compras</h1>
-
-  <button id="toggleTema" onclick="toggleTema()">
-    🌙
-  </button>
 </div>
 
    <div class="formulario">
@@ -580,44 +526,6 @@ select {
 
   <script>
 
-	   /* =========================
-   TEMA CLARO / ESCURO
-========================= */
-
-function aplicarTema(tema){
-
-  if(tema === "dark"){
-
-    document.body.classList.add("dark");
-
-    $("toggleTema").textContent = "☀️";
-
-  }else{
-
-    document.body.classList.remove("dark");
-
-    $("toggleTema").textContent = "🌙";
-  }
-
-  localStorage.setItem("tema", tema);
-}
-
-function toggleTema(){
-
-  const escuro =
-    document.body.classList.contains("dark");
-
-  aplicarTema(
-    escuro ? "light" : "dark"
-  );
-}
-
-/* carregar tema salvo imediatamente */
-const temaSalvo =
-  localStorage.getItem("tema") || "light";
-
-aplicarTema(temaSalvo);
-
     window.onload = () => {
   console.log("Página carregou");
   console.log(lista);
@@ -641,6 +549,8 @@ try {
 
     const $ = id =>
       document.getElementById(id);
+
+	  
 
     function salvarStorage(){
 
