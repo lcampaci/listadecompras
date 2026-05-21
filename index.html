@@ -3,12 +3,14 @@
 
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="icon" href="./icon-192.png">
+	<meta name="author" content="Luis Henrique Campaci">
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#22c55e">
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
   <title>Lista de Compras</title>
 
  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -847,11 +849,16 @@ console.log("renderizando...");
 renderizarTabela();
 
 
-    if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./sw.js')
-    .then(() => console.log('SW registrado'))
-    .catch(err => console.log('Erro SW:', err));
-}
+     if ("serviceWorker" in navigator) {
+            window.addEventListener("load", () => {
+                navigator.serviceWorker.register("./service-worker.js").then(() => {
+                    console.log("PWA instalada!");
+                }).catch(err => {
+                    console.log("Erro:", err);
+
+                });
+            });
+        }
   </script>
 
 </body>
