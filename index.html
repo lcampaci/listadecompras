@@ -811,13 +811,15 @@ function excluirItemModal(){
 
       <td>
 
-        <label class="check-container">
+        <label
+  class="check-container"
+  onclick="event.stopPropagation()"
+>
 
   <input
     type="checkbox"
     ${item.comprado ? "checked" : ""}
     onchange="toggleComprado(${item.id})"
-    onclick="event.stopPropagation()"
   >
 
   <span class="checkmark"></span>
