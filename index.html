@@ -57,6 +57,10 @@
   gap: 8px;
 }
 
+	  tbody tr{
+  cursor:pointer;
+}
+
 /* produto sozinho em cima */
 #produto {
   width: 100%;
@@ -306,7 +310,62 @@ select {
         box-shadow:none;
       }
     }
+.modal{
+  position:fixed;
+  inset:0;
+  background:rgba(0,0,0,.45);
+  display:none;
+  align-items:center;
+  justify-content:center;
+  z-index:999;
+}
 
+.modal-conteudo{
+  background:#fff;
+  width:90%;
+  max-width:320px;
+  border-radius:12px;
+  padding:20px;
+  text-align:center;
+  animation:fade .2s ease;
+}
+
+.modal-conteudo h3{
+  margin-bottom:18px;
+  color:#333;
+  font-size:18px;
+}
+
+.modal-botoes{
+  display:flex;
+  flex-direction:column;
+  gap:10px;
+}
+
+.modal-botoes button{
+  height:42px;
+  border:none;
+  border-radius:8px;
+  color:#fff;
+  font-weight:bold;
+  font-size:14px;
+}
+
+.btn-cancelar{
+  background:#6b7280;
+}
+
+@keyframes fade{
+  from{
+    transform:scale(.95);
+    opacity:0;
+  }
+
+  to{
+    transform:scale(1);
+    opacity:1;
+  }
+}
   </style>
 </head>
 
@@ -360,7 +419,6 @@ select {
             <th>Valor</th>
             <th>Total</th>
             <th>✔</th>
-            <th>Ações</th>
           </tr>
         </thead>
 
@@ -415,6 +473,55 @@ try {
         idAtual
       );
     }
+
+	  let itemSelecionado = null;
+
+function abrirModal(id){
+
+  itemSelecionado = id;
+
+  const item =
+    lista.find(i => i.id === id);
+
+  if(!item) return;
+
+  $("modalTitulo").textContent =
+    item.produto;
+
+  $("modalAcoes").style.display =
+    "flex";
+}
+
+function fecharModal(){
+
+  $("modalAcoes").style.display =
+    "none";
+
+  itemSelecionado = null;
+}
+
+function editarItemModal(){
+
+  if(itemSelecionado){
+
+    editar(itemSelecionado);
+
+    fecharModal();
+  }
+}
+
+function excluirItemModal(){
+
+  if(itemSelecionado){
+
+    if(confirm("Excluir item?")){
+
+      excluir(itemSelecionado);
+
+      fecharModal();
+    }
+  }
+}
 
     function limparCampos(){
 
@@ -518,7 +625,9 @@ console.log("renderizando...");
           tr.classList.add("comprado");
         }
 
-        tr.innerHTML = `
+        tr.onclick = () => abrirModal(item.id);
+
+tr.innerHTML = ` `
 
           <td>${item.produto}</td>
 
@@ -546,23 +655,7 @@ console.log("renderizando...");
 
           </td>
 
-          <td>
-
-            <button
-              class="btn-editar"
-              onclick="editar(${item.id})"
-            >
-              ✏️
-            </button>
-
-            <button
-              class="btn-excluir"
-              onclick="excluir(${item.id})"
-            >
-              🗑️
-            </button>
-
-          </td>
+        
         `;
 
         tbody.appendChild(tr);
@@ -861,5 +954,30 @@ renderizarTabela();
         }
   </script>
 
+	<div id="modalAcoes" class="modal">
+
+  <div class="modal-conteudo">
+
+    <h3 id="modalTitulo"></h3>
+
+    <div class="modal-botoes">
+
+      <button class="btn-editar" onclick="editarItemModal()">
+        ✏️ Alterar
+      </button>
+
+      <button class="btn-excluir" onclick="excluirItemModal()">
+        🗑️ Excluir
+      </button>
+
+      <button class="btn-cancelar" onclick="fecharModal()">
+        ❌ Cancelar
+      </button>
+
+    </div>
+
+  </div>
+
+</div>
 </body>
 </html>
