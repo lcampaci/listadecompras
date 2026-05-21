@@ -231,6 +231,7 @@ select {
   padding: 6px 10px;
   font-size: 13px;
   box-sizing: border-box;
+	text-transform: uppercase;
 }
 
     button{
@@ -743,7 +744,10 @@ function excluirItemModal(){
     function salvarItem(){
 
       const produto =
-        $("produto").value.trim();
+  $("produto")
+    .value
+    .trim()
+    .toUpperCase();
 
       const quantidade =
         parseFloat(
