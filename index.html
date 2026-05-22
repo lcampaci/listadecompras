@@ -672,6 +672,17 @@ function fecharModal(){
   itemSelecionado = null;
 }
 
+	  /* FECHAR AO CLICAR FORA */
+$("modalAcoes").addEventListener("click", function(e){
+
+  if(e.target === this){
+
+    fecharModal();
+
+  }
+
+});
+
 function editarItemModal(){
 
   if(itemSelecionado){
