@@ -580,7 +580,7 @@ td:nth-child(5){
 
   <script>
 
-   window.onload = () => {
+  document.addEventListener("DOMContentLoaded", () => {
 
   console.log("Página carregou");
 
@@ -1151,15 +1151,16 @@ renderizarTabela();
 
 
      if ("serviceWorker" in navigator) {
-            window.addEventListener("load", () => {
-                navigator.serviceWorker.register("./service-worker.js").then(() => {
-                    console.log("PWA instalada!");
-                }).catch(err => {
-                    console.log("Erro:", err);
 
-                });
-            });
-        }
+  navigator.serviceWorker.register("./service-worker.js")
+    .then(() => {
+      console.log("PWA instalada!");
+    })
+    .catch(err => {
+      console.log("Erro:", err);
+    });
+
+}
   </script>
 
 	<div id="modalAcoes" class="modal">
