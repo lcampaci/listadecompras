@@ -124,11 +124,15 @@
    CHECKBOX BONITO
 ========================= */
 
-.check-container{
+
+	  .check-container{
   position:relative;
-  display:inline-block;
+  display:flex;
+  align-items:center;
+  justify-content:center;
   width:24px;
   height:24px;
+  margin:auto;
   cursor:pointer;
 }
 
@@ -764,18 +768,17 @@ function excluirItemModal(){
         R$ ${subtotal.toFixed(2)}
       </td>
 
-      <td>
+      <td style="text-align:center; vertical-align:middle;">
 
-        <label
-  class="check-container"
-  onclick="event.stopPropagation()"
+  <label
+    class="check-container"
+    onclick="event.stopPropagation()"
 >
 
   <input
     type="checkbox"
     ${item.comprado ? "checked" : ""}
     onchange="toggleComprado(${item.id})"
-	style="text-align:center;"
   >
 
   <span class="checkmark"></span>
