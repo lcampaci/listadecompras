@@ -703,7 +703,7 @@ function editarItemModal(){
   if(itemSelecionado){
 
     editar(itemSelecionado);
-
+	vibrar();
     fecharModal();
   }
 }
@@ -715,7 +715,7 @@ function excluirItemModal(){
     if(confirm("Excluir item?")){
 
       excluir(itemSelecionado);
-
+	  vibrar();
       fecharModal();
     }
   }
@@ -900,7 +900,7 @@ function excluirItemModal(){
         lista.filter(i => i.id !== id);
 
       salvarStorage();
-
+	  vibrar();
       renderizarTabela();
     }
 
@@ -915,7 +915,7 @@ function excluirItemModal(){
         !item.comprado;
 
       salvarStorage();
-
+      vibrar();
       renderizarTabela();
     }
 
