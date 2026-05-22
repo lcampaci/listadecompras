@@ -588,6 +588,11 @@ td:nth-child(5){
 
   renderizarTabela();
 
+	  // 👇 AQUI
+  if (window.matchMedia('(display-mode: standalone)').matches) {
+    console.log("Rodando como PWA");
+  }
+
   const modal = $("modalAcoes");
 
   const modalConteudo =
