@@ -359,11 +359,42 @@ select {
         padding:4px;
       }
 
-      td:first-child{
-        min-width:180px;
-        text-align:left;
-        word-break:break-word;
-      }
+      table{
+  width:100%;
+  border-collapse:collapse;
+  table-layout:fixed;
+}
+
+/* coluna produto maior */
+th:nth-child(1),
+td:nth-child(1){
+  width:45%;
+  white-space:nowrap;
+  overflow:hidden;
+  text-overflow:ellipsis;
+}
+
+/* colunas menores */
+th:nth-child(2),
+td:nth-child(2){
+  width:12%;
+}
+
+th:nth-child(3),
+td:nth-child(3){
+  width:16%;
+}
+
+th:nth-child(4),
+td:nth-child(4){
+  width:17%;
+}
+
+th:nth-child(5),
+td:nth-child(5){
+  width:10%;
+  text-align:center;
+}
 
       td:last-child{
         white-space:nowrap;
