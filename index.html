@@ -580,10 +580,33 @@ td:nth-child(5){
 
   <script>
 
-    window.onload = () => {
+   window.onload = () => {
+
   console.log("Página carregou");
+
   console.log(lista);
+
   renderizarTabela();
+
+  const modal = $("modalAcoes");
+
+  const modalConteudo =
+    document.querySelector(".modal-conteudo");
+
+  /* clicar fora fecha */
+  modal.addEventListener("click", () => {
+
+    fecharModal();
+
+  });
+
+  /* clicar dentro NÃO fecha */
+  modalConteudo.addEventListener("click", (e) => {
+
+    e.stopPropagation();
+
+  });
+
 };
 
     let lista = [];
@@ -672,23 +695,6 @@ function fecharModal(){
   itemSelecionado = null;
 }
 
-	  /* FECHAR AO CLICAR FORA */
-const modal = $("modalAcoes");
-const modalConteudo = document.querySelector(".modal-conteudo");
-
-/* fecha ao clicar no fundo */
-modal.addEventListener("click", () => {
-
-  fecharModal();
-
-});
-
-/* impede fechar ao clicar dentro */
-modalConteudo.addEventListener("click", (e) => {
-
-  e.stopPropagation();
-
-});
 
 function editarItemModal(){
 
