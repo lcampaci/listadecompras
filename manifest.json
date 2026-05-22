@@ -1,9 +1,9 @@
 {
-  "id": "/",
+  "id": "./",
   "name": "Lista de Compras",
   "short_name": "Compras",
-  "start_url": "/",
-  "scope": "/",
+  "start_url": "./",
+  "scope": "./",
   "display": "standalone",
   "display_override": ["window-controls-overlay", "standalone"]
   "background_color": "#ffffff",
