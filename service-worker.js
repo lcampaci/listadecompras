@@ -1,6 +1,6 @@
-const CACHE = "lista-compras-v2";
+const CACHE = "lista-compras-v3";
 
-const ASSETS = [
+const arquivos = [
   "./",
   "./index.html",
   "./manifest.json",
@@ -8,32 +8,48 @@ const ASSETS = [
   "./icon-512.png"
 ];
 
-self.addEventListener("install", (event) => {
-  event.waitUntil(
-    caches.open(CACHE).then(cache => cache.addAll(ASSETS))
-  );
+self.addEventListener("install", event => {
 
   self.skipWaiting();
+
+  event.waitUntil(
+    caches.open(CACHE)
+      .then(cache => cache.addAll(arquivos))
+  );
+
 });
 
-self.addEventListener("activate", (event) => {
+self.addEventListener("activate", event => {
+
   event.waitUntil(
+
     caches.keys().then(keys =>
+
       Promise.all(
         keys
           .filter(key => key !== CACHE)
           .map(key => caches.delete(key))
       )
+
     )
+
   );
 
   self.clients.claim();
+
 });
 
-self.addEventListener("fetch", (event) => {
+self.addEventListener("fetch", event => {
+
   event.respondWith(
-    caches.match(event.request).then(response => {
-      return response || fetch(event.request);
-    })
+
+    caches.match(event.request)
+      .then(response => {
+
+        return response || fetch(event.request);
+
+      })
+
   );
+
 });
