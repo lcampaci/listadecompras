@@ -673,13 +673,20 @@ function fecharModal(){
 }
 
 	  /* FECHAR AO CLICAR FORA */
-$("modalAcoes").addEventListener("click", function(e){
+const modal = $("modalAcoes");
+const modalConteudo = document.querySelector(".modal-conteudo");
 
-  if(e.target === this){
+/* fecha ao clicar no fundo */
+modal.addEventListener("click", () => {
 
-    fecharModal();
+  fecharModal();
 
-  }
+});
+
+/* impede fechar ao clicar dentro */
+modalConteudo.addEventListener("click", (e) => {
+
+  e.stopPropagation();
 
 });
 
