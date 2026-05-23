@@ -255,9 +255,17 @@ select {
     }
 
     .tabela-wrapper{
-      width:100%;
-      overflow-x:auto;
-    }
+  width:100%;
+  overflow-x:auto;
+  max-height:520px;
+  overflow-y:auto;
+}
+
+thead th{
+  position:sticky;
+  top:0;
+  z-index:2;
+}
 
     table{
       width:100%;
