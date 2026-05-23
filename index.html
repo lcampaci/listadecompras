@@ -758,18 +758,17 @@ function excluirItemModal(){
         );
 
       const valor =
-        parseFloat(
-          $("valor").value.replace(",", ".")
-        );
+  parseFloat(
+    $("valor").value.replace(",", ".")
+  ) || 0;
 
       const tipo =
         $("tipo").value;
 
       if(
-        !produto ||
-        quantidade <= 0 ||
-        valor <= 0
-      ){
+  !produto ||
+  quantidade <= 0
+){
         alert("Preencha os campos corretamente.");
         return;
       }
