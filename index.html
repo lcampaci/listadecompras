@@ -562,6 +562,9 @@
     </div>
 
     <div class="acoes-topo">
+      <button class="btn-print" onclick="imprimirTXT()">
+        🖨️ IMPRIMIR
+      </button>
 
       <button class="btn-txt" onclick="exportarTXT()">
         📄 TXT
@@ -1088,6 +1091,43 @@
 
       URL.revokeObjectURL(link.href);
     }
+
+    function imprimirTXT() {
+
+      const texto = gerarTXT();
+
+      const janela = window.open("", "_blank");
+
+      janela.document.write(`
+    <html>
+      <head>
+        <title>Lista de Compras</title>
+
+        <style>
+          body{
+            font-family:Courier New, monospace;
+            white-space:pre;
+            padding:20px;
+            font-size:14px;
+          }
+        </style>
+      </head>
+
+      <body>${texto}</body>
+    </html>
+  `);
+
+      janela.document.close();
+
+      janela.focus();
+
+      setTimeout(() => {
+
+        janela.print();
+
+      }, 300);
+    }
+
     function gerarPDF() {
 
       const { jsPDF } =
