@@ -255,15 +255,16 @@ select {
     }
 
     .tabela-wrapper{
-      width:100%;
-      overflow-x:auto;
-    }
+  width:100%;
+  overflow-x:auto;
+  -webkit-overflow-scrolling: touch;
+}
 
-    table{
-      width:100%;
-      border-collapse:collapse;
-      table-layout: fixed;
-    }
+   table{
+  width:100%;
+  min-width:600px; /* força scroll no celular */
+  border-collapse:collapse;
+}
 
     th,
     td{
@@ -361,11 +362,7 @@ select {
         padding:4px;
       }
 
-      table{
-  width:100%;
-  border-collapse:collapse;
-  table-layout:fixed;
-}
+      
 
 /* coluna produto maior */
 th:nth-child(1),
