@@ -297,6 +297,19 @@
       background: #e8f5e9;
     }
 
+    /* coluna numeração */
+    th:nth-child(1),
+    td:nth-child(1) {
+      width: 40px;
+      text-align: center;
+    }
+
+    /* produto */
+    th:nth-child(2),
+    td:nth-child(2) {
+      width: 40%;
+    }
+
     .total {
       margin-top: 15px;
       text-align: right;
@@ -377,13 +390,45 @@
         table-layout: fixed;
       }
 
-      /* coluna produto maior */
+      /* numeração */
       th:nth-child(1),
       td:nth-child(1) {
-        width: 45%;
+        width: 36px;
+        text-align: center;
+      }
+
+      /* produto */
+      th:nth-child(2),
+      td:nth-child(2) {
+        width: 40%;
         white-space: nowrap;
         overflow: hidden;
         text-overflow: ellipsis;
+      }
+
+      /* qtd */
+      th:nth-child(3),
+      td:nth-child(3) {
+        width: 12%;
+      }
+
+      /* valor */
+      th:nth-child(4),
+      td:nth-child(4) {
+        width: 16%;
+      }
+
+      /* total */
+      th:nth-child(5),
+      td:nth-child(5) {
+        width: 17%;
+      }
+
+      /* check */
+      th:nth-child(6),
+      td:nth-child(6) {
+        width: 10%;
+        text-align: center;
       }
 
       /* colunas menores */
