@@ -564,13 +564,14 @@ td:nth-child(5){
     <div class="tabela-wrapper">
       <table>
         <thead>
-          <tr>
-            <th>Produto</th>
-            <th style="text-align:right;">Qtd</th>
-            <th style="text-align:right;">Valor</th>
-            <th style="text-align:right;">Total</th>
-            <th style="text-align:center;">✔</th>
-          </tr>
+          	<tr>
+		  		<th>#</th>
+				<th>Produto</th>
+				<th style="text-align:right;">Qtd</th>
+				<th style="text-align:right;">Valor</th>
+				<th style="text-align:right;">Total</th>
+				<th style="text-align:center;">✔</th>
+			</tr>
         </thead>
 
         <tbody id="tabelaItens"></tbody>
@@ -580,9 +581,16 @@ td:nth-child(5){
     </div>
 
     <div class="total">
-      Total: R$
-      <span id="totalLista">0.00</span>
-    </div>
+
+  Itens:
+  <span id="totalItens">0</span>
+
+  <br>
+
+  Total: R$
+  <span id="totalLista">0.00</span>
+
+</div>
 
   </div>
 
@@ -824,7 +832,7 @@ function excluirItemModal(){
 
   let total = 0;
 
-  filtro.forEach(item => {
+	filtro.forEach((item, index) => {
 
     const subtotal =
       item.quantidade * item.valor;
@@ -842,7 +850,11 @@ function excluirItemModal(){
 
     tr.innerHTML = `
 
-      <td>${item.produto}</td>
+	  <td style="text-align:center;">
+	    ${index + 1}
+	  </td>
+
+  	  <td>${item.produto}</td>
 
       <td style="text-align:right;">
         ${item.quantidade}
@@ -880,6 +892,9 @@ function excluirItemModal(){
     tbody.appendChild(tr);
 
   });
+
+  $("totalItens").textContent =
+  filtro.length;
 
   $("totalLista").textContent =
     total.toFixed(2);
