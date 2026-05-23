@@ -943,41 +943,84 @@ function excluirItemModal(){
 
     function gerarTXT(){
 
-      let texto = "";
+  let texto = "";
 
-      let total = 0;
+  let total = 0;
 
-      texto +=
-        "=============================\n";
+  // largura fixa das colunas
+  const COL_PRODUTO = 28;
+  const COL_QTD = 8;
+  const COL_VALOR = 12;
+  const COL_TOTAL = 12;
 
-      texto +=
-        "      LISTA DE COMPRAS\n";
+  // função auxiliar
+  const linha = (
+    produto,
+    qtd,
+    valor,
+    subtotal
+  ) => {
 
-      texto +=
-        "=============================\n\n";
+    return (
+      produto.padEnd(COL_PRODUTO) +
+      qtd.padStart(COL_QTD) +
+      valor.padStart(COL_VALOR) +
+      subtotal.padStart(COL_TOTAL)
+    );
 
-      lista.forEach(item => {
+  };
 
-        const subtotal =
-          item.quantidade * item.valor;
+  texto +=
+`============================================================
+                     LISTA DE COMPRAS
+============================================================
 
-        total += subtotal;
+`;
 
-        texto +=
-          `${item.produto} | ` +
-          `Qtd: ${item.quantidade} | ` +
-          `R$ ${subtotal.toFixed(2)}\n`;
+  // cabeçalho
+  texto += linha(
+    "PRODUTO",
+    "QTD",
+    "VALOR",
+    "TOTAL"
+  );
 
-      });
+  texto += "\n";
 
-      texto +=
-        "\n=============================\n";
+  texto +=
+`${"-".repeat(60)}\n`;
 
-      texto +=
-        `TOTAL: R$ ${total.toFixed(2)}\n`;
+  lista.forEach(item => {
 
-      return texto;
-    }
+    const subtotal =
+      item.quantidade * item.valor;
+
+    total += subtotal;
+
+    texto += linha(
+
+      item.produto.substring(0, COL_PRODUTO - 1),
+
+      item.quantidade.toString(),
+
+      `R$ ${item.valor.toFixed(2)}`,
+
+      `R$ ${subtotal.toFixed(2)}`
+
+    );
+
+    texto += "\n";
+
+  });
+
+  texto +=
+`${"-".repeat(60)}\n`;
+
+  texto +=
+`TOTAL GERAL: R$ ${total.toFixed(2)}\n`;
+
+  return texto;
+}
 
     function exportarTXT(){
 
