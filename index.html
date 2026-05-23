@@ -256,14 +256,23 @@ select {
 
     .tabela-wrapper{
   width:100%;
-  overflow-x:auto;
-  -webkit-overflow-scrolling: touch;
+  max-height:60vh; /* altura máxima */
+  overflow-y:auto;
+  overflow-x:hidden;
+  border-radius:8px;
 }
 
    table{
   width:100%;
   min-width:600px; /* força scroll no celular */
   border-collapse:collapse;
+}
+
+	  thead th{
+  position:sticky;
+  top:0;
+  z-index:2;
+  background:#007bff;
 }
 
     th,
