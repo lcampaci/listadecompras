@@ -1095,36 +1095,63 @@
 
       const texto = gerarTXT();
 
-      const janela = window.open("", "_blank");
+      const iframe =
+        document.createElement("iframe");
 
-      janela.document.write(`
+      iframe.style.position = "fixed";
+      iframe.style.right = "0";
+      iframe.style.bottom = "0";
+      iframe.style.width = "0";
+      iframe.style.height = "0";
+      iframe.style.border = "0";
+
+      document.body.appendChild(iframe);
+
+      const doc =
+        iframe.contentWindow.document;
+
+      doc.open();
+
+      doc.write(`
     <html>
       <head>
         <title>Lista de Compras</title>
 
         <style>
-          body{
-            font-family:Courier New, monospace;
-            white-space:pre;
-            padding:20px;
-            font-size:14px;
-          }
-        </style>
+
+  @page{
+    margin:10mm;
+  }
+
+  body{
+    font-family:Courier New, monospace;
+    white-space:pre;
+    padding:20px;
+    font-size:14px;
+    margin:0;
+  }
+
+</style>
       </head>
 
       <body>${texto}</body>
     </html>
   `);
 
-      janela.document.close();
+      doc.close();
 
-      janela.focus();
+      iframe.onload = () => {
 
-      setTimeout(() => {
+        iframe.contentWindow.focus();
 
-        janela.print();
+        iframe.contentWindow.print();
 
-      }, 300);
+        setTimeout(() => {
+
+          document.body.removeChild(iframe);
+
+        }, 1000);
+      };
     }
 
     function gerarPDF() {
