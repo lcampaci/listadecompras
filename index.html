@@ -543,11 +543,11 @@ td:nth-child(5){
   </button>
 
   <button class="btn-export" onclick="exportarLista()">
-    ⬇️ JSON
+    ⬇️ Backup
   </button>
 
   <button class="btn-import" onclick="document.getElementById('arquivo').click()">
-    ⬆️ IMPORTAR
+    ⬆️ Importar
   </button>
 
   <input
@@ -1032,24 +1032,24 @@ function excluirItemModal(){
 
     function exportarTXT(){
 
-      const blob =
-        new Blob(
-          [gerarTXT()],
-          { type:"text/plain;charset=utf-8" }
-        );
+  const texto = gerarTXT();
 
-      const link =
-        document.createElement("a");
+  // BOM UTF-8
+  const blob = new Blob(
+    ["\uFEFF" + texto],
+    { type: "text/plain;charset=utf-8" }
+  );
 
-      link.href =
-        URL.createObjectURL(blob);
+  const link = document.createElement("a");
 
-      link.download =
-        "lista_compras.txt";
+  link.href = URL.createObjectURL(blob);
 
-      link.click();
-    }
+  link.download = "lista_compras.txt";
 
+  link.click();
+
+  URL.revokeObjectURL(link.href);
+}
     function gerarPDF(){
 
       const { jsPDF } =
