@@ -1038,7 +1038,7 @@
       texto +=
         `${"-".repeat(60)}\n`;
 
-      lista.forEach(item => {
+      lista.forEach((item, index) => {
 
         const subtotal =
           item.quantidade * item.valor;
@@ -1047,7 +1047,7 @@
 
         texto += linha(
 
-          item.produto.substring(0, COL_PRODUTO - 1),
+          `${index + 1}. ${item.produto.substring(0, COL_PRODUTO - 3)}`,
 
           item.quantidade.toString(),
 
@@ -1058,7 +1058,6 @@
         );
 
         texto += "\n";
-
       });
 
       texto +=
