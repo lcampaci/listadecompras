@@ -253,7 +253,6 @@
     #pesquisa {
       width: 100%;
       margin-bottom: 15px;
-	  height:25px;
     }
 
     .tabela-wrapper {
@@ -314,9 +313,24 @@
 
     .total {
       margin-top: 15px;
-      text-align: right;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 20px;
+
       font-size: 18px;
       font-weight: bold;
+    }
+
+    .resumo-esquerda,
+    .resumo-direita {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .resumo-direita {
+      text-align: right;
     }
 
     @media(max-width:768px) {
@@ -445,11 +459,13 @@
       }
 
       .total {
-        margin-top: 15px;
-        text-align: right;
-        font-size: 18px;
-        font-weight: bold;
-        padding-right: 5px;
+        font-size: 14px;
+        gap: 10px;
+      }
+
+      .resumo-esquerda,
+      .resumo-direita {
+        gap: 5px;
       }
     }
 
@@ -609,13 +625,33 @@
 
     <div class="total">
 
-      Itens:
-      <span id="totalItens">0</span>
+      <div class="resumo-esquerda">
 
-      <br>
+        <div>
+          <strong>Itens:</strong>
+          <span id="totalItens">0</span>
+        </div>
 
-      Total: R$
-      <span id="totalLista">0.00</span>
+        <div>
+          <strong>Total:</strong>
+          R$ <span id="totalLista">0.00</span>
+        </div>
+
+      </div>
+
+      <div class="resumo-direita">
+
+        <div>
+          <strong>Itens Marcados:</strong>
+          <span id="totalItensComprados">0</span>
+        </div>
+
+        <div>
+          <strong>Total Marcados:</strong>
+          R$ <span id="totalComprados">0.00</span>
+        </div>
+
+      </div>
 
     </div>
 
@@ -859,12 +895,25 @@
 
       let total = 0;
 
+      let totalComprados = 0;
+
+      let itensComprados = 0;
+
       filtro.forEach((item, index) => {
 
         const subtotal =
           item.quantidade * item.valor;
 
         total += subtotal;
+
+        // SOMA DOS MARCADOS
+        if (item.comprado) {
+
+          totalComprados += subtotal;
+
+          itensComprados++;
+
+        }
 
         const tr =
           document.createElement("tr");
@@ -877,11 +926,11 @@
 
         tr.innerHTML = `
 
-	  <td style="text-align:center;">
-	    ${index + 1}
-	  </td>
+      <td style="text-align:center;">
+        ${index + 1}
+      </td>
 
-  	  <td>${item.produto}</td>
+      <td>${item.produto}</td>
 
       <td style="text-align:right;">
         ${item.quantidade}
@@ -897,20 +946,20 @@
 
       <td style="text-align:center; vertical-align:middle;">
 
-  <label
-    class="check-container"
-    onclick="event.stopPropagation()"
->
+        <label
+          class="check-container"
+          onclick="event.stopPropagation()"
+        >
 
-  <input
-    type="checkbox"
-    ${item.comprado ? "checked" : ""}
-    onchange="toggleComprado(${item.id})"
-  >
+          <input
+            type="checkbox"
+            ${item.comprado ? "checked" : ""}
+            onchange="toggleComprado(${item.id})"
+          >
 
-  <span class="checkmark"></span>
+          <span class="checkmark"></span>
 
-</label>
+        </label>
 
       </td>
 
@@ -920,11 +969,19 @@
 
       });
 
+      // TOTAL GERAL
       $("totalItens").textContent =
         filtro.length;
 
       $("totalLista").textContent =
         total.toFixed(2);
+
+      // TOTAL DOS MARCADOS
+      $("totalItensComprados").textContent =
+        itensComprados;
+
+      $("totalComprados").textContent =
+        totalComprados.toFixed(2);
     }
     function editar(id) {
 
