@@ -29,9 +29,9 @@
 
 html,
 body{
-  height:100%;
-  overflow-x:hidden;
-  overflow-y:auto; /* permite gesto de refresh */
+  height: 100%;
+  overflow: auto; /* era hidden */
+  overscroll-behavior-y: auto;
 }
 
 /* CONTAINER PRINCIPAL */
@@ -45,7 +45,7 @@ body{
 
   display:flex;
   flex-direction:column;
-
+  padding-bottom:80px;
   padding:15px;
   overflow:hidden;
 }
@@ -124,12 +124,10 @@ body{
 
 /* TABELA */
 .tabela-wrapper{
-  flex:1;
-  min-height:0;
-  overflow-y:auto;
-  overflow-x:auto;
-
-  padding-bottom:0;
+  flex: 1;
+  min-height: 0;
+  height: calc(100vh - 220px); /* aumenta a área da tabela */
+  overflow-y: auto;
 }
 
 table{
