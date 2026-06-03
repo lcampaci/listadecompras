@@ -18,6 +18,76 @@
     src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
 
   <style>
+
+    /* espaço para o menu não cobrir conteúdo */
+body {
+  padding-bottom: 90px;
+}
+
+/* MENU FIXO */
+.menu-mobile {
+  position: fixed;
+  bottom: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+
+  width: calc(100% - 20px);
+  max-width: 500px;
+
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+  background: rgba(255,255,255,.95);
+  backdrop-filter: blur(12px);
+
+  border-radius: 20px;
+
+  padding: 10px;
+
+  box-shadow:
+    0 8px 30px rgba(0,0,0,.15);
+
+  z-index: 9999;
+}
+
+/* BOTÕES */
+.menu-mobile button {
+  flex: 1;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  gap: 4px;
+
+  background: transparent;
+  color: #374151;
+
+  border: none;
+
+  min-height: 55px;
+}
+
+.menu-mobile button span {
+  font-size: 20px;
+}
+
+.menu-mobile button small {
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.menu-mobile button:active {
+  transform: scale(.95);
+}
+
+.menu-mobile button:hover {
+  background: #f3f4f6;
+  border-radius: 12px;
+}
+    
     /* topo */
     .topo-app {
       display: flex;
@@ -543,6 +613,8 @@
         opacity: 1;
       }
     }
+
+    
   </style>
 </head>
 
@@ -577,30 +649,36 @@
 
     </div>
 
-    <div class="acoes-topo">
-      <button class="btn-print" onclick="imprimirTXT()">
-        🖨️ Print
-      </button>
+   <nav class="menu-mobile">
+    
+  <button onclick="imprimirTXT()">
+    <span>🖨️</span>
+    <small>Print</small>
+  </button>
 
-      <button class="btn-txt" onclick="exportarTXT()">
-        📄 TXT
-      </button>
+  <button onclick="exportarTXT()">
+    <span>📄</span>
+    <small>TXT</small>
+  </button>
 
-      <button class="btn-pdf" onclick="exportarPDF()">
-        📕 PDF
-      </button>
+  <button onclick="exportarPDF()">
+    <span>📕</span>
+    <small>PDF</small>
+  </button>
 
-      <button class="btn-export" onclick="exportarLista()">
-        ⬇️ Backup
-      </button>
+  <button onclick="exportarLista()">
+    <span>⬇️</span>
+    <small>Backup</small>
+  </button>
 
-      <button class="btn-import" onclick="document.getElementById('arquivo').click()">
-        ⬆️ Import
-      </button>
+  <button onclick="document.getElementById('arquivo').click()">
+    <span>⬆️</span>
+    <small>Importar</small>
+  </button>
 
-      <input type="file" id="arquivo" hidden accept=".json">
+  <input type="file" id="arquivo" hidden accept=".json">
 
-    </div>
+</nav>
     <br>
     <input type="text" id="pesquisa" placeholder="Pesquisar produto...">
 
