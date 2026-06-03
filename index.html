@@ -27,27 +27,19 @@
   font-family:Arial,sans-serif;
 }
 
-html,
-body{
+html, body{
   height: 100%;
-  overflow: auto; /* era hidden */
-  overscroll-behavior-y: auto;
+  overflow: hidden;
 }
 
 /* CONTAINER PRINCIPAL */
 .container{
-  width:100%;
-  height:100vh;
-  margin:0;
-  max-width:none;
-  background:#fff;
-  border-radius:0;
-
+  height: 100dvh;
   display:flex;
   flex-direction:column;
-  padding-bottom:80px;
-  padding:15px;
-  overflow:hidden;
+  overflow: hidden;
+  padding: 15px;
+  padding-bottom: 80px;
 }
 
 /* TOPO */
@@ -126,7 +118,6 @@ body{
 .tabela-wrapper{
   flex: 1;
   min-height: 0;
-  height: calc(100vh - 220px); /* aumenta a área da tabela */
   overflow-y: auto;
 }
 
@@ -149,8 +140,8 @@ td{
 /* RESUMO */
 .total{
   flex-shrink:0;
-  margin-top:6px;
-  margin-bottom:70px;
+  margin-top: 2px;
+  margin-bottom: 70px;
   padding:0;
 }
 
