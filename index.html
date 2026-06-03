@@ -33,15 +33,14 @@ html, body{
 }
 
 /* CONTAINER PRINCIPAL */
-.container{
+.container {
   height: 100dvh;
-  display:flex;
-  flex-direction:column;
-  overflow: hidden;
+  display: flex;
+  flex-direction: column;
   padding: 15px;
-  padding-bottom: 80px;
+  padding-bottom: 0; /* importante: tira o espaço fixo */
+  gap: 6px; /* controla melhor o espaçamento */
 }
-
 /* TOPO */
 .topo-app{
   display:flex;
@@ -463,7 +462,7 @@ td{
       font-size: 18px;
        /* font-weight: bold; */
       margin-top: 15px;
-      margin-bottom: 100px;
+      margin-bottom: 0;
     }
 
     .resumo-esquerda,
