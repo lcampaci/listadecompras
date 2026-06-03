@@ -29,10 +29,10 @@
 
 html,
 body{
-  width:100%;
-  min-height:100%;
-  overflow-x:hidden;
-  background:#f2f4f8;
+  height:100%;
+  overflow:hidden;
+  margin:0;
+  padding:0;
 }
 
 /* CONTAINER PRINCIPAL */
@@ -41,12 +41,15 @@ body{
   max-width:1100px;
   margin:auto;
   background:#fff;
-  padding:15px;
   border-radius:0 0 20px 20px;
-  box-shadow:
-    0 4px 20px rgba(0,0,0,.08);
+  box-shadow: 0 4px 20px rgba(0,0,0,.08);
   /* espaço para o menu */
- padding-bottom:90px;
+  padding-bottom:90px;
+  display:flex;
+  height:100vh;
+  flex-direction:column;
+  padding:15px;
+  overflow:hidden;
 }
 
 /* TOPO */
@@ -122,13 +125,12 @@ body{
 
 /* TABELA */
 .tabela-wrapper{
-  width:100%;
-  overflow-x:auto;
+  flex:1;
+
   overflow-y:auto;
+  overflow-x:auto;
 
-  border-radius:12px;
-
-  max-height:55vh;
+  min-height:0;
 }
 
 table{
@@ -168,6 +170,12 @@ td{
 
 .resumo-direita{
   text-align:right;
+}
+
+    .total{
+  flex-shrink:0;
+  margin-top:10px;
+  padding-bottom:70px;
 }
 
 /* MOBILE */
