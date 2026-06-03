@@ -19,68 +19,215 @@
 
   <style>
 
-    /* espaço para o menu não cobrir conteúdo */
-body {
-  background: #f2f4f8;
-  margin: 0;
-  padding: 0 0 120px 0;
+   /* RESET */
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial,sans-serif;
 }
 
-/* MENU FIXO */
-.menu-mobile {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  transform: none;
+html,
+body{
+  width:100%;
+  min-height:100%;
+  overflow-x:hidden;
+  background:#f2f4f8;
+}
 
-  width: 100%;
-  max-width: none;
+/* CONTAINER PRINCIPAL */
+.container{
+  width:100%;
+  max-width:1100px;
+  margin:auto;
 
-  padding: 8px 0;
+  background:#fff;
 
-  background: rgba(255,255,255,.98);
-  backdrop-filter: blur(20px);
+  padding:15px;
 
-  border-radius: 0;
-
-  border-top: 1px solid #e5e7eb;
+  border-radius:0 0 20px 20px;
 
   box-shadow:
-    0 -2px 20px rgba(0,0,0,.08);
+    0 4px 20px rgba(0,0,0,.08);
 
-  z-index: 9999;
+  /* espaço para o menu */
+  padding-bottom:120px;
 }
 
-/* BOTÕES */
-.menu-mobile button {
-  flex: 1;
-  min-height: 60px;
-  background: transparent;
-  border: none;
-  color: #6b7280;
-  transition: .2s;
+/* TOPO */
+.topo-app{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  margin-bottom:15px;
 }
 
-.menu-mobile button span {
-  font-size: 22px;
+.topo-app h1{
+  font-size:24px;
+  color:#111827;
 }
 
-.menu-mobile button small {
-  font-size: 10px;
-  font-weight: 600;
+/* MENU MOBILE */
+.menu-mobile{
+  position:fixed;
+
+  left:12px;
+  right:12px;
+  bottom:12px;
+
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+
+  background:rgba(255,255,255,.95);
+
+  backdrop-filter:blur(16px);
+
+  border-radius:20px;
+
+  padding:8px;
+
+  box-shadow:
+    0 10px 30px rgba(0,0,0,.15);
+
+  z-index:9999;
 }
 
-.menu-mobile button:active {
-  transform: scale(.92);
+/* BOTÕES MENU */
+.menu-mobile button{
+  flex:1;
+
+  background:transparent;
+  border:none;
+
+  color:#6b7280;
+
+  display:flex;
+  flex-direction:column;
+
+  align-items:center;
+  justify-content:center;
+
+  gap:4px;
+
+  min-height:58px;
+
+  transition:.2s;
 }
 
-    .menu-mobile {
-  padding-bottom: env(safe-area-inset-bottom);
+.menu-mobile button span{
+  font-size:22px;
 }
 
-body {
-  padding-bottom: calc(90px + env(safe-area-inset-bottom));
+.menu-mobile button small{
+  font-size:10px;
+  font-weight:600;
 }
+
+.menu-mobile button:hover{
+  background:#f3f4f6;
+  border-radius:12px;
+}
+
+.menu-mobile button:active{
+  transform:scale(.95);
+}
+
+/* PESQUISA */
+#pesquisa{
+  width:100%;
+  margin:12px 0;
+}
+
+/* TABELA */
+.tabela-wrapper{
+  width:100%;
+  overflow-x:auto;
+  overflow-y:auto;
+
+  border-radius:12px;
+
+  max-height:55vh;
+}
+
+table{
+  width:100%;
+  border-collapse:collapse;
+}
+
+th{
+  background:#2563eb;
+  color:#fff;
+}
+
+th,
+td{
+  padding:8px;
+  border-bottom:1px solid #eee;
+}
+
+/* RESUMO */
+.total{
+  margin-top:20px;
+
+  display:flex;
+  justify-content:space-between;
+
+  gap:20px;
+
+  font-size:16px;
+}
+
+.resumo-esquerda,
+.resumo-direita{
+  display:flex;
+  flex-direction:column;
+  gap:8px;
+}
+
+.resumo-direita{
+  text-align:right;
+}
+
+/* MOBILE */
+@media(max-width:768px){
+
+  .container{
+    padding:12px;
+    padding-bottom:120px;
+    border-radius:0;
+    box-shadow:none;
+  }
+
+  .topo-app h1{
+    font-size:20px;
+  }
+
+  .menu-mobile{
+    left:8px;
+    right:8px;
+    bottom:8px;
+  }
+
+  .menu-mobile button span{
+    font-size:20px;
+  }
+
+  .menu-mobile button small{
+    font-size:9px;
+  }
+
+  .tabela-wrapper{
+    max-height:60vh;
+  }
+
+  .total{
+    font-size:14px;
+  }
+}
+
+
+
     
     /* topo */
     .topo-app {
@@ -109,13 +256,6 @@ body {
     }
 
 
-
-    html,
-    body {
-      max-width: 100%;
-      overflow-x: hidden;
-    }
-
     * {
       margin: 0;
       padding: 0;
@@ -123,18 +263,8 @@ body {
       font-family: Arial, sans-serif;
     }
 
-    body {
-      background: #f2f4f8;
-      padding: 15px;
-    }
 
-   .container {
-  width: 100%;
-  min-height: 100vh;
-  background: #fff;
-  padding: 15px;
-  border-radius: 20px 20px 0 0;
-}
+
 
     h1 {
       text-align: center;
@@ -398,13 +528,9 @@ body {
 
     @media(max-width:768px) {
 
-      body {
-        padding: 10px;
-      }
 
-      .container {
-        padding: 15px;
-      }
+
+
 
       input,
       select {
@@ -545,9 +671,7 @@ body {
         display: none;
       }
 
-      .container {
-        box-shadow: none;
-      }
+
     }
 
     .modal {
