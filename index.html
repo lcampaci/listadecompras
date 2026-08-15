@@ -791,6 +791,16 @@ td{
     <small>Importar</small>
   </button>
 
+  <button onclick="ordenarAlfabetico()">
+    <span>🔤</span>
+    <small>A-Z</small>
+  </button>
+
+     <button onclick="desmarcarTodos()">
+  <span>☑️</span>
+  <small>Desmarcar</small>
+</button>
+
   <input type="file" id="arquivo" hidden accept=".json">
 
 </nav>
@@ -970,6 +980,47 @@ modalEdicao.addEventListener("click", () => {
       }
 
     });
+
+    function ordenarAlfabetico() {
+
+  lista.sort((a, b) =>
+    a.produto.localeCompare(
+      b.produto,
+      "pt-BR",
+      {
+        sensitivity: "base"
+      }
+    )
+  );
+
+  salvarStorage();
+
+  renderizarTabela();
+
+  vibrar([80, 40, 80]);
+}
+
+    function desmarcarTodos() {
+
+  const existemMarcados =
+    lista.some(item => item.comprado);
+
+  if (!existemMarcados) {
+    vibrar();
+    return;
+  }
+
+  lista.forEach(item => {
+    item.comprado = false;
+  });
+
+  salvarStorage();
+
+  renderizarTabela();
+
+  vibrar([80, 40, 80]);
+}
+
 
     function fecharModal() {
 
