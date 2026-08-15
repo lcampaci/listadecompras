@@ -981,20 +981,28 @@ modalEdicao.addEventListener("click", () => {
 
     });
 
-    function ordenarAlfabetico() {
+    let ordemAlfabetica = true;
 
-  lista.sort((a, b) =>
-    a.produto.localeCompare(
+function ordenarAlfabetico() {
+
+  lista.sort((a, b) => {
+
+    const resultado = a.produto.localeCompare(
       b.produto,
       "pt-BR",
       {
         sensitivity: "base"
       }
-    )
-  );
+    );
+
+    return ordemAlfabetica
+      ? resultado
+      : -resultado;
+  });
+
+  ordemAlfabetica = !ordemAlfabetica;
 
   salvarStorage();
-
   renderizarTabela();
 
   vibrar([80, 40, 80]);
