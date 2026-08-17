@@ -1042,14 +1042,14 @@ function desmarcarTodos() {
 
     function fecharModal() {
 
-      $("modalAcoes").style.display =
-        "none";
+  $("modalAcoes").style.display = "none";
 
-      itemSelecionado = null;
-    }
+  // NÃO limpar itemSelecionado aqui
+  // pois ele pode ser usado pelo modal de edição
+}
 
 
-    function editarItemModal() {
+function editarItemModal() {
 
   if (!itemSelecionado) return;
 
@@ -1057,19 +1057,23 @@ function desmarcarTodos() {
 
   if (!item) return;
 
+  // Preenche os campos
   $("editarProduto").value = item.produto;
   $("editarQuantidade").value = item.quantidade;
   $("editarValor").value = item.valor;
   $("editarTipo").value = item.tipo;
 
-  fecharModal();
+  // Fecha somente o modal de ações
+  $("modalAcoes").style.display = "none";
 
+  // Abre o modal de edição
   $("modalEdicao").style.display = "flex";
 
   vibrar();
 }
 
-    function fecharModalEdicao() {
+
+function fecharModalEdicao() {
 
   $("modalEdicao").style.display = "none";
 
@@ -1081,7 +1085,9 @@ function salvarEdicaoModal() {
 
   if (!itemSelecionado) return;
 
-  const item = lista.find(i => i.id === itemSelecionado);
+  const item = lista.find(
+    i => i.id === itemSelecionado
+  );
 
   if (!item) return;
 
@@ -1111,15 +1117,19 @@ function salvarEdicaoModal() {
     return;
   }
 
+  // Atualiza o item
   item.produto = produto;
   item.quantidade = quantidade;
   item.valor = valor;
   item.tipo = tipo;
 
+  // Salva no localStorage
   salvarStorage();
 
+  // Fecha modal
   fecharModalEdicao();
 
+  // Atualiza tabela
   renderizarTabela();
 
   vibrar([80, 40, 80]);
