@@ -1076,26 +1076,116 @@ body.tema-matrix .modal-edicao-conteudo h3 {
 
 }
 
+/* =====================================================
+   MODAL DE TEMAS
+===================================================== */
+
+.modal-temas {
+  max-width: 340px;
+}
+
+.modal-temas h3 {
+  margin-bottom: 18px;
+}
+
+.temas-botoes {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.tema-btn {
+  width: 100%;
+  height: 48px;
+  border-radius: 8px;
+  border: none;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Claro */
+
+.tema-claro {
+  background: #ffffff;
+  color: #111827;
+  border: 2px solid #d1d5db;
+}
+
+/* Dark */
+
+.tema-dark {
+  background: #1f2937;
+  color: #ffffff;
+}
+
+/* Windows 98 */
+
+.tema-win98 {
+  background: #c0c0c0;
+  color: #000000;
+  border: 2px outset #ffffff;
+  border-radius: 0;
+  font-family: "MS Sans Serif", Tahoma, Arial, sans-serif;
+}
+
+/* Matrix */
+
+.tema-matrix {
+  background: #000000;
+  color: #00ff41;
+  border: 1px solid #00ff41;
+  border-radius: 0;
+  font-family: "Courier New", monospace;
+  text-shadow: 0 0 5px #00ff41;
+}
+
+.tema-btn:active {
+  transform: scale(.97);
+}
+
+/* Tema ativo */
+
+.tema-btn.tema-ativo {
+  outline: 3px solid #2563eb;
+  outline-offset: 2px;
+}
+
+/* =====================================================
+   CORREÇÃO - PESQUISA NO WINDOWS 98
+===================================================== */
+
+body.tema-windows98 #pesquisa {
+  display: block;
+  width: 100%;
+  height: 36px;
+  flex-shrink: 0;
+
+  background: #ffffff;
+  color: #000000;
+
+  border: 2px inset #ffffff;
+  border-radius: 0;
+
+  margin-top: 8px;
+  margin-bottom: 70px;
+}
+
+body.tema-windows98 #pesquisa::placeholder {
+  color: #555555;
+}
+
+
   </style>
 </head>
 
 <body>
 
   <div class="container">
-
     <div class="topo-app">
 
- 
-
-  <label>Tema:</label> <select id="seletorTema" onchange="alterarTema(this.value)">
-    <option value="branco">Claro</option>
-    <option value="escuro">Dark</option>
-    <option value="windows98">Windows</option>
-    <option value="matrix">Matrix</option>
-  </select>
-
-</div>
-
+	</div>
     <div class="formulario">
 
       <input type="text" id="produto" placeholder="Produto">
@@ -1131,9 +1221,14 @@ body.tema-matrix .modal-edicao-conteudo h3 {
     <small>TXT</small>
   </button>
 
-  <button onclick="exportarPDF()">
+  <!-- <button onclick="exportarPDF()">
     <span>📕</span>
     <small>PDF</small>
+  </button> -->
+  
+  <button onclick="abrirModalTema()">
+    <span>🎨</span>
+    <small>Tema</small>
   </button>
 
   <button onclick="exportarLista()">
@@ -1243,12 +1338,96 @@ function alterarTema(tema) {
 
 /* Carrega o tema salvo */
 
+/* =====================================================
+   SISTEMA DE TEMAS
+===================================================== */
+
+function alterarTema(tema) {
+
+  document.body.classList.remove(
+    "tema-branco",
+    "tema-escuro",
+    "tema-windows98",
+    "tema-matrix"
+  );
+
+  document.body.classList.add("tema-" + tema);
+
+  localStorage.setItem("tema", tema);
+
+  atualizarTemaAtivo();
+
+  fecharModalTema();
+}
+
+
+/* =====================================================
+   ATUALIZA BOTÃO DO TEMA ATIVO
+===================================================== */
+
+function atualizarTemaAtivo() {
+
+  const temaAtual =
+    localStorage.getItem("tema") || "branco";
+
+  document.querySelectorAll(".tema-btn")
+    .forEach(botao => {
+
+      botao.classList.remove("tema-ativo");
+
+    });
+
+  const botoes = {
+    branco: ".tema-claro",
+    escuro: ".tema-dark",
+    windows98: ".tema-win98",
+    matrix: ".tema-matrix"
+  };
+
+  const botaoAtivo =
+    document.querySelector(botoes[temaAtual]);
+
+  if (botaoAtivo) {
+    botaoAtivo.classList.add("tema-ativo");
+  }
+}
+
+
+/* =====================================================
+   CARREGAR TEMA
+===================================================== */
+
 function carregarTema() {
 
   const temaSalvo =
     localStorage.getItem("tema") || "branco";
 
-  alterarTema(temaSalvo);
+  document.body.classList.add(
+    "tema-" + temaSalvo
+  );
+
+  atualizarTemaAtivo();
+}
+
+
+/* =====================================================
+   MODAL DE TEMAS
+===================================================== */
+
+function abrirModalTema() {
+
+  atualizarTemaAtivo();
+
+  $("modalTema").style.display = "flex";
+
+  vibrar();
+}
+
+
+function fecharModalTema() {
+
+  $("modalTema").style.display = "none";
+
 }
 
 
@@ -2189,6 +2368,46 @@ function salvarEdicaoModal() {
   </div>
 
 </div>
+
+<div id="modalTema" class="modal">
+
+  <div class="modal-conteudo modal-temas" onclick="event.stopPropagation()">
+
+    <h3>🎨 Escolher tema</h3>
+
+    <div class="temas-botoes">
+
+      <button class="tema-btn tema-claro"
+        onclick="alterarTema('branco')">
+        ☀️ Claro
+      </button>
+
+      <button class="tema-btn tema-dark"
+        onclick="alterarTema('escuro')">
+        🌙 Dark
+      </button>
+
+      <button class="tema-btn tema-win98"
+        onclick="alterarTema('windows98')">
+        💾 Windows 98
+      </button>
+
+      <button class="tema-btn tema-matrix"
+        onclick="alterarTema('matrix')">
+        🟢 Matrix
+      </button>
+
+    </div>
+
+    <button class="btn-cancelar"
+      onclick="fecharModalTema()">
+      ❌ Fechar
+    </button>
+
+  </div>
+
+</div>
+
 </body>
 
 </html>
