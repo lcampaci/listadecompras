@@ -1177,6 +1177,84 @@ body.tema-windows98 #pesquisa::placeholder {
 }
 
 
+	  /* =====================================================
+   CORREÇÃO TABELA - TEMA MATRIX
+===================================================== */
+
+body.tema-matrix table {
+  table-layout: auto;
+  width: 100%;
+}
+
+body.tema-matrix th,
+body.tema-matrix td {
+  white-space: nowrap;
+  word-break: normal;
+  overflow: hidden;
+}
+
+body.tema-matrix th:nth-child(1),
+body.tema-matrix td:nth-child(1) {
+  width: 25px;
+}
+
+body.tema-matrix th:nth-child(2),
+body.tema-matrix td:nth-child(2) {
+  width: auto;
+  text-align: left;
+}
+
+body.tema-matrix th:nth-child(3),
+body.tema-matrix td:nth-child(3) {
+  width: 45px;
+  text-align: right;
+}
+
+body.tema-matrix th:nth-child(4),
+body.tema-matrix td:nth-child(4) {
+  width: 70px;
+  text-align: right;
+}
+
+body.tema-matrix th:nth-child(5),
+body.tema-matrix td:nth-child(5) {
+  width: 70px;
+  text-align: right;
+}
+
+body.tema-matrix th:nth-child(6),
+body.tema-matrix td:nth-child(6) {
+  width: 35px;
+  text-align: center;
+}
+
+	  @media(max-width:768px) {
+
+  body.tema-matrix th,
+  body.tema-matrix td {
+    padding: 4px 3px;
+    font-size: 11px;
+  }
+
+  body.tema-matrix th:nth-child(3),
+  body.tema-matrix td:nth-child(3) {
+    width: 42px;
+  }
+
+  body.tema-matrix th:nth-child(4),
+  body.tema-matrix td:nth-child(4),
+  body.tema-matrix th:nth-child(5),
+  body.tema-matrix td:nth-child(5) {
+    width: 65px;
+  }
+
+  body.tema-matrix th:nth-child(6),
+  body.tema-matrix td:nth-child(6) {
+    width: 32px;
+  }
+}
+
+
   </style>
 </head>
 
