@@ -2007,10 +2007,11 @@ body.tema-branco .menu-mobile button .icone-check {
       <div class="form-novo-item">
 
         <input
-          type="text"
-          id="novoProduto"
-          placeholder="Produto"
-          autocomplete="off">
+  type="text"
+  id="novoProduto"
+  placeholder="Produto"
+  maxlength="15"
+  autocomplete="off">
 
         <input
           type="number"
@@ -2391,6 +2392,17 @@ body.tema-branco .menu-mobile button .icone-check {
           .value
           .trim()
           .toUpperCase();
+
+      if (produto.length > 15) {
+
+  alert(
+    "O nome do produto pode ter no máximo 15 caracteres."
+  );
+
+  return;
+
+}
+
 
 
       const quantidade =
