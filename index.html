@@ -1478,6 +1478,135 @@ body.tema-branco .menu-mobile button .icone {
   color: #6b7280;
 }
 
+    /* =====================================================
+   A-Z — ÍCONE CSS MONOCROMÁTICO
+===================================================== */
+
+.menu-mobile button .icone-az {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 24px;
+  height: 22px;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 17px;
+  font-weight: bold;
+
+  color: currentColor;
+}
+
+.icone-az > span:first-child {
+  line-height: 22px;
+}
+
+.icone-az .seta-cima,
+.icone-az .seta-baixo {
+  position: absolute;
+
+  font-family: Arial, sans-serif;
+
+  font-size: 6px;
+
+  line-height: 6px;
+
+  color: currentColor;
+}
+
+.icone-az .seta-cima {
+  right: 1px;
+  top: 3px;
+}
+
+.icone-az .seta-baixo {
+  right: 1px;
+  bottom: 3px;
+}
+
+
+/* =====================================================
+   CHECK — ÍCONE CSS MONOCROMÁTICO
+===================================================== */
+
+.menu-mobile button .icone-check {
+  position: relative;
+
+  width: 20px;
+  height: 20px;
+
+  border: 2px solid currentColor;
+
+  border-radius: 3px;
+}
+
+.icone-check span {
+  position: absolute;
+
+  left: 4px;
+  top: 1px;
+
+  width: 7px;
+  height: 12px;
+
+  border: solid currentColor;
+
+  border-width: 0 2px 2px 0;
+
+  transform: rotate(45deg);
+}
+
+
+/* =====================================================
+   MATRIX
+===================================================== */
+
+body.tema-matrix .menu-mobile button .icone-az,
+body.tema-matrix .menu-mobile button .icone-check {
+  color: #00ff41;
+
+  text-shadow:
+    0 0 4px #00ff41,
+    0 0 8px rgba(0, 255, 65, .7);
+}
+
+
+/* =====================================================
+   WINDOWS 98
+===================================================== */
+
+body.tema-windows98 .menu-mobile button .icone-az,
+body.tema-windows98 .menu-mobile button .icone-check {
+  color: #000000;
+
+  text-shadow: none;
+}
+
+
+/* =====================================================
+   DARK
+===================================================== */
+
+body.tema-escuro .menu-mobile button .icone-az,
+body.tema-escuro .menu-mobile button .icone-check {
+  color: #f9fafb;
+}
+
+
+/* =====================================================
+   BRANCO
+===================================================== */
+
+body.tema-branco .menu-mobile button .icone-az,
+body.tema-branco .menu-mobile button .icone-check {
+  color: #6b7280;
+}
+
+
 
   </style>
 </head>
@@ -1580,14 +1709,20 @@ body.tema-branco .menu-mobile button .icone {
   </button>
 
   <button onclick="ordenarAlfabetico()">
-    <span class="icone">A↕</span>
-    <small>A-Z</small>
-  </button>
+  <span class="icone icone-az">
+    <span>A</span>
+    <span class="seta-cima">▲</span>
+    <span class="seta-baixo">▼</span>
+  </span>
+  <small>A-Z</small>
+</button>
 
-  <button onclick="desmarcarTodos()">
-    <span class="icone">☑</span>
-    <small>Desmarcar</small>
-  </button>
+<button onclick="desmarcarTodos()">
+  <span class="icone icone-check">
+    <span></span>
+  </span>
+  <small>Desmarcar</small>
+</button>
 
   <input
     type="file"
