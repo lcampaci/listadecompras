@@ -158,13 +158,36 @@ td{
 
 /* MOBILE */
 @media(max-width:768px){
-
   .container{
-    padding:12px;
-   padding-bottom:90px;
-    border-radius:0;
-    box-shadow:none;
+    height: 100dvh;
+    padding: 12px;
+    padding-bottom: 90px;
+    border-radius: 0;
+    box-shadow: none;
+    overflow: hidden;
   }
+
+  .tabela-wrapper {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+  }
+
+  .total {
+    flex-shrink: 0;
+    min-height: 60px;
+    margin-top: 8px;
+    margin-bottom: 0;
+    padding: 6px 0;
+  }
+
+  body.tema-windows98 .total {
+    display: flex;
+    min-height: 60px;
+    margin-bottom: 0;
+    padding: 6px 4px;
+  }
+
 
   .topo-app h1{
     font-size:20px;
@@ -455,26 +478,28 @@ td{
     }
 
     .total {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      gap: 20px;
-      font-size: 18px;
-       /* font-weight: bold; */
-      margin-top: 15px;
-      margin-bottom: 0;
-    }
+  flex-shrink: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 20px;
+  font-size: 18px;
+  margin-top: 8px;
+  margin-bottom: 0;
+  padding: 8px 0;
+  min-height: 60px;
+}
 
-    .resumo-esquerda,
-    .resumo-direita {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
+.resumo-esquerda,
+.resumo-direita {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
 
-    .resumo-direita {
-      text-align: right;
-    }
+.resumo-direita {
+  text-align: right;
+}
 
     @media(max-width:768px) {
 
@@ -869,6 +894,28 @@ body.tema-escuro .comprado td {
 /* =====================================================
    TEMA WINDOWS 98
 ===================================================== */
+
+body.tema-windows98 .total {
+  display: flex;
+  flex-shrink: 0;
+  min-height: 60px;
+  margin-top: 8px;
+  margin-bottom: 0;
+  padding: 8px 4px;
+  color: #000000;
+  background: #c0c0c0;
+}
+
+body.tema-windows98 .resumo-esquerda,
+body.tema-windows98 .resumo-direita {
+  color: #000000;
+}
+
+body.tema-windows98 .tabela-wrapper {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+}
 
 body.tema-windows98 {
   background: #008080;
