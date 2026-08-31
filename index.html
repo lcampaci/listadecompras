@@ -859,18 +859,19 @@ body.tema-windows98 select {
 ===================================================== */
 
 body.tema-windows98 button {
-  border: 2px outset #ffffff;
+  appearance: none;
+
+  background: #c0c0c0;
+  color: #000000;
+
+  border: 2px solid;
 
   border-top-color: #ffffff;
   border-left-color: #ffffff;
-  border-right-color: #404040;
-  border-bottom-color: #404040;
+  border-right-color: #808080;
+  border-bottom-color: #808080;
 
   border-radius: 0;
-
-  background: #c0c0c0;
-
-  color: #000000;
 
   font-family:
     "MS Sans Serif",
@@ -879,70 +880,40 @@ body.tema-windows98 button {
     sans-serif;
 
   font-size: 11px;
-
   font-weight: normal;
 
   text-shadow: none;
 
-  box-shadow: none;
+  box-shadow:
+    1px 1px 0 #000000;
 
   transition: none;
+
+  opacity: 1;
 }
 
 body.tema-windows98 button:hover {
-  opacity: 1;
-
   background: #c0c0c0;
-
   color: #000000;
+  opacity: 1;
+}
+
+body.tema-windows98 button:focus {
+  outline: 1px dotted #000000;
+  outline-offset: -5px;
 }
 
 body.tema-windows98 button:active {
-  border-top-color: #404040;
-  border-left-color: #404040;
+  background: #c0c0c0;
+
+  border-top-color: #808080;
+  border-left-color: #808080;
   border-right-color: #ffffff;
   border-bottom-color: #ffffff;
-
-  border-style: solid;
 
   box-shadow: none;
 
   transform: none;
-}
-
-
-body.tema-windows98 th {
-  background: #000080;
-
-  color: #ffffff;
-}
-
-body.tema-windows98 td {
-  border-bottom: 1px solid #808080;
-}
-
-body.tema-windows98 tr:hover {
-  background: #000080;
-
-  color: #ffffff;
-}
-
-body.tema-windows98 .menu-mobile {
-  background: #c0c0c0;
-
-  border-top: 2px outset #ffffff;
-
-  box-shadow: none;
-
-  padding: 4px 1px;
-}
-
-body.tema-windows98 .menu-mobile button {
-  color: #000000;
-
-  border: none;
-
-  background: transparent;
 }
 
 
