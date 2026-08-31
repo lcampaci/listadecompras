@@ -37,7 +37,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
   font-family: Arial, sans-serif;
 }
 
@@ -45,7 +44,6 @@ html,
 body {
   width: 100%;
   height: 100%;
-
   overflow: hidden;
 }
 
@@ -61,7 +59,6 @@ body {
 .container {
   width: 100%;
   max-width: 100%;
-
   height: 100dvh;
 
   display: flex;
@@ -1112,9 +1109,6 @@ body.tema-matrix td {
   word-break: normal;
 }
 
-
-/* Nº */
-
 body.tema-matrix th:nth-child(1),
 body.tema-matrix td:nth-child(1) {
   width: 22px;
@@ -1122,9 +1116,6 @@ body.tema-matrix td:nth-child(1) {
   padding-left: 2px;
   padding-right: 2px;
 }
-
-
-/* PRODUTO */
 
 body.tema-matrix th:nth-child(2),
 body.tema-matrix td:nth-child(2) {
@@ -1139,9 +1130,6 @@ body.tema-matrix td:nth-child(2) {
   word-break: normal;
 }
 
-
-/* QTD */
-
 body.tema-matrix th:nth-child(3),
 body.tema-matrix td:nth-child(3) {
   width: 43px;
@@ -1152,9 +1140,6 @@ body.tema-matrix td:nth-child(3) {
 
   text-align: right;
 }
-
-
-/* VALOR */
 
 body.tema-matrix th:nth-child(4),
 body.tema-matrix td:nth-child(4) {
@@ -1167,9 +1152,6 @@ body.tema-matrix td:nth-child(4) {
   text-align: right;
 }
 
-
-/* TOTAL */
-
 body.tema-matrix th:nth-child(5),
 body.tema-matrix td:nth-child(5) {
   width: 70px;
@@ -1180,9 +1162,6 @@ body.tema-matrix td:nth-child(5) {
 
   text-align: right;
 }
-
-
-/* CHECK */
 
 body.tema-matrix th:nth-child(6),
 body.tema-matrix td:nth-child(6) {
@@ -1494,6 +1473,197 @@ body.tema-branco .menu-mobile button .icone-check {
 
 
 /* =====================================================
+   MATRIX — BOTÕES MONOCROMÁTICOS
+===================================================== */
+
+body.tema-matrix button {
+  background: #000000;
+
+  color: #00ff41;
+
+  border: 1px solid #00ff41;
+
+  border-radius: 0;
+
+  font-family: "Courier New", monospace;
+
+  text-shadow:
+    0 0 4px #00ff41;
+
+  box-shadow:
+    0 0 5px rgba(0, 255, 65, .15);
+}
+
+body.tema-matrix button:hover {
+  background: #001f00;
+
+  color: #7cff9b;
+
+  border-color: #7cff9b;
+
+  box-shadow:
+    0 0 8px rgba(0, 255, 65, .35);
+}
+
+body.tema-matrix button:active {
+  background: #003b00;
+
+  color: #00ff41;
+
+  transform: scale(.98);
+}
+
+
+/* =====================================================
+   MATRIX — MENU INFERIOR
+===================================================== */
+
+body.tema-matrix .menu-mobile button {
+  background: transparent;
+
+  color: #00ff41;
+
+  border: none;
+
+  box-shadow: none;
+
+  text-shadow:
+    0 0 4px #00ff41;
+}
+
+body.tema-matrix .menu-mobile button:hover {
+  background: transparent;
+
+  color: #7cff9b;
+
+  border: none;
+
+  box-shadow: none;
+}
+
+
+/* =====================================================
+   MATRIX — BOTÕES DOS MODAIS
+===================================================== */
+
+body.tema-matrix .modal-botoes button,
+body.tema-matrix .botoes-edicao button,
+body.tema-matrix .botoes-novo-item button {
+  background: #000000;
+
+  color: #00ff41;
+
+  border: 1px solid #00ff41;
+
+  border-radius: 0;
+
+  box-shadow:
+    0 0 5px rgba(0, 255, 65, .2);
+}
+
+body.tema-matrix .modal-botoes button:hover,
+body.tema-matrix .botoes-edicao button:hover,
+body.tema-matrix .botoes-novo-item button:hover {
+  background: #001f00;
+
+  color: #7cff9b;
+
+  border-color: #7cff9b;
+
+  box-shadow:
+    0 0 10px rgba(0, 255, 65, .4);
+}
+
+
+/* =====================================================
+   MATRIX — BOTÕES DE TEMA
+===================================================== */
+
+body.tema-matrix .tema-btn {
+  background: #000000;
+
+  color: #00ff41;
+
+  border: 1px solid #00ff41;
+
+  border-radius: 0;
+
+  text-shadow:
+    0 0 4px #00ff41;
+
+  box-shadow:
+    0 0 5px rgba(0, 255, 65, .2);
+}
+
+body.tema-matrix .tema-btn:hover {
+  background: #001f00;
+
+  color: #7cff9b;
+
+  border-color: #7cff9b;
+
+  box-shadow:
+    0 0 10px rgba(0, 255, 65, .4);
+}
+
+
+/* =====================================================
+   MATRIX — CANCELAR
+===================================================== */
+
+body.tema-matrix .btn-cancelar,
+body.tema-matrix .btn-cancelar-edicao,
+body.tema-matrix .btn-cancelar-novo {
+  background: #000000;
+
+  color: #00ff41;
+
+  border: 1px solid #00ff41;
+}
+
+
+/* =====================================================
+   MATRIX — SALVAR / ADICIONAR
+===================================================== */
+
+body.tema-matrix .btn-salvar,
+body.tema-matrix .btn-salvar-novo,
+body.tema-matrix .btn-salvar-edicao {
+  background: #000000;
+
+  color: #00ff41;
+
+  border: 1px solid #00ff41;
+}
+
+
+/* =====================================================
+   MATRIX — EDITAR
+===================================================== */
+
+body.tema-matrix .btn-editar {
+  background: #000000;
+
+  color: #00ff41;
+
+  border: 1px solid #00ff41;
+}
+
+
+/* =====================================================
+   MATRIX — EXCLUIR
+===================================================== */
+
+body.tema-matrix .btn-excluir {
+  background: #000000;
+
+  color: #00ff41;
+
+  border: 1px solid #00ff41;
+}
+
+
+/* =====================================================
    MOBILE
 ===================================================== */
 
@@ -1719,8 +1889,6 @@ body.tema-branco .menu-mobile button .icone-check {
   }
 
 
-  /* Nº */
-
   body.tema-matrix th:nth-child(1),
   body.tema-matrix td:nth-child(1) {
     width: 22px;
@@ -1729,8 +1897,6 @@ body.tema-branco .menu-mobile button .icone-check {
     padding-right: 2px;
   }
 
-
-  /* PRODUTO */
 
   body.tema-matrix th:nth-child(2),
   body.tema-matrix td:nth-child(2) {
@@ -1746,8 +1912,6 @@ body.tema-branco .menu-mobile button .icone-check {
   }
 
 
-  /* QTD */
-
   body.tema-matrix th:nth-child(3),
   body.tema-matrix td:nth-child(3) {
     width: 43px;
@@ -1757,8 +1921,6 @@ body.tema-branco .menu-mobile button .icone-check {
     word-break: normal;
   }
 
-
-  /* VALOR */
 
   body.tema-matrix th:nth-child(4),
   body.tema-matrix td:nth-child(4) {
@@ -1770,8 +1932,6 @@ body.tema-branco .menu-mobile button .icone-check {
   }
 
 
-  /* TOTAL */
-
   body.tema-matrix th:nth-child(5),
   body.tema-matrix td:nth-child(5) {
     width: 70px;
@@ -1781,8 +1941,6 @@ body.tema-branco .menu-mobile button .icone-check {
     word-break: normal;
   }
 
-
-  /* CHECK */
 
   body.tema-matrix th:nth-child(6),
   body.tema-matrix td:nth-child(6) {
