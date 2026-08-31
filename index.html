@@ -1339,23 +1339,46 @@
       }
 
       body.tema-matrix th,
-      body.tema-matrix td {
-        padding: 4px 3px;
+body.tema-matrix td {
+  padding: 4px 3px;
+  font-size: 11px;
+}
 
-        font-size: 11px;
-      }
+/* QTD */
+body.tema-matrix th:nth-child(3),
+body.tema-matrix td:nth-child(3) {
+  width: 48px;
 
-      body.tema-matrix th:nth-child(3),
-      body.tema-matrix td:nth-child(3) {
-        width: 42px;
-      }
+  white-space: nowrap;
 
-      body.tema-matrix th:nth-child(4),
-      body.tema-matrix td:nth-child(4),
-      body.tema-matrix th:nth-child(5),
-      body.tema-matrix td:nth-child(5) {
-        width: 65px;
-      }
+  word-break: normal;
+
+  overflow: hidden;
+}
+
+/* VALOR */
+body.tema-matrix th:nth-child(4),
+body.tema-matrix td:nth-child(4) {
+  width: 78px;
+
+  white-space: nowrap;
+
+  word-break: normal;
+
+  overflow: hidden;
+}
+
+/* TOTAL */
+body.tema-matrix th:nth-child(5),
+body.tema-matrix td:nth-child(5) {
+  width: 78px;
+
+  white-space: nowrap;
+
+  word-break: normal;
+
+  overflow: hidden;
+}
 
       body.tema-matrix th:nth-child(6),
       body.tema-matrix td:nth-child(6) {
