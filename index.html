@@ -3,238 +3,36 @@
 
 <head>
   <meta charset="UTF-8">
+
   <link rel="icon" href="./icon-192.png">
   <link rel="manifest" href="./manifest.json">
+
   <meta name="author" content="Luis Henrique Campaci">
   <meta name="theme-color" content="#ffffff">
+
   <meta name="mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="default">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+  <meta name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
   <title>Lista de Compras</title>
 
-  <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
   <script defer
-    src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js"></script>
+    src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js">
+  </script>
+
+  <script defer
+    src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js">
+  </script>
+
 
   <style>
 
-   /* RESET */
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-  font-family:Arial,sans-serif;
-}
-
-html, body{
-  height: 100%;
-  overflow: hidden;
-}
-
-/* CONTAINER PRINCIPAL */
-.container {
-  height: 100dvh;
-  display: flex;
-  flex-direction: column;
-  padding: 15px;
-  padding-bottom: 0; /* importante: tira o espaço fixo */
-  gap: 6px; /* controla melhor o espaçamento */
-}
-/* TOPO */
-.topo-app{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  margin-bottom:15px;
-}
-
-.topo-app h1{
-  font-size:24px;
-  color:#111827;
-}
-
-/* MENU MOBILE */
-.menu-mobile{
-  position:fixed;
-
-  left:0;
-  right:0;
-  bottom:0;
-
-  width:100%;
-
-  margin:0;
-
-  display:flex;
-  justify-content:space-around;
-  align-items:center;
-
-  background:#fff;
-
-  border-top:1px solid #e5e7eb;
-
-  padding:8px 0;
-
-  box-shadow:0 -2px 12px rgba(0,0,0,.08);
-
-  z-index:9999;
-}
-
-/* BOTÕES MENU */
-.menu-mobile button{
-  flex:1;
-  border:none;
-  background:none;
-
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-
-  gap:4px;
-
-  min-height:56px;
-
-  color:#6b7280;
-}
-
-.menu-mobile button span{
-  font-size:22px;
-}
-
-.menu-mobile button small{
-  font-size:10px;
-}
-
-/* PESQUISA */
-#pesquisa{
-  width:100%;
-  margin:6px 0;
-}
-
-/* TABELA */
-.tabela-wrapper{
-  flex: 1;
-  min-height: 0;
-  overflow-y: auto;
-}
-
-table{
-  width:100%;
-  border-collapse:collapse;
-}
-
-th{
-  background:#2563eb;
-  color:#fff;
-}
-
-th,
-td{
-  padding:8px;
-  border-bottom:1px solid #eee;
-}
-
-/* RESUMO */
-.total{
-  flex-shrink:0;
-  margin-top: 2px;
-  margin-bottom: 70px;
-  padding:0;
-}
-
-.resumo-esquerda,
-.resumo-direita{
-  display:flex;
-  flex-direction:column;
-  gap:8px;
-}
-
-.resumo-direita{
-  text-align:right;
-}
-
-
-/* MOBILE */
-@media(max-width:768px){
-  .container{
-    height: 100dvh;
-    padding: 12px;
-    padding-bottom: 90px;
-    border-radius: 0;
-    box-shadow: none;
-    overflow: hidden;
-  }
-
-  .tabela-wrapper {
-    flex: 1 1 auto;
-    min-height: 0;
-    overflow-y: auto;
-  }
-
-  .total {
-    flex-shrink: 0;
-    min-height: 60px;
-    margin-top: 8px;
-    margin-bottom: 0;
-    padding: 6px 0;
-  }
-
-  body.tema-windows98 .total {
-    display: flex;
-    min-height: 60px;
-    margin-bottom: 0;
-    padding: 6px 4px;
-  }
-
-
-  .topo-app h1{
-    font-size:20px;
-  }
-
-  .menu-mobile button span{
-    font-size:20px;
-  }
-
-  .menu-mobile button small{
-    font-size:9px;
-  }
-
-  .total{
-    font-size:14px;
-  }
-}
-
-
-
-    
-    /* topo */
-    .topo-app {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom:8px;
-    }
-
-    .topo-app h1 {
-      margin: 0;
-      flex: 1;
-      text-align: center;
-    }
-
-    /* botão tema */
-    #toggleTema {
-      width: 42px;
-      height: 42px;
-      border: none;
-      border-radius: 50%;
-      background: #111827;
-      color: #fff;
-      font-size: 18px;
-      cursor: pointer;
-    }
-
+    /* =====================================================
+       RESET
+    ===================================================== */
 
     * {
       margin: 0;
@@ -243,75 +41,195 @@ td{
       font-family: Arial, sans-serif;
     }
 
-
-
-
-    h1 {
-      text-align: center;
-      margin-bottom: 15px;
-      color: #333;
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
     }
 
-    .formulario {
-       margin-bottom:6px;
+    body {
+      background: #ffffff;
+      color: #111827;
+    }
+
+
+    /* =====================================================
+       CONTAINER
+    ===================================================== */
+
+    .container {
+      width: 100%;
+      height: 100dvh;
+
       display: flex;
       flex-direction: column;
-      gap: 8px;
+
+      padding: 12px;
+      padding-bottom: 88px;
+
+      gap: 6px;
+
+      overflow: hidden;
+    }
+
+
+    /* =====================================================
+       TOPO / PESQUISA
+    ===================================================== */
+
+    .topo-app {
+      width: 100%;
+      flex-shrink: 0;
+
+      display: flex;
+      align-items: center;
+
+      margin-bottom: 4px;
+    }
+
+    #pesquisa {
+      width: 100%;
+      height: 36px;
+
+      margin: 0;
+
+      padding: 6px 10px;
+
+      border: 1px solid #ddd;
+      border-radius: 6px;
+
+      background: #fff;
+      color: #111827;
+
+      font-size: 13px;
+      text-transform: none;
+    }
+
+    #pesquisa::placeholder {
+      color: #777;
+    }
+
+
+    /* =====================================================
+       TABELA
+    ===================================================== */
+
+    .tabela-wrapper {
+      flex: 1 1 auto;
+
+      min-height: 0;
+
+      overflow-x: hidden;
+      overflow-y: auto;
+
+      width: 100%;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      table-layout: fixed;
+    }
+
+    thead th {
+      position: sticky;
+      top: 0;
+
+      z-index: 2;
+
+      background: #2563eb;
+      color: #ffffff;
+    }
+
+    th,
+    td {
+      padding: 8px;
+
+      border-bottom: 1px solid #eee;
+
+      word-break: break-word;
     }
 
     tbody tr {
       cursor: pointer;
     }
 
-    /* produto sozinho em cima */
-    #produto {
-      width: 100%;
-      height: 36px;
+    tbody tr:hover {
+      background: #f5f7fa;
     }
 
-    /* linha inferior */
-    .linha-secundaria {
-      display: flex;
-      gap: 8px;
-      flex-wrap: nowrap;
-      align-items: center;
+    .comprado td {
+      text-decoration: line-through;
+      opacity: .6;
+      background: #e8f5e9;
     }
 
-    /* campos menores na linha */
-    .linha-secundaria input,
-    .linha-secundaria select {
-      flex: 1;
-      min-width: 0;
+
+    /* =====================================================
+       LARGURA DAS COLUNAS
+    ===================================================== */
+
+    th:nth-child(1),
+    td:nth-child(1) {
+      width: 25px;
+      padding: 4px 2px;
+      text-align: center;
+      white-space: nowrap;
     }
 
-    /* botão */
-    .linha-secundaria button {
-      background: #22c55e;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      flex: 0 0 120px;
-      height: 36px;
+    th:nth-child(2),
+    td:nth-child(2) {
+      width: 40%;
     }
 
-    /* =========================
-   CHECKBOX BONITO
-========================= */
+    th:nth-child(3),
+    td:nth-child(3) {
+      width: 55px;
+      text-align: right;
+    }
 
+    th:nth-child(4),
+    td:nth-child(4) {
+      width: 75px;
+      text-align: right;
+    }
+
+    th:nth-child(5),
+    td:nth-child(5) {
+      width: 75px;
+      text-align: right;
+    }
+
+    th:nth-child(6),
+    td:nth-child(6) {
+      width: 38px;
+      text-align: center;
+    }
+
+
+    /* =====================================================
+       CHECKBOX
+    ===================================================== */
 
     .check-container {
       position: relative;
+
       display: flex;
       align-items: center;
       justify-content: center;
+
       width: 24px;
       height: 24px;
+
       margin: auto;
+
       cursor: pointer;
     }
 
     .check-container input {
       opacity: 0;
+
       width: 0;
       height: 0;
     }
@@ -319,15 +237,21 @@ td{
     .checkmark {
       position: absolute;
       inset: 0;
+
       background: #e5e7eb;
-      border-radius: 6px;
-      transition: .2s;
+
       border: 2px solid #cbd5e1;
+
+      border-radius: 6px;
+
+      transition: .2s;
     }
 
     .checkmark::after {
       content: "";
+
       position: absolute;
+
       display: none;
 
       left: 7px;
@@ -342,31 +266,158 @@ td{
       transform: rotate(45deg);
     }
 
-    .check-container input:checked+.checkmark {
+    .check-container input:checked + .checkmark {
       background: #22c55e;
       border-color: #22c55e;
     }
 
-    .check-container input:checked+.checkmark::after {
+    .check-container input:checked + .checkmark::after {
       display: block;
     }
+
+
+    /* =====================================================
+       RESUMO / TOTAL
+    ===================================================== */
+
+    .total {
+      width: 100%;
+
+      flex: 0 0 auto;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+
+      gap: 20px;
+
+      min-height: 60px;
+
+      margin: 0;
+      padding: 8px 0;
+
+      font-size: 18px;
+
+      color: #111827;
+
+      background: transparent;
+
+      overflow: visible;
+    }
+
+    .resumo-esquerda,
+    .resumo-direita {
+      display: flex;
+      flex-direction: column;
+
+      gap: 8px;
+
+      min-width: 0;
+    }
+
+    .resumo-direita {
+      text-align: right;
+    }
+
+
+    /* =====================================================
+       MENU MOBILE
+    ===================================================== */
+
+    .menu-mobile {
+      position: fixed;
+
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      width: 100%;
+
+      display: flex;
+
+      justify-content: space-around;
+      align-items: center;
+
+      gap: 0;
+
+      background: #ffffff;
+
+      border-top: 1px solid #e5e7eb;
+
+      padding: 6px 0;
+
+      box-shadow: 0 -2px 12px rgba(0, 0, 0, .08);
+
+      z-index: 9999;
+
+      overflow-x: auto;
+    }
+
+    .menu-mobile button {
+      flex: 1 0 70px;
+
+      min-width: 70px;
+
+      min-height: 56px;
+
+      border: none;
+      background: none;
+
+      display: flex;
+      flex-direction: column;
+
+      align-items: center;
+      justify-content: center;
+
+      gap: 4px;
+
+      color: #6b7280;
+
+      cursor: pointer;
+
+      font-weight: bold;
+    }
+
+    .menu-mobile button span {
+      font-size: 22px;
+      line-height: 1;
+    }
+
+    .menu-mobile button small {
+      font-size: 10px;
+    }
+
+
+    /* =====================================================
+       INPUTS
+    ===================================================== */
 
     input,
     select {
       height: 36px;
+
       border-radius: 6px;
+
       border: 1px solid #ddd;
+
       padding: 6px 10px;
+
       font-size: 13px;
+
       box-sizing: border-box;
+
       text-transform: uppercase;
     }
 
     button {
       border: none;
+
       cursor: pointer;
+
       font-weight: bold;
+
       color: #fff;
+
       transition: .2s;
     }
 
@@ -374,7 +425,14 @@ td{
       opacity: .9;
     }
 
-    .btn-salvar {
+
+    /* =====================================================
+       CORES DOS BOTÕES
+    ===================================================== */
+
+    .btn-salvar,
+    .btn-salvar-edicao,
+    .btn-salvar-novo {
       background: #22c55e;
     }
 
@@ -408,154 +466,866 @@ td{
       padding: 5px 8px;
     }
 
-    .acoes-topo {
+
+    /* =====================================================
+       MODAIS
+    ===================================================== */
+
+    .modal {
+      position: fixed;
+
+      inset: 0;
+
+      background: rgba(0, 0, 0, .45);
+
+      display: none;
+
+      align-items: center;
+      justify-content: center;
+
+      z-index: 10000;
+    }
+
+    .modal-conteudo {
+      background: #fff;
+
+      width: 90%;
+      max-width: 320px;
+
+      border-radius: 12px;
+
+      padding: 20px;
+
+      text-align: center;
+
+      animation: fade .2s ease;
+    }
+
+    .modal-conteudo h3 {
+      margin-bottom: 18px;
+
+      color: #333;
+
+      font-size: 18px;
+    }
+
+    .modal-botoes {
       display: flex;
-      gap: 6px;
-      flex-wrap: nowrap;
-      width: 100%;
+      flex-direction: column;
+
+      gap: 10px;
     }
 
-    .acoes-topo button {
-      flex: 1;
-      height: 30px;
-      font-size: 11px;
-      padding: 4px 6px;
-      white-space: nowrap;
-    }
+    .modal-botoes button {
+      height: 42px;
 
-    #pesquisa {
-      width: 100%;
-      margin-bottom: 15px;
-    }
+      border: none;
 
-    thead th {
-      position: sticky;
-      top: 0;
-      z-index: 2;
-    }
+      border-radius: 8px;
 
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      table-layout: fixed;
-    }
-
-    th,
-    td {
-      padding: 8px;
-      border-bottom: 1px solid #eee;
-
-      word-break: break-word;
-    }
-
-    th {
-      background: #007bff;
       color: #fff;
+
+      font-weight: bold;
+
+      font-size: 14px;
     }
 
-    tr:hover {
+    .btn-cancelar {
+      background: #6b7280;
+    }
+
+
+    /* =====================================================
+       MODAL EDIÇÃO
+    ===================================================== */
+
+    .modal-edicao-conteudo {
+      background: #fff;
+
+      width: 92%;
+      max-width: 360px;
+
+      border-radius: 12px;
+
+      padding: 20px;
+
+      animation: fade .2s ease;
+    }
+
+    .modal-edicao-conteudo h3 {
+      margin-bottom: 16px;
+
+      color: #333;
+
+      text-align: center;
+    }
+
+    .form-edicao {
+      display: flex;
+      flex-direction: column;
+
+      gap: 10px;
+    }
+
+    .form-edicao input,
+    .form-edicao select {
+      width: 100%;
+      height: 40px;
+    }
+
+    .botoes-edicao {
+      display: flex;
+
+      gap: 8px;
+
+      margin-top: 8px;
+    }
+
+    .botoes-edicao button {
+      flex: 1;
+
+      height: 40px;
+
+      border-radius: 8px;
+    }
+
+    .btn-cancelar-edicao {
+      background: #6b7280;
+    }
+
+
+    /* =====================================================
+       MODAL NOVO ITEM
+    ===================================================== */
+
+    .modal-novo-item {
+      background: #fff;
+
+      width: 92%;
+      max-width: 360px;
+
+      border-radius: 12px;
+
+      padding: 20px;
+
+      animation: fade .2s ease;
+    }
+
+    .modal-novo-item h3 {
+      margin-bottom: 16px;
+
+      color: #333;
+
+      text-align: center;
+    }
+
+    .form-novo-item {
+      display: flex;
+      flex-direction: column;
+
+      gap: 10px;
+    }
+
+    .form-novo-item input,
+    .form-novo-item select {
+      width: 100%;
+      height: 40px;
+    }
+
+    .botoes-novo-item {
+      display: flex;
+
+      gap: 8px;
+
+      margin-top: 8px;
+    }
+
+    .botoes-novo-item button {
+      flex: 1;
+
+      height: 40px;
+
+      border-radius: 8px;
+    }
+
+    .btn-cancelar-novo {
+      background: #6b7280;
+    }
+
+
+    /* =====================================================
+       MODAL TEMAS
+    ===================================================== */
+
+    .modal-temas {
+      max-width: 340px;
+    }
+
+    .modal-temas h3 {
+      margin-bottom: 18px;
+    }
+
+    .temas-botoes {
+      display: flex;
+      flex-direction: column;
+
+      gap: 10px;
+
+      margin-bottom: 12px;
+    }
+
+    .tema-btn {
+      width: 100%;
+
+      height: 48px;
+
+      border-radius: 8px;
+
+      border: none;
+
+      font-size: 14px;
+
+      font-weight: bold;
+
+      cursor: pointer;
+    }
+
+    .tema-claro {
+      background: #ffffff;
+
+      color: #111827;
+
+      border: 2px solid #d1d5db;
+    }
+
+    .tema-dark {
+      background: #1f2937;
+
+      color: #ffffff;
+    }
+
+    .tema-win98 {
+      background: #c0c0c0;
+
+      color: #000000;
+
+      border: 2px outset #ffffff;
+
+      border-radius: 0;
+
+      font-family: "MS Sans Serif", Tahoma, Arial, sans-serif;
+    }
+
+    .tema-matrix {
+      background: #000000;
+
+      color: #00ff41;
+
+      border: 1px solid #00ff41;
+
+      border-radius: 0;
+
+      font-family: "Courier New", monospace;
+
+      text-shadow: 0 0 5px #00ff41;
+    }
+
+    .tema-btn:active {
+      transform: scale(.97);
+    }
+
+    .tema-btn.tema-ativo {
+      outline: 3px solid #2563eb;
+
+      outline-offset: 2px;
+    }
+
+
+    /* =====================================================
+       ANIMAÇÃO
+    ===================================================== */
+
+    @keyframes fade {
+
+      from {
+        transform: scale(.95);
+        opacity: 0;
+      }
+
+      to {
+        transform: scale(1);
+        opacity: 1;
+      }
+
+    }
+
+
+    /* =====================================================
+       TEMA BRANCO
+    ===================================================== */
+
+    body.tema-branco {
+      background: #ffffff;
+      color: #111827;
+    }
+
+    body.tema-branco .container {
+      background: #ffffff;
+    }
+
+    body.tema-branco #pesquisa {
+      background: #ffffff;
+      color: #111827;
+      border-color: #d1d5db;
+    }
+
+    body.tema-branco table {
+      background: #ffffff;
+      color: #111827;
+    }
+
+    body.tema-branco th {
+      background: #2563eb;
+      color: #ffffff;
+    }
+
+    body.tema-branco td {
+      border-bottom-color: #eeeeee;
+    }
+
+    body.tema-branco tr:hover {
       background: #f5f7fa;
     }
 
-    .comprado td {
-      text-decoration: line-through;
-      opacity: .6;
-      background: #e8f5e9;
+    body.tema-branco .menu-mobile {
+      background: #ffffff;
+      border-top-color: #e5e7eb;
     }
 
-    th:nth-child(1),
-    td:nth-child(1) {
-      width: 1%;
-      padding: 4px 2px;
-      text-align: center;
+    body.tema-branco .menu-mobile button {
+      color: #6b7280;
+    }
+
+
+    /* =====================================================
+       TEMA ESCURO
+    ===================================================== */
+
+    body.tema-escuro {
+      background: #111827;
+      color: #f9fafb;
+    }
+
+    body.tema-escuro .container {
+      background: #111827;
+    }
+
+    body.tema-escuro #pesquisa {
+      background: #1f2937;
+      color: #f9fafb;
+      border-color: #374151;
+    }
+
+    body.tema-escuro input,
+    body.tema-escuro select {
+      background: #1f2937;
+      color: #f9fafb;
+      border-color: #374151;
+    }
+
+    body.tema-escuro table {
+      background: #111827;
+      color: #f9fafb;
+    }
+
+    body.tema-escuro th {
+      background: #2f373d;
+      color: #ffffff;
+    }
+
+    body.tema-escuro td {
+      border-bottom-color: #374151;
+    }
+
+    body.tema-escuro tr:hover {
+      background: #1f2937;
+    }
+
+    body.tema-escuro .menu-mobile {
+      background: #1f2937;
+      border-top-color: #374151;
+      box-shadow: 0 -2px 12px rgba(0, 0, 0, .4);
+    }
+
+    body.tema-escuro .menu-mobile button {
+      color: #d1d5db;
+    }
+
+    body.tema-escuro .total {
+      color: #f9fafb;
+    }
+
+    body.tema-escuro .comprado td {
+      background: #16351f;
+    }
+
+    body.tema-escuro .modal-conteudo,
+    body.tema-escuro .modal-edicao-conteudo,
+    body.tema-escuro .modal-novo-item {
+      background: #1f2937;
+      color: #f9fafb;
+    }
+
+    body.tema-escuro .modal-conteudo h3,
+    body.tema-escuro .modal-edicao-conteudo h3,
+    body.tema-escuro .modal-novo-item h3 {
+      color: #f9fafb;
+    }
+
+
+    /* =====================================================
+       TEMA WINDOWS 98
+    ===================================================== */
+
+    body.tema-windows98 {
+      background: #008080;
+
+      color: #000000;
+
+      font-family:
+        "MS Sans Serif",
+        Tahoma,
+        Arial,
+        sans-serif;
+    }
+
+    body.tema-windows98 * {
+      font-family:
+        "MS Sans Serif",
+        Tahoma,
+        Arial,
+        sans-serif;
+    }
+
+    body.tema-windows98 .container {
+      background: #c0c0c0;
+
+      border: 3px outset #ffffff;
+
+      padding: 10px;
+
+      /* IMPORTANTE:
+         mantém espaço para o menu inferior */
+      padding-bottom: 88px;
+
+      height: 100dvh;
+
+      min-height: 0;
+
+      overflow: hidden;
+    }
+
+    body.tema-windows98 .topo-app {
+      margin-bottom: 6px;
+    }
+
+    body.tema-windows98 #pesquisa {
+      display: block;
+
+      width: 100%;
+
+      height: 36px;
+
+      flex-shrink: 0;
+
+      background: #ffffff;
+
+      color: #000000;
+
+      border: 2px inset #ffffff;
+
+      border-radius: 0;
+
+      margin: 0;
+    }
+
+    body.tema-windows98 #pesquisa::placeholder {
+      color: #555555;
+    }
+
+    body.tema-windows98 .tabela-wrapper {
+      flex: 1 1 auto;
+
+      min-height: 0;
+
+      overflow-x: hidden;
+
+      overflow-y: auto;
+    }
+
+    body.tema-windows98 table {
+      background: #c0c0c0;
+
+      color: #000000;
+    }
+
+    body.tema-windows98 th {
+      background: #000080;
+
+      color: #ffffff;
+
+      border-bottom: 1px solid #808080;
+    }
+
+    body.tema-windows98 td {
+      background: #c0c0c0;
+
+      color: #000000;
+
+      border-bottom: 1px solid #808080;
+    }
+
+    body.tema-windows98 tr:hover td {
+      background: #000080;
+
+      color: #ffffff;
+    }
+
+    /* =====================================================
+       CORREÇÃO PRINCIPAL DO TOTAL WINDOWS 98
+    ===================================================== */
+
+    body.tema-windows98 .total {
+      display: flex !important;
+
+      flex: 0 0 auto !important;
+
+      width: 100%;
+
+      min-height: 60px;
+
+      height: auto;
+
+      margin: 6px 0 0 0;
+
+      padding: 8px 6px;
+
+      background: #c0c0c0;
+
+      color: #000000;
+
+      border: 2px inset #ffffff;
+
+      box-sizing: border-box;
+
+      overflow: visible;
+
+      position: relative;
+
+      z-index: 10;
+    }
+
+    body.tema-windows98 .resumo-esquerda,
+    body.tema-windows98 .resumo-direita {
+      display: flex !important;
+
+      flex-direction: column;
+
+      gap: 5px;
+
+      color: #000000;
+
+      visibility: visible;
+
+      opacity: 1;
+    }
+
+    body.tema-windows98 .resumo-direita {
+      text-align: right;
+    }
+
+    body.tema-windows98 .total strong,
+    body.tema-windows98 .total span {
+      color: #000000;
+    }
+
+    body.tema-windows98 .menu-mobile {
+      background: #c0c0c0;
+
+      border-top: 2px outset #ffffff;
+
+      box-shadow: none;
+
+      padding: 5px 0;
+    }
+
+    body.tema-windows98 .menu-mobile button {
+      color: #000000;
+
+      background: #c0c0c0;
+
+      border: 2px outset #ffffff;
+
+      min-height: 52px;
+    }
+
+    body.tema-windows98 .menu-mobile button:active {
+      border-style: inset;
+    }
+
+    body.tema-windows98 button {
+      border-radius: 0;
+
+      border: 2px outset #ffffff;
+
+      background: #c0c0c0;
+
+      color: #000000;
+    }
+
+    body.tema-windows98 button:active {
+      border-style: inset;
+    }
+
+    body.tema-windows98 .btn-editar {
+      background: #c0c0c0;
+
+      color: #000000;
+    }
+
+    body.tema-windows98 .btn-excluir {
+      background: #c0c0c0;
+
+      color: #000000;
+    }
+
+    body.tema-windows98 .btn-cancelar {
+      background: #c0c0c0;
+
+      color: #000000;
+    }
+
+    body.tema-windows98 .modal-conteudo,
+    body.tema-windows98 .modal-edicao-conteudo,
+    body.tema-windows98 .modal-novo-item {
+      background: #c0c0c0;
+
+      color: #000000;
+
+      border: 3px outset #ffffff;
+
+      border-radius: 0;
+    }
+
+    body.tema-windows98 .modal-conteudo h3,
+    body.tema-windows98 .modal-edicao-conteudo h3,
+    body.tema-windows98 .modal-novo-item h3 {
+      color: #000000;
+    }
+
+    body.tema-windows98 .checkmark {
+      border-radius: 0;
+
+      background: #ffffff;
+
+      border: 2px inset #ffffff;
+    }
+
+
+    /* =====================================================
+       TEMA MATRIX
+    ===================================================== */
+
+    body.tema-matrix {
+      background: #000000;
+
+      color: #00ff41;
+    }
+
+    body.tema-matrix * {
+      font-family: "Courier New", monospace;
+    }
+
+    body.tema-matrix .container {
+      background: #000000;
+    }
+
+    body.tema-matrix #pesquisa {
+      background: #000000;
+
+      color: #00ff41;
+
+      border: 1px solid #00ff41;
+
+      border-radius: 0;
+    }
+
+    body.tema-matrix #pesquisa::placeholder {
+      color: #008f11;
+    }
+
+    body.tema-matrix table {
+      table-layout: auto;
+
+      width: 100%;
+    }
+
+    body.tema-matrix th,
+    body.tema-matrix td {
       white-space: nowrap;
+
+      word-break: normal;
+
+      overflow: hidden;
     }
 
-    /* produto */
-    th:nth-child(2),
-    td:nth-child(2) {
-      width: 40%;
+    body.tema-matrix th {
+      background: #003b00;
+
+      color: #00ff41;
+
+      border-bottom: 1px solid #00ff41;
     }
 
-    .total {
-  flex-shrink: 0;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 20px;
-  font-size: 18px;
-  margin-top: 8px;
-  margin-bottom: 0;
-  padding: 8px 0;
-  min-height: 60px;
-}
+    body.tema-matrix td {
+      color: #00ff41;
 
-.resumo-esquerda,
-.resumo-direita {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
+      border-bottom: 1px solid #003b00;
+    }
 
-.resumo-direita {
-  text-align: right;
-}
+    body.tema-matrix tr:hover {
+      background: #001f00;
+    }
 
-    @media(max-width:768px) {
+    body.tema-matrix .menu-mobile {
+      background: #000000;
+
+      border-top: 1px solid #00ff41;
+
+      box-shadow:
+        0 -2px 15px rgba(0, 255, 65, .2);
+    }
+
+    body.tema-matrix .menu-mobile button {
+      color: #00ff41;
+    }
+
+    body.tema-matrix .total {
+      color: #00ff41;
+    }
+
+    body.tema-matrix .total strong,
+    body.tema-matrix .total span {
+      color: #00ff41;
+    }
+
+    body.tema-matrix .comprado td {
+      background: #002b00;
+
+      color: #00aa22;
+    }
+
+    body.tema-matrix .checkmark {
+      background: #000000;
+
+      border-color: #00ff41;
+
+      border-radius: 0;
+    }
+
+    body.tema-matrix .check-container input:checked + .checkmark {
+      background: #003b00;
+
+      border-color: #00ff41;
+    }
+
+    body.tema-matrix .modal-conteudo,
+    body.tema-matrix .modal-edicao-conteudo,
+    body.tema-matrix .modal-novo-item {
+      background: #000000;
+
+      border: 1px solid #00ff41;
+
+      border-radius: 0;
+
+      box-shadow:
+        0 0 20px rgba(0, 255, 65, .3);
+    }
+
+    body.tema-matrix .modal-conteudo h3,
+    body.tema-matrix .modal-edicao-conteudo h3,
+    body.tema-matrix .modal-novo-item h3 {
+      color: #00ff41;
+    }
+
+    body.tema-matrix th:nth-child(1),
+    body.tema-matrix td:nth-child(1) {
+      width: 25px;
+    }
+
+    body.tema-matrix th:nth-child(2),
+    body.tema-matrix td:nth-child(2) {
+      width: auto;
+
+      text-align: left;
+    }
+
+    body.tema-matrix th:nth-child(3),
+    body.tema-matrix td:nth-child(3) {
+      width: 45px;
+
+      text-align: right;
+    }
+
+    body.tema-matrix th:nth-child(4),
+    body.tema-matrix td:nth-child(4),
+    body.tema-matrix th:nth-child(5),
+    body.tema-matrix td:nth-child(5) {
+      width: 70px;
+
+      text-align: right;
+    }
+
+    body.tema-matrix th:nth-child(6),
+    body.tema-matrix td:nth-child(6) {
+      width: 35px;
+
+      text-align: center;
+    }
 
 
+    /* =====================================================
+       MOBILE
+    ===================================================== */
 
+    @media (max-width: 768px) {
 
+      .container {
+        padding: 10px;
 
-      input,
-      select {
-        max-width: 100%;
-        box-sizing: border-box;
+        padding-bottom: 88px;
+
+        gap: 5px;
       }
 
-      .formulario {
-        gap: 6px;
-      }
-
-      .formulario input,
-      .formulario select {
-        font-size: 12px;
+      #pesquisa {
         height: 34px;
-      }
 
-      .formulario button {
-        font-size: 12px;
-        height: 34px;
-        padding: 0 10px;
-      }
-
-      .linha-secundaria {
-        gap: 6px;
-      }
-
-      .linha-secundaria button {
-        flex: 0 0 80px;
-        height: 34px;
-      }
-
-      .linha-secundaria input,
-      .linha-secundaria select {
         font-size: 12px;
       }
 
-      .acoes-topo {
-        gap: 4px;
-      }
+      .tabela-wrapper {
+        flex: 1 1 auto;
 
-      .acoes-topo button {
-        flex: 1;
-        min-width: 0;
-        font-size: 10px;
-        height: 25px;
+        min-height: 0;
+
+        overflow-y: auto;
       }
 
       table {
         font-size: 11px;
+
+        table-layout: auto;
       }
 
       th,
@@ -563,123 +1333,172 @@ td{
         padding: 4px;
       }
 
-      table {
-        width: 100%;
-        border-collapse: collapse;
-        table-layout: auto;
-      }
-
-      /* numeração */
       th:nth-child(1),
       td:nth-child(1) {
         width: 20px;
+
         padding: 2px;
+
         font-size: 10px;
+
         text-align: center;
       }
 
-      /* produto */
       th:nth-child(2),
       td:nth-child(2) {
         width: auto;
+
         white-space: nowrap;
+
         overflow: hidden;
+
         text-overflow: ellipsis;
       }
 
-      /* qtd */
       th:nth-child(3),
       td:nth-child(3) {
         width: 45px;
       }
 
-      /* valor */
       th:nth-child(4),
-      td:nth-child(4) {
-        width: 70px;
-      }
-
-      /* total */
+      td:nth-child(4),
       th:nth-child(5),
       td:nth-child(5) {
         width: 70px;
       }
 
-      /* check */
       th:nth-child(6),
       td:nth-child(6) {
         width: 36px;
+
         text-align: center;
       }
 
-      td:last-child {
-        white-space: nowrap;
-      }
-
-      .btn-editar,
-      .btn-excluir {
-        padding: 4px 6px;
-        font-size: 10px;
+      .check-container {
+        width: 22px;
+        height: 22px;
       }
 
       .total {
+        min-height: 58px;
+
         font-size: 14px;
+
         gap: 10px;
+
+        padding: 6px 0;
+
+        flex-shrink: 0;
       }
 
       .resumo-esquerda,
       .resumo-direita {
         gap: 5px;
       }
+
+      .menu-mobile {
+        padding: 5px 0;
+
+        overflow-x: auto;
+
+        justify-content: flex-start;
+      }
+
+      .menu-mobile button {
+        flex: 0 0 68px;
+
+        min-width: 68px;
+
+        min-height: 54px;
+      }
+
+      .menu-mobile button span {
+        font-size: 20px;
+      }
+
+      .menu-mobile button small {
+        font-size: 9px;
+      }
+
+
+      /* WINDOWS 98 MOBILE */
+
+      body.tema-windows98 .container {
+        padding: 8px;
+
+        padding-bottom: 88px;
+      }
+
+      body.tema-windows98 .total {
+        display: flex !important;
+
+        flex: 0 0 auto !important;
+
+        min-height: 58px;
+
+        height: auto;
+
+        margin-top: 5px;
+
+        margin-bottom: 0;
+
+        padding: 6px 4px;
+
+        font-size: 13px;
+
+        overflow: visible;
+      }
+
+      body.tema-windows98 .resumo-esquerda,
+      body.tema-windows98 .resumo-direita {
+        display: flex !important;
+
+        visibility: visible;
+
+        opacity: 1;
+
+        gap: 4px;
+      }
+
+      body.tema-windows98 .menu-mobile button {
+        min-height: 50px;
+
+        flex: 0 0 68px;
+      }
+
+
+      /* MATRIX MOBILE */
+
+      body.tema-matrix th,
+      body.tema-matrix td {
+        padding: 4px 3px;
+
+        font-size: 11px;
+      }
+
+      body.tema-matrix th:nth-child(3),
+      body.tema-matrix td:nth-child(3) {
+        width: 42px;
+      }
+
+      body.tema-matrix th:nth-child(4),
+      body.tema-matrix td:nth-child(4),
+      body.tema-matrix th:nth-child(5),
+      body.tema-matrix td:nth-child(5) {
+        width: 65px;
+      }
+
+      body.tema-matrix th:nth-child(6),
+      body.tema-matrix td:nth-child(6) {
+        width: 32px;
+      }
+
     }
 
-    /* MODAL DE ALTERAÇÃO */
-.modal-edicao-conteudo {
-  background: #fff;
-  width: 92%;
-  max-width: 360px;
-  border-radius: 12px;
-  padding: 20px;
-  animation: fade .2s ease;
-}
 
-.modal-edicao-conteudo h3 {
-  margin-bottom: 16px;
-  color: #333;
-  text-align: center;
-}
-
-.form-edicao {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.form-edicao input,
-.form-edicao select {
-  width: 100%;
-  height: 40px;
-}
-
-.botoes-edicao {
-  display: flex;
-  gap: 8px;
-  margin-top: 8px;
-}
-
-.botoes-edicao button {
-  flex: 1;
-  height: 40px;
-  border-radius: 8px;
-}
-
-.btn-salvar-edicao {
-  background: #22c55e;
-}
-
-.btn-cancelar-edicao {
-  background: #6b7280;
-}
+    /* =====================================================
+       IMPRESSÃO
+    ===================================================== */
 
     @media print {
 
@@ -690,777 +1509,83 @@ td{
 
       .formulario,
       .acoes-topo,
-      #pesquisa {
-        display: none;
+      #pesquisa,
+      .menu-mobile {
+        display: none !important;
       }
 
+      .container {
+        height: auto;
 
-    }
+        padding: 0;
 
-    .modal {
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, .45);
-      display: none;
-      align-items: center;
-      justify-content: center;
-      z-index: 999;
-    }
-
-    .modal-conteudo {
-      background: #fff;
-      width: 90%;
-      max-width: 320px;
-      border-radius: 12px;
-      padding: 20px;
-      text-align: center;
-      animation: fade .2s ease;
-    }
-
-    .modal-conteudo h3 {
-      margin-bottom: 18px;
-      color: #333;
-      font-size: 18px;
-    }
-
-    .modal-botoes {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-
-    .modal-botoes button {
-      height: 42px;
-      border: none;
-      border-radius: 8px;
-      color: #fff;
-      font-weight: bold;
-      font-size: 14px;
-    }
-
-    .btn-cancelar {
-      background: #6b7280;
-    }
-
-    @keyframes fade {
-      from {
-        transform: scale(.95);
-        opacity: 0;
+        overflow: visible;
       }
 
-      to {
-        transform: scale(1);
-        opacity: 1;
+      .tabela-wrapper {
+        overflow: visible;
       }
+
     }
-
-    
-/* =====================================================
-   SELETOR DE TEMA
-===================================================== */
-
-#seletorTema {
-  width: auto;
-  min-width: 130px;
-  height: 36px;
-  padding: 4px 8px;
-  border-radius: 6px;
-  cursor: pointer;
-  text-transform: none;
-}
-
-/* =====================================================
-   TEMA BRANCO
-===================================================== */
-
-body.tema-branco {
-  background: #ffffff;
-  color: #111827;
-}
-
-body.tema-branco .container {
-  background: #ffffff;
-}
-
-body.tema-branco .topo-app h1 {
-  color: #111827;
-}
-
-body.tema-branco table {
-  background: #ffffff;
-  color: #111827;
-}
-
-body.tema-branco th {
-  background: #2563eb;
-  color: #ffffff;
-}
-
-body.tema-branco td {
-  border-bottom-color: #eeeeee;
-}
-
-body.tema-branco tr:hover {
-  background: #f5f7fa;
-}
-
-body.tema-branco input,
-body.tema-branco select {
-  background: #ffffff;
-  color: #111827;
-  border-color: #d1d5db;
-}
-
-body.tema-branco .menu-mobile {
-  background: #ffffff;
-  border-top-color: #e5e7eb;
-}
-
-body.tema-branco .menu-mobile button {
-  color: #6b7280;
-}
-
-/* =====================================================
-   TEMA ESCURO
-===================================================== */
-
-body.tema-escuro {
-  background: #111827;
-  color: #f9fafb;
-}
-
-body.tema-escuro .container {
-  background: #111827;
-}
-
-body.tema-escuro .topo-app h1 {
-  color: #f9fafb;
-}
-
-body.tema-escuro input,
-body.tema-escuro select {
-  background: #1f2937;
-  color: #f9fafb;
-  border-color: #374151;
-}
-
-body.tema-escuro table {
-  background: #111827;
-  color: #f9fafb;
-}
-
-body.tema-escuro th {
-  background: #2f373d;
-  color: #ffffff;
-}
-
-body.tema-escuro td {
-  border-bottom-color: #374151;
-}
-
-body.tema-escuro tr:hover {
-  background: #1f2937;
-}
-
-body.tema-escuro .menu-mobile {
-  background: #1f2937;
-  border-top-color: #374151;
-  box-shadow: 0 -2px 12px rgba(0,0,0,.4);
-}
-
-body.tema-escuro .menu-mobile button {
-  color: #d1d5db;
-}
-
-body.tema-escuro .total {
-  color: #f9fafb;
-}
-
-body.tema-escuro .modal-conteudo,
-body.tema-escuro .modal-edicao-conteudo {
-  background: #1f2937;
-  color: #f9fafb;
-}
-
-body.tema-escuro .modal-conteudo h3,
-body.tema-escuro .modal-edicao-conteudo h3 {
-  color: #f9fafb;
-}
-
-body.tema-escuro .comprado td {
-  background: #16351f;
-}
-
-/* =====================================================
-   TEMA WINDOWS 98
-===================================================== */
-
-body.tema-windows98 .total {
-  display: flex;
-  flex-shrink: 0;
-  min-height: 60px;
-  margin-top: 8px;
-  margin-bottom: 0;
-  padding: 8px 4px;
-  color: #000000;
-  background: #c0c0c0;
-}
-
-body.tema-windows98 .resumo-esquerda,
-body.tema-windows98 .resumo-direita {
-  color: #000000;
-}
-
-body.tema-windows98 .tabela-wrapper {
-  flex: 1 1 auto;
-  min-height: 0;
-  overflow-y: auto;
-}
-
-body.tema-windows98 {
-  background: #008080;
-  color: #000000;
-  font-family: "MS Sans Serif", Tahoma, Arial, sans-serif;
-}
-
-body.tema-windows98 * {
-  font-family: "MS Sans Serif", Tahoma, Arial, sans-serif;
-}
-
-body.tema-windows98 .container {
-  background: #c0c0c0;
-  border: 3px outset #ffffff;
-  padding: 10px;
-}
-
-body.tema-windows98 .topo-app {
-  background: #000080;
-  padding: 4px 6px;
-  margin-bottom: 8px;
-}
-
-body.tema-windows98 .topo-app label {
-  color: #ffffff;
-  font-size: 18px;
-}
-
-body.tema-windows98 input,
-body.tema-windows98 select {
-  background: #ffffff;
-  color: #000000;
-  border: 2px inset #ffffff;
-  border-radius: 0;
-}
-
-body.tema-windows98 button {
-  border-radius: 0;
-  border: 2px outset #ffffff;
-  background: #c0c0c0;
-  color: #000000;
-}
-
-body.tema-windows98 button:active {
-  border-style: inset;
-}
-
-body.tema-windows98 .btn-salvar {
-  background: #c0c0c0;
-  color: #000000;
-}
-
-body.tema-windows98 th {
-  background: #000080;
-  color: #ffffff;
-}
-
-body.tema-windows98 td {
-  border-bottom: 1px solid #808080;
-}
-
-body.tema-windows98 tr:hover {
-  background: #000080;
-  color: #ffffff;
-}
-
-body.tema-windows98 .menu-mobile {
-  background: #c0c0c0;
-  border-top: 2px outset #ffffff;
-  box-shadow: none;
-}
-
-body.tema-windows98 .menu-mobile button {
-  color: #000000;
-}
-
-body.tema-windows98 .modal-conteudo,
-body.tema-windows98 .modal-edicao-conteudo {
-  background: #c0c0c0;
-  border: 3px outset #ffffff;
-  border-radius: 0;
-}
-
-body.tema-windows98 .modal-conteudo h3,
-body.tema-windows98 .modal-edicao-conteudo h3 {
-  color: #000000;
-}
-
-body.tema-windows98 .checkmark {
-  border-radius: 0;
-  background: #ffffff;
-  border: 2px inset #ffffff;
-}
-
-/* =====================================================
-   TEMA MATRIX
-===================================================== */
-
-body.tema-matrix {
-  background: #000000;
-  color: #00ff41;
-}
-
-body.tema-matrix * {
-  font-family: "Courier New", monospace;
-}
-
-body.tema-matrix .container {
-  background: #000000;
-}
-
-body.tema-matrix .topo-app h1 {
-  color: #00ff41;
-  text-shadow: 0 0 8px #00ff41;
-}
-
-body.tema-matrix input,
-body.tema-matrix select {
-  background: #000000;
-  color: #00ff41;
-  border: 1px solid #00ff41;
-  border-radius: 0;
-}
-
-body.tema-matrix input::placeholder {
-  color: #008f11;
-}
-
-body.tema-matrix th {
-  background: #003b00;
-  color: #00ff41;
-  border-bottom: 1px solid #00ff41;
-}
-
-body.tema-matrix td {
-  color: #00ff41;
-  border-bottom: 1px solid #003b00;
-}
-
-body.tema-matrix tr:hover {
-  background: #001f00;
-}
-
-body.tema-matrix .menu-mobile {
-  background: #000000;
-  border-top: 1px solid #00ff41;
-  box-shadow: 0 -2px 15px rgba(0,255,65,.2);
-}
-
-body.tema-matrix .menu-mobile button {
-  color: #00ff41;
-}
-
-body.tema-matrix .total {
-  color: #00ff41;
-}
-
-body.tema-matrix .comprado td {
-  background: #002b00;
-  color: #00aa22;
-}
-
-body.tema-matrix .checkmark {
-  background: #000000;
-  border-color: #00ff41;
-  border-radius: 0;
-}
-
-body.tema-matrix .check-container input:checked + .checkmark {
-  background: #003b00;
-  border-color: #00ff41;
-}
-
-body.tema-matrix .modal-conteudo,
-body.tema-matrix .modal-edicao-conteudo {
-  background: #000000;
-  border: 1px solid #00ff41;
-  border-radius: 0;
-  box-shadow: 0 0 20px rgba(0,255,65,.3);
-}
-
-body.tema-matrix .modal-conteudo h3,
-body.tema-matrix .modal-edicao-conteudo h3 {
-  color: #00ff41;
-}
-
-/* =====================================================
-   AJUSTE MOBILE
-===================================================== */
-
-@media(max-width:768px) {
-
-  .topo-app {
-    gap: 8px;
-  }
-
-  .topo-app h1 {
-    font-size: 18px;
-  }
-
-  #seletorTema {
-    min-width: 115px;
-    font-size: 11px;
-  }
-
-}
-
-/* =====================================================
-   MODAL DE TEMAS
-===================================================== */
-
-.modal-temas {
-  max-width: 340px;
-}
-
-.modal-temas h3 {
-  margin-bottom: 18px;
-}
-
-.temas-botoes {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-bottom: 12px;
-}
-
-.tema-btn {
-  width: 100%;
-  height: 48px;
-  border-radius: 8px;
-  border: none;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-/* Claro */
-
-.tema-claro {
-  background: #ffffff;
-  color: #111827;
-  border: 2px solid #d1d5db;
-}
-
-/* Dark */
-
-.tema-dark {
-  background: #1f2937;
-  color: #ffffff;
-}
-
-/* Windows 98 */
-
-.tema-win98 {
-  background: #c0c0c0;
-  color: #000000;
-  border: 2px outset #ffffff;
-  border-radius: 0;
-  font-family: "MS Sans Serif", Tahoma, Arial, sans-serif;
-}
-
-/* Matrix */
-
-.tema-matrix {
-  background: #000000;
-  color: #00ff41;
-  border: 1px solid #00ff41;
-  border-radius: 0;
-  font-family: "Courier New", monospace;
-  text-shadow: 0 0 5px #00ff41;
-}
-
-.tema-btn:active {
-  transform: scale(.97);
-}
-
-/* Tema ativo */
-
-.tema-btn.tema-ativo {
-  outline: 3px solid #2563eb;
-  outline-offset: 2px;
-}
-
-/* =====================================================
-   CORREÇÃO - PESQUISA NO WINDOWS 98
-===================================================== */
-
-body.tema-windows98 #pesquisa {
-  display: block;
-  width: 100%;
-  height: 36px;
-  flex-shrink: 0;
-
-  background: #ffffff;
-  color: #000000;
-
-  border: 2px inset #ffffff;
-  border-radius: 0;
-
-  margin: 0 0 6px 0;
-}
-
-body.tema-windows98 #pesquisa::placeholder {
-  color: #555555;
-}
-
-
-	  /* =====================================================
-   CORREÇÃO TABELA - TEMA MATRIX
-===================================================== */
-
-body.tema-matrix table {
-  table-layout: auto;
-  width: 100%;
-}
-
-body.tema-matrix th,
-body.tema-matrix td {
-  white-space: nowrap;
-  word-break: normal;
-  overflow: hidden;
-}
-
-body.tema-matrix th:nth-child(1),
-body.tema-matrix td:nth-child(1) {
-  width: 25px;
-}
-
-body.tema-matrix th:nth-child(2),
-body.tema-matrix td:nth-child(2) {
-  width: auto;
-  text-align: left;
-}
-
-body.tema-matrix th:nth-child(3),
-body.tema-matrix td:nth-child(3) {
-  width: 45px;
-  text-align: right;
-}
-
-body.tema-matrix th:nth-child(4),
-body.tema-matrix td:nth-child(4) {
-  width: 70px;
-  text-align: right;
-}
-
-body.tema-matrix th:nth-child(5),
-body.tema-matrix td:nth-child(5) {
-  width: 70px;
-  text-align: right;
-}
-
-body.tema-matrix th:nth-child(6),
-body.tema-matrix td:nth-child(6) {
-  width: 35px;
-  text-align: center;
-}
-
-	  @media(max-width:768px) {
-
-  body.tema-matrix th,
-  body.tema-matrix td {
-    padding: 4px 3px;
-    font-size: 11px;
-  }
-
-  body.tema-matrix th:nth-child(3),
-  body.tema-matrix td:nth-child(3) {
-    width: 42px;
-  }
-
-  body.tema-matrix th:nth-child(4),
-  body.tema-matrix td:nth-child(4),
-  body.tema-matrix th:nth-child(5),
-  body.tema-matrix td:nth-child(5) {
-    width: 65px;
-  }
-
-  body.tema-matrix th:nth-child(6),
-  body.tema-matrix td:nth-child(6) {
-    width: 32px;
-  }
-}
-
-
-	  /* =====================================================
-   MODAL NOVO ITEM
-===================================================== */
-
-.modal-novo-item {
-  background: #fff;
-  width: 92%;
-  max-width: 360px;
-  border-radius: 12px;
-  padding: 20px;
-  animation: fade .2s ease;
-}
-
-.modal-novo-item h3 {
-  margin-bottom: 16px;
-  color: #333;
-  text-align: center;
-}
-
-.form-novo-item {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.form-novo-item input,
-.form-novo-item select {
-  width: 100%;
-  height: 40px;
-}
-
-.botoes-novo-item {
-  display: flex;
-  gap: 8px;
-  margin-top: 8px;
-}
-
-.botoes-novo-item button {
-  flex: 1;
-  height: 40px;
-  border-radius: 8px;
-}
-
-.btn-salvar-novo {
-  background: #22c55e;
-}
-
-.btn-cancelar-novo {
-  background: #6b7280;
-}
-
-/* TEMA ESCURO */
-
-body.tema-escuro .modal-novo-item {
-  background: #1f2937;
-  color: #f9fafb;
-}
-
-body.tema-escuro .modal-novo-item h3 {
-  color: #f9fafb;
-}
-
-/* WINDOWS 98 */
-
-body.tema-windows98 .modal-novo-item {
-  background: #c0c0c0;
-  border: 3px outset #ffffff;
-  border-radius: 0;
-}
-
-body.tema-windows98 .modal-novo-item h3 {
-  color: #000;
-}
-
-/* MATRIX */
-
-body.tema-matrix .modal-novo-item {
-  background: #000;
-  border: 1px solid #00ff41;
-  border-radius: 0;
-  box-shadow: 0 0 20px rgba(0,255,65,.3);
-}
-
-body.tema-matrix .modal-novo-item h3 {
-  color: #00ff41;
-}
-
 
   </style>
 </head>
 
+
 <body>
 
   <div class="container">
+
+    <!-- =================================================
+         TOPO
+    ================================================= -->
+
     <div class="topo-app">
-		 <input
-    type="text"
-    id="pesquisa"
-    placeholder="Pesquisar produto..."
-    autocomplete="off"
-  >
-	</div>
-   <nav class="menu-mobile">
-    
-  <button onclick="imprimirTXT()">
-    <span>🖨️</span>
-    <small>Print</small>
-  </button>
 
-  <button onclick="abrirModalNovoItem()">
-  <span>➕</span>
-  <small>Adicionar</small>
-</button>
+      <input
+        type="text"
+        id="pesquisa"
+        placeholder="Pesquisar produto..."
+        autocomplete="off"
+      >
 
-  <!-- <button onclick="exportarPDF()">
-    <span>📕</span>
-    <small>PDF</small>
-  </button> -->
-  
-  <button onclick="abrirModalTema()">
-    <span>🎨</span>
-    <small>Tema</small>
-  </button>
+    </div>
 
-  <button onclick="exportarLista()">
-    <span>⬇️</span>
-    <small>Backup</small>
-  </button>
 
-  <button onclick="document.getElementById('arquivo').click()">
-    <span>⬆️</span>
-    <small>Importar</small>
-  </button>
-
-  <button onclick="ordenarAlfabetico()">
-    <span>🔤</span>
-    <small>A-Z</small>
-  </button>
-
-     <button onclick="desmarcarTodos()">
-  <span>☑️</span>
-  <small>Desmarcar</small>
-</button>
-
-  <input type="file" id="arquivo" hidden accept=".json">
-
-</nav>
-    
+    <!-- =================================================
+         TABELA
+    ================================================= -->
 
     <div class="tabela-wrapper">
+
       <table>
+
         <thead>
+
           <tr>
+
             <th>#</th>
+
             <th>Produto</th>
-            <th style="text-align:right;">Qtd</th>
-            <th style="text-align:right;">Valor</th>
-            <th style="text-align:right;">Total</th>
-            <th style="text-align:center;">✔</th>
+
+            <th style="text-align:right;">
+              Qtd
+            </th>
+
+            <th style="text-align:right;">
+              Valor
+            </th>
+
+            <th style="text-align:right;">
+              Total
+            </th>
+
+            <th style="text-align:center;">
+              ✔
+            </th>
+
           </tr>
+
         </thead>
 
         <tbody id="tabelaItens"></tbody>
@@ -1468,6 +1593,11 @@ body.tema-matrix .modal-novo-item h3 {
       </table>
 
     </div>
+
+
+    <!-- =================================================
+         RESUMO
+    ================================================= -->
 
     <div class="total">
 
@@ -1484,6 +1614,7 @@ body.tema-matrix .modal-novo-item h3 {
         </div>
 
       </div>
+
 
       <div class="resumo-direita">
 
@@ -1502,250 +1633,359 @@ body.tema-matrix .modal-novo-item h3 {
     </div>
 
   </div>
-  
+
+
+  <!-- =====================================================
+       MENU INFERIOR
+  ===================================================== -->
+
+  <nav class="menu-mobile">
+
+    <button onclick="imprimirTXT()">
+      <span>🖨️</span>
+      <small>Print</small>
+    </button>
+
+
+    <button onclick="abrirModalNovoItem()">
+      <span>➕</span>
+      <small>Adicionar</small>
+    </button>
+
+
+    <button onclick="abrirModalTema()">
+      <span>🎨</span>
+      <small>Tema</small>
+    </button>
+
+
+    <button onclick="exportarLista()">
+      <span>⬇️</span>
+      <small>Backup</small>
+    </button>
+
+
+    <button onclick="document.getElementById('arquivo').click()">
+      <span>⬆️</span>
+      <small>Importar</small>
+    </button>
+
+
+    <button onclick="ordenarAlfabetico()">
+      <span>🔤</span>
+      <small>A-Z</small>
+    </button>
+
+
+    <button onclick="desmarcarTodos()">
+      <span>☑️</span>
+      <small>Desmarcar</small>
+    </button>
+
+
+    <input
+      type="file"
+      id="arquivo"
+      hidden
+      accept=".json"
+    >
+
+  </nav>
+
+
+  <!-- =====================================================
+       MODAL AÇÕES
+  ===================================================== -->
+
+  <div id="modalAcoes" class="modal">
+
+    <div class="modal-conteudo">
+
+      <h3 id="modalTitulo"></h3>
+
+      <div class="modal-botoes">
+
+        <button
+          class="btn-editar"
+          onclick="editarItemModal()">
+          ✏️ Alterar
+        </button>
+
+        <button
+          class="btn-excluir"
+          onclick="excluirItemModal()">
+          🗑️ Excluir
+        </button>
+
+        <button
+          class="btn-cancelar"
+          onclick="fecharModal()">
+          ❌ Cancelar
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       MODAL EDIÇÃO
+  ===================================================== -->
+
+  <div id="modalEdicao" class="modal">
+
+    <div
+      class="modal-edicao-conteudo"
+      onclick="event.stopPropagation()">
+
+      <h3>Alterar produto</h3>
+
+      <div class="form-edicao">
+
+        <input
+          type="text"
+          id="editarProduto"
+          placeholder="Produto"
+        >
+
+        <input
+          type="number"
+          id="editarQuantidade"
+          placeholder="Quantidade"
+          step="any"
+          min="0"
+        >
+
+        <input
+          type="number"
+          id="editarValor"
+          placeholder="Valor"
+          step="0.01"
+          min="0"
+        >
+
+        <select id="editarTipo">
+
+          <option>Unidade</option>
+          <option>Peso</option>
+
+        </select>
+
+
+        <div class="botoes-edicao">
+
+          <button
+            type="button"
+            class="btn-cancelar-edicao"
+            onclick="fecharModalEdicao()">
+            Cancelar
+          </button>
+
+          <button
+            type="button"
+            class="btn-salvar-edicao"
+            onclick="salvarEdicaoModal()">
+            Salvar
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       MODAL TEMAS
+  ===================================================== -->
+
+  <div id="modalTema" class="modal">
+
+    <div
+      class="modal-conteudo modal-temas"
+      onclick="event.stopPropagation()">
+
+      <h3>🎨 Escolher tema</h3>
+
+      <div class="temas-botoes">
+
+        <button
+          class="tema-btn tema-claro"
+          onclick="alterarTema('branco')">
+          ☀️ Claro
+        </button>
+
+
+        <button
+          class="tema-btn tema-dark"
+          onclick="alterarTema('escuro')">
+          🌙 Dark
+        </button>
+
+
+        <button
+          class="tema-btn tema-win98"
+          onclick="alterarTema('windows98')">
+          💾 Windows 98
+        </button>
+
+
+        <button
+          class="tema-btn tema-matrix"
+          onclick="alterarTema('matrix')">
+          🟢 Matrix
+        </button>
+
+      </div>
+
+
+      <button
+        class="btn-cancelar"
+        onclick="fecharModalTema()">
+        ❌ Fechar
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       MODAL NOVO ITEM
+  ===================================================== -->
+
+  <div id="modalNovoItem" class="modal">
+
+    <div
+      class="modal-novo-item"
+      onclick="event.stopPropagation()">
+
+      <h3>➕ Novo item</h3>
+
+      <div class="form-novo-item">
+
+        <input
+          type="text"
+          id="novoProduto"
+          placeholder="Produto"
+          autocomplete="off"
+        >
+
+        <input
+          type="number"
+          id="novaQuantidade"
+          placeholder="Quantidade"
+          step="any"
+          min="0"
+        >
+
+        <input
+          type="number"
+          id="novoValor"
+          placeholder="Valor"
+          step="0.01"
+          min="0"
+        >
+
+        <select id="novoTipo">
+
+          <option>Unidade</option>
+          <option>Peso</option>
+
+        </select>
+
+
+        <div class="botoes-novo-item">
+
+          <button
+            type="button"
+            class="btn-cancelar-novo"
+            onclick="fecharModalNovoItem()">
+            ❌ Cancelar
+          </button>
+
+
+          <button
+            type="button"
+            class="btn-salvar-novo"
+            onclick="salvarNovoItem()">
+            ✅ Adicionar
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
 
   <script>
-/* =====================================================
-   SISTEMA DE TEMAS
-===================================================== */
 
-function alterarTema(tema) {
-
-  document.body.classList.remove(
-    "tema-branco",
-    "tema-escuro",
-    "tema-windows98",
-    "tema-matrix"
-  );
-
-  document.body.classList.add("tema-" + tema);
-
-  localStorage.setItem("tema", tema);
-
-  const seletor = document.getElementById("seletorTema");
-
-  if (seletor) {
-    seletor.value = tema;
-  }
-}
-
-
-/* Carrega o tema salvo */
-
-/* =====================================================
-   SISTEMA DE TEMAS
-===================================================== */
-
-function alterarTema(tema) {
-
-  document.body.classList.remove(
-    "tema-branco",
-    "tema-escuro",
-    "tema-windows98",
-    "tema-matrix"
-  );
-
-  document.body.classList.add("tema-" + tema);
-
-  localStorage.setItem("tema", tema);
-
-  atualizarTemaAtivo();
-
-  fecharModalTema();
-}
-
-
-/* =====================================================
-   ATUALIZA BOTÃO DO TEMA ATIVO
-===================================================== */
-
-function atualizarTemaAtivo() {
-
-  const temaAtual =
-    localStorage.getItem("tema") || "branco";
-
-  document.querySelectorAll(".tema-btn")
-    .forEach(botao => {
-
-      botao.classList.remove("tema-ativo");
-
-    });
-
-  const botoes = {
-    branco: ".tema-claro",
-    escuro: ".tema-dark",
-    windows98: ".tema-win98",
-    matrix: ".tema-matrix"
-  };
-
-  const botaoAtivo =
-    document.querySelector(botoes[temaAtual]);
-
-  if (botaoAtivo) {
-    botaoAtivo.classList.add("tema-ativo");
-  }
-}
-
-
-/* =====================================================
-   CARREGAR TEMA
-===================================================== */
-
-function carregarTema() {
-
-  const temaSalvo =
-    localStorage.getItem("tema") || "branco";
-
-  document.body.classList.add(
-    "tema-" + temaSalvo
-  );
-
-  atualizarTemaAtivo();
-}
-
-
-/* =====================================================
-   MODAL DE TEMAS
-===================================================== */
-
-function abrirModalTema() {
-
-  atualizarTemaAtivo();
-
-  $("modalTema").style.display = "flex";
-
-  vibrar();
-}
-
-
-function fecharModalTema() {
-
-  $("modalTema").style.display = "none";
-
-}
-
-
-document.addEventListener("DOMContentLoaded", () => {
-
-  carregarTema();
-
-  renderizarTabela();
-
-  /* =========================
-     PESQUISA
-  ========================= */
-
-  $("pesquisa").addEventListener("input", function () {
-
-    const termo = this.value
-      .toLowerCase()
-      .trim();
-
-    const filtrado = lista.filter(item =>
-      item.produto
-        .toLowerCase()
-        .includes(termo)
-    );
-
-    renderizarTabela(filtrado);
-
-  });
-
-
-  /* =========================
-     VERIFICAÇÃO PWA
-  ========================= */
-
-  if (
-    window.matchMedia("(display-mode: standalone)").matches
-  ) {
-    console.log("Rodando como PWA");
-  }
-
-
-  /* =========================
-     MODAL DE AÇÕES
-  ========================= */
-
-  const modal = $("modalAcoes");
-
-  const modalConteudo =
-    document.querySelector(".modal-conteudo");
-
-
-  modal.addEventListener("click", () => {
-
-    fecharModal();
-
-    vibrar([80, 40, 80]);
-
-  });
-
-
-  modalConteudo.addEventListener("click", (e) => {
-
-    e.stopPropagation();
-
-  });
-
-
-  /* =========================
-     MODAL DE EDIÇÃO
-  ========================= */
-
-  const modalEdicao = $("modalEdicao");
-
-  modalEdicao.addEventListener("click", () => {
-
-    fecharModalEdicao();
-
-  });
-
-
-  /* =========================
-     MODAL NOVO ITEM
-  ========================= */
-
-  const modalNovoItem = $("modalNovoItem");
-
-  modalNovoItem.addEventListener("click", () => {
-
-    fecharModalNovoItem();
-
-  });
-
-
-  /* =========================
-     IMPORTAÇÃO
-  ========================= */
-
-  $("arquivo").addEventListener(
-    "change",
-    importarLista
-  );
-
-});
-
-
-    let lista = [];
-
-    try {
-      const data = localStorage.getItem("lista");
-      lista = data ? JSON.parse(data) : [];
-    } catch (e) {
-      console.log("erro storage, resetando lista");
-      lista = [];
-    }
-
-    let editando = null;
-
-    let idAtual =
-      Number(localStorage.getItem("id")) || 1;
+    /* =====================================================
+       FUNÇÃO $
+    ===================================================== */
 
     const $ = id =>
       document.getElementById(id);
 
 
+    /* =====================================================
+       LISTA
+    ===================================================== */
+
+    let lista = [];
+
+    try {
+
+      const data =
+        localStorage.getItem("lista");
+
+      lista =
+        data
+          ? JSON.parse(data)
+          : [];
+
+      if (!Array.isArray(lista)) {
+        lista = [];
+      }
+
+    } catch (e) {
+
+      console.log(
+        "Erro no storage, resetando lista."
+      );
+
+      lista = [];
+
+    }
+
+
+    /* =====================================================
+       ID
+    ===================================================== */
+
+    let idAtual =
+      Number(
+        localStorage.getItem("id")
+      ) || 1;
+
+
+    let editando = null;
+
+    let itemSelecionado = null;
+
+    let ordemAlfabetica = true;
+
+
+    /* =====================================================
+       STORAGE
+    ===================================================== */
 
     function salvarStorage() {
 
@@ -1758,261 +1998,475 @@ document.addEventListener("DOMContentLoaded", () => {
         "id",
         idAtual
       );
+
     }
 
-    let itemSelecionado = null;
 
-    function abrirModal(id) {
+    /* =====================================================
+       VIBRAÇÃO
+    ===================================================== */
 
-      itemSelecionado = id;
-
-      const item =
-        lista.find(i => i.id === id);
-
-      if (!item) return;
-
-      $("modalTitulo").textContent =
-        item.produto;
-
-      $("modalAcoes").style.display =
-        "flex";
-    }
-
-    /* =========================
-   VIBRAÇÃO
-========================= */
-
-    function vibrar(tempo = 40) {
+    function vibrar(
+      tempo = 40
+    ) {
 
       if (navigator.vibrate) {
 
         navigator.vibrate(tempo);
 
       }
+
     }
 
-    /* vibração em TODOS os botões */
-    document.addEventListener("click", e => {
 
-      if (
-        e.target.tagName === "BUTTON" ||
-        e.target.type === "checkbox"
-      ) {
+    /* =====================================================
+       TEMAS
+    ===================================================== */
 
-        vibrar();
+    function alterarTema(tema) {
+
+      document.body.classList.remove(
+        "tema-branco",
+        "tema-escuro",
+        "tema-windows98",
+        "tema-matrix"
+      );
+
+      document.body.classList.add(
+        "tema-" + tema
+      );
+
+      localStorage.setItem(
+        "tema",
+        tema
+      );
+
+      atualizarTemaAtivo();
+
+      fecharModalTema();
+
+      vibrar();
+
+    }
+
+
+    function carregarTema() {
+
+      const temaSalvo =
+        localStorage.getItem("tema")
+        || "branco";
+
+      const temasValidos = [
+        "branco",
+        "escuro",
+        "windows98",
+        "matrix"
+      ];
+
+      const tema =
+        temasValidos.includes(temaSalvo)
+          ? temaSalvo
+          : "branco";
+
+      document.body.classList.add(
+        "tema-" + tema
+      );
+
+    }
+
+
+    function atualizarTemaAtivo() {
+
+      const temaAtual =
+        localStorage.getItem("tema")
+        || "branco";
+
+      document
+        .querySelectorAll(".tema-btn")
+        .forEach(botao => {
+
+          botao.classList.remove(
+            "tema-ativo"
+          );
+
+        });
+
+
+      const botoes = {
+
+        branco: ".tema-claro",
+
+        escuro: ".tema-dark",
+
+        windows98: ".tema-win98",
+
+        matrix: ".tema-matrix"
+
+      };
+
+
+      const botaoAtivo =
+        document.querySelector(
+          botoes[temaAtual]
+        );
+
+
+      if (botaoAtivo) {
+
+        botaoAtivo.classList.add(
+          "tema-ativo"
+        );
 
       }
 
-    });
-
-    let ordemAlfabetica = true;
-
-function ordenarAlfabetico() {
-
-  lista.sort((a, b) => {
-
-    const resultado = a.produto.localeCompare(
-      b.produto,
-      "pt-BR",
-      {
-        sensitivity: "base"
-      }
-    );
-
-    return ordemAlfabetica
-      ? resultado
-      : -resultado;
-  });
-
-  ordemAlfabetica = !ordemAlfabetica;
-
-  salvarStorage();
-  renderizarTabela();
-
-  vibrar([80, 40, 80]);
-}
+    }
 
 
-function desmarcarTodos() {
+    /* =====================================================
+       MODAL TEMA
+    ===================================================== */
 
-  const existemMarcados =
-    lista.some(item => item.comprado);
+    function abrirModalTema() {
 
-  if (!existemMarcados) {
-    vibrar();
-    return;
-  }
+      atualizarTemaAtivo();
 
-  const confirmar = confirm(
-    "Deseja realmente desmarcar todos os itens?"
-  );
+      $("modalTema").style.display =
+        "flex";
 
-  if (!confirmar) {
-    return;
-  }
+      vibrar();
 
-  lista.forEach(item => {
-    item.comprado = false;
-  });
+    }
 
-  salvarStorage();
 
-  renderizarTabela();
+    function fecharModalTema() {
 
-  vibrar([80, 40, 80]);
-}
+      $("modalTema").style.display =
+        "none";
+
+    }
+
+
+    /* =====================================================
+       MODAL AÇÕES
+    ===================================================== */
+
+    function abrirModal(id) {
+
+      itemSelecionado = id;
+
+
+      const item =
+        lista.find(
+          i => i.id === id
+        );
+
+
+      if (!item) return;
+
+
+      $("modalTitulo").textContent =
+        item.produto;
+
+
+      $("modalAcoes").style.display =
+        "flex";
+
+    }
 
 
     function fecharModal() {
 
-  $("modalAcoes").style.display = "none";
+      $("modalAcoes").style.display =
+        "none";
 
-  // NÃO limpar itemSelecionado aqui
-  // pois ele pode ser usado pelo modal de edição
-}
-
-
-function editarItemModal() {
-
-  if (!itemSelecionado) return;
-
-  const item = lista.find(i => i.id === itemSelecionado);
-
-  if (!item) return;
-
-  // Preenche os campos
-  $("editarProduto").value = item.produto;
-  $("editarQuantidade").value = item.quantidade;
-  $("editarValor").value = item.valor;
-  $("editarTipo").value = item.tipo;
-
-  // Fecha somente o modal de ações
-  $("modalAcoes").style.display = "none";
-
-  // Abre o modal de edição
-  $("modalEdicao").style.display = "flex";
-
-  vibrar();
-}
-
-
-function fecharModalEdicao() {
-
-  $("modalEdicao").style.display = "none";
-
-  itemSelecionado = null;
-}
-
-
-function salvarEdicaoModal() {
-
-  if (!itemSelecionado) return;
-
-  const item = lista.find(
-    i => i.id === itemSelecionado
-  );
-
-  if (!item) return;
-
-  const produto =
-    $("editarProduto")
-      .value
-      .trim()
-      .toUpperCase();
-
-  const quantidade =
-    parseFloat(
-      $("editarQuantidade").value.replace(",", ".")
-    );
-
-  const valor =
-    parseFloat(
-      $("editarValor").value.replace(",", ".")
-    ) || 0;
-
-  const tipo =
-    $("editarTipo").value;
-
-  if (!produto || quantidade <= 0) {
-
-    alert("Preencha os campos corretamente.");
-
-    return;
-  }
-
-  // Atualiza o item
-  item.produto = produto;
-  item.quantidade = quantidade;
-  item.valor = valor;
-  item.tipo = tipo;
-
-  // Salva no localStorage
-  salvarStorage();
-
-  // Fecha modal
-  fecharModalEdicao();
-
-  // Atualiza tabela
-  renderizarTabela();
-
-  vibrar([80, 40, 80]);
-}
-
-    function excluirItemModal() {
-
-      if (itemSelecionado) {
-
-        if (confirm("Excluir item?")) {
-
-          excluir(itemSelecionado);
-          vibrar();
-          fecharModal();
-        }
-      }
     }
 
-    function limparCampos() {
 
-      $("produto").value = "";
-      $("quantidade").value = "";
-      $("valor").value = "";
-      $("tipo").value = "Unidade";
+    /* =====================================================
+       EDITAR
+    ===================================================== */
 
-      editando = null;
+    function editarItemModal() {
+
+      if (!itemSelecionado)
+        return;
+
+
+      const item =
+        lista.find(
+          i => i.id === itemSelecionado
+        );
+
+
+      if (!item)
+        return;
+
+
+      $("editarProduto").value =
+        item.produto;
+
+      $("editarQuantidade").value =
+        item.quantidade;
+
+      $("editarValor").value =
+        item.valor;
+
+      $("editarTipo").value =
+        item.tipo || "Unidade";
+
+
+      $("modalAcoes").style.display =
+        "none";
+
+
+      $("modalEdicao").style.display =
+        "flex";
+
+
+      setTimeout(() => {
+
+        $("editarProduto").focus();
+
+      }, 100);
+
+
+      vibrar();
+
     }
 
-    function salvarItem() {
+
+    function fecharModalEdicao() {
+
+      $("modalEdicao").style.display =
+        "none";
+
+      itemSelecionado = null;
+
+    }
+
+
+    function salvarEdicaoModal() {
+
+      if (!itemSelecionado)
+        return;
+
+
+      const item =
+        lista.find(
+          i => i.id === itemSelecionado
+        );
+
+
+      if (!item)
+        return;
+
 
       const produto =
-        $("produto")
+        $("editarProduto")
           .value
           .trim()
           .toUpperCase();
 
+
       const quantidade =
         parseFloat(
-          $("quantidade").value.replace(",", ".")
+          $("editarQuantidade")
+            .value
+            .replace(",", ".")
         );
+
 
       const valor =
         parseFloat(
-          $("valor").value.replace(",", ".")
+          $("editarValor")
+            .value
+            .replace(",", ".")
         ) || 0;
 
+
       const tipo =
-        $("tipo").value;
+        $("editarTipo").value;
+
 
       if (
         !produto ||
+        !quantidade ||
         quantidade <= 0
       ) {
-        alert("Preencha os campos corretamente.");
+
+        alert(
+          "Preencha os campos corretamente."
+        );
+
         return;
+
       }
+
+
+      item.produto =
+        produto;
+
+      item.quantidade =
+        quantidade;
+
+      item.valor =
+        valor;
+
+      item.tipo =
+        tipo;
+
+
+      salvarStorage();
+
+      fecharModalEdicao();
+
+      renderizarTabela();
+
+      vibrar([
+        80,
+        40,
+        80
+      ]);
+
+    }
+
+
+    /* =====================================================
+       EXCLUIR
+    ===================================================== */
+
+    function excluirItemModal() {
+
+      if (!itemSelecionado)
+        return;
+
+
+      if (
+        confirm("Excluir item?")
+      ) {
+
+        const id =
+          itemSelecionado;
+
+
+        excluir(id);
+
+        fecharModal();
+
+        itemSelecionado = null;
+
+        vibrar([
+          80,
+          40,
+          80
+        ]);
+
+      }
+
+    }
+
+
+    function excluir(id) {
+
+      lista =
+        lista.filter(
+          i => i.id !== id
+        );
+
+      salvarStorage();
+
+      renderizarTabela();
+
+    }
+
+
+    /* =====================================================
+       NOVO ITEM
+    ===================================================== */
+
+    function abrirModalNovoItem() {
+
+      $("novoProduto").value = "";
+
+      $("novaQuantidade").value = "";
+
+      $("novoValor").value = "";
+
+      $("novoTipo").value =
+        "Unidade";
+
+
+      $("modalNovoItem").style.display =
+        "flex";
+
+
+      vibrar();
+
+
+      setTimeout(() => {
+
+        $("novoProduto").focus();
+
+      }, 100);
+
+    }
+
+
+    function fecharModalNovoItem() {
+
+      $("modalNovoItem").style.display =
+        "none";
+
+    }
+
+
+    function salvarNovoItem() {
+
+      const produto =
+        $("novoProduto")
+          .value
+          .trim()
+          .toUpperCase();
+
+
+      const quantidade =
+        parseFloat(
+          $("novaQuantidade")
+            .value
+            .replace(",", ".")
+        );
+
+
+      const valor =
+        parseFloat(
+          $("novoValor")
+            .value
+            .replace(",", ".")
+        ) || 0;
+
+
+      const tipo =
+        $("novoTipo").value;
+
+
+      if (
+        !produto ||
+        !quantidade ||
+        quantidade <= 0
+      ) {
+
+        alert(
+          "Preencha os campos corretamente."
+        );
+
+        return;
+
+      }
+
 
       const item = {
 
-        id: editando || idAtual++,
+        id: idAtual++,
 
         produto,
 
@@ -2023,140 +2477,164 @@ function salvarEdicaoModal() {
         tipo,
 
         comprado: false
+
       };
 
-      if (editando) {
 
-        const index =
-          lista.findIndex(
-            i => i.id === editando
-          );
-
-        item.comprado =
-          lista[index].comprado;
-
-        lista[index] = item;
-
-      } else {
-
-        lista.push(item);
-
-      }
+      lista.push(item);
 
       salvarStorage();
 
-      /* vibração forte ao salvar */
-      vibrar([80, 40, 80]);
-
-      limparCampos();
-
       renderizarTabela();
+
+      fecharModalNovoItem();
+
+
+      vibrar([
+        80,
+        40,
+        80
+      ]);
+
     }
 
-	  /* =====================================================
-   MODAL NOVO ITEM
-===================================================== */
 
-function abrirModalNovoItem() {
+    /* =====================================================
+       MARCAR / DESMARCAR
+    ===================================================== */
 
-  $("novoProduto").value = "";
-  $("novaQuantidade").value = "";
-  $("novoValor").value = "";
-  $("novoTipo").value = "Unidade";
+    function toggleComprado(id) {
 
-  $("modalNovoItem").style.display = "flex";
-
-  vibrar();
-
-  // Coloca o cursor diretamente no produto
-  setTimeout(() => {
-    $("novoProduto").focus();
-  }, 100);
-}
+      const item =
+        lista.find(
+          i => i.id === id
+        );
 
 
-function fecharModalNovoItem() {
-
-  $("modalNovoItem").style.display = "none";
-
-}
+      if (!item)
+        return;
 
 
-/* =====================================================
-   SALVAR NOVO ITEM
-===================================================== */
-
-function salvarNovoItem() {
-
-  const produto =
-    $("novoProduto")
-      .value
-      .trim()
-      .toUpperCase();
-
-  const quantidade =
-    parseFloat(
-      $("novaQuantidade")
-        .value
-        .replace(",", ".")
-    );
-
-  const valor =
-    parseFloat(
-      $("novoValor")
-        .value
-        .replace(",", ".")
-    ) || 0;
-
-  const tipo =
-    $("novoTipo").value;
+      item.comprado =
+        !item.comprado;
 
 
-  if (!produto || quantidade <= 0) {
+      salvarStorage();
 
-    alert("Preencha os campos corretamente.");
+      vibrar();
 
-    return;
-  }
+      renderizarTabela();
 
-
-  const item = {
-
-    id: idAtual++,
-
-    produto,
-
-    quantidade,
-
-    valor,
-
-    tipo,
-
-    comprado: false
-
-  };
+    }
 
 
-  lista.push(item);
+    function desmarcarTodos() {
 
-  salvarStorage();
-
-  renderizarTabela();
-
-  fecharModalNovoItem();
-
-  vibrar([80, 40, 80]);
-
-}
-
-	  
+      const existemMarcados =
+        lista.some(
+          item => item.comprado
+        );
 
 
-    function renderizarTabela(filtro = lista) {
+      if (!existemMarcados) {
 
-      const tbody = $("tabelaItens");
+        vibrar();
+
+        return;
+
+      }
+
+
+      const confirmar =
+        confirm(
+          "Deseja realmente desmarcar todos os itens?"
+        );
+
+
+      if (!confirmar)
+        return;
+
+
+      lista.forEach(item => {
+
+        item.comprado = false;
+
+      });
+
+
+      salvarStorage();
+
+      renderizarTabela();
+
+
+      vibrar([
+        80,
+        40,
+        80
+      ]);
+
+    }
+
+
+    /* =====================================================
+       ORDENAR
+    ===================================================== */
+
+    function ordenarAlfabetico() {
+
+      lista.sort(
+        (a, b) => {
+
+          const resultado =
+            a.produto.localeCompare(
+              b.produto,
+              "pt-BR",
+              {
+                sensitivity: "base"
+              }
+            );
+
+
+          return ordemAlfabetica
+            ? resultado
+            : -resultado;
+
+        }
+      );
+
+
+      ordemAlfabetica =
+        !ordemAlfabetica;
+
+
+      salvarStorage();
+
+      renderizarTabela();
+
+
+      vibrar([
+        80,
+        40,
+        80
+      ]);
+
+    }
+
+
+    /* =====================================================
+       RENDERIZAR TABELA
+    ===================================================== */
+
+    function renderizarTabela(
+      filtro = lista
+    ) {
+
+      const tbody =
+        $("tabelaItens");
+
 
       tbody.innerHTML = "";
+
 
       let total = 0;
 
@@ -2164,138 +2642,137 @@ function salvarNovoItem() {
 
       let itensComprados = 0;
 
-      filtro.forEach((item, index) => {
 
-        const subtotal =
-          item.quantidade * item.valor;
+      filtro.forEach(
+        (item, index) => {
 
-        total += subtotal;
+          const quantidade =
+            Number(item.quantidade) || 0;
 
-        // SOMA DOS MARCADOS
-        if (item.comprado) {
+          const valor =
+            Number(item.valor) || 0;
 
-          totalComprados += subtotal;
 
-          itensComprados++;
+          const subtotal =
+            quantidade * valor;
+
+
+          total += subtotal;
+
+
+          if (item.comprado) {
+
+            totalComprados +=
+              subtotal;
+
+            itensComprados++;
+
+          }
+
+
+          const tr =
+            document.createElement("tr");
+
+
+          if (item.comprado) {
+
+            tr.classList.add(
+              "comprado"
+            );
+
+          }
+
+
+          tr.onclick = () =>
+            abrirModal(item.id);
+
+
+          tr.innerHTML = `
+
+            <td style="text-align:center;">
+              ${index + 1}
+            </td>
+
+            <td>
+              ${escapeHTML(item.produto || "")}
+            </td>
+
+            <td style="text-align:right;">
+              ${quantidade}
+            </td>
+
+            <td style="text-align:right;">
+              R$ ${valor.toFixed(2)}
+            </td>
+
+            <td style="text-align:right;">
+              R$ ${subtotal.toFixed(2)}
+            </td>
+
+            <td style="text-align:center; vertical-align:middle;">
+
+              <label
+                class="check-container"
+                onclick="event.stopPropagation()">
+
+                <input
+                  type="checkbox"
+                  ${item.comprado ? "checked" : ""}
+                  onchange="toggleComprado(${item.id})"
+                >
+
+                <span class="checkmark"></span>
+
+              </label>
+
+            </td>
+
+          `;
+
+
+          tbody.appendChild(tr);
 
         }
+      );
 
-        const tr =
-          document.createElement("tr");
 
-        if (item.comprado) {
-          tr.classList.add("comprado");
-        }
-
-        tr.onclick = () => abrirModal(item.id);
-
-        tr.innerHTML = `
-
-      <td style="text-align:center;">
-        ${index + 1}
-      </td>
-
-      <td>${item.produto}</td>
-
-      <td style="text-align:right;">
-        ${item.quantidade}
-      </td>
-
-      <td style="text-align:right;">
-        R$ ${item.valor.toFixed(2)}
-      </td>
-
-      <td style="text-align:right;">
-        R$ ${subtotal.toFixed(2)}
-      </td>
-
-      <td style="text-align:center; vertical-align:middle;">
-
-        <label
-          class="check-container"
-          onclick="event.stopPropagation()"
-        >
-
-          <input
-            type="checkbox"
-            ${item.comprado ? "checked" : ""}
-            onchange="toggleComprado(${item.id})"
-          >
-
-          <span class="checkmark"></span>
-
-        </label>
-
-      </td>
-
-    `;
-
-        tbody.appendChild(tr);
-
-      });
-
-      // TOTAL GERAL
       $("totalItens").textContent =
         filtro.length;
+
 
       $("totalLista").textContent =
         total.toFixed(2);
 
-      // TOTAL DOS MARCADOS
+
       $("totalItensComprados").textContent =
         itensComprados;
 
+
       $("totalComprados").textContent =
         totalComprados.toFixed(2);
-    }
-    function editar(id) {
 
-      const item =
-        lista.find(i => i.id === id);
-
-      if (!item) return;
-
-      $("produto").value =
-        item.produto;
-
-      $("quantidade").value =
-        item.quantidade;
-
-      $("valor").value =
-        item.valor;
-
-      $("tipo").value =
-        item.tipo;
-
-      editando = id;
     }
 
-    function excluir(id) {
 
-      lista =
-        lista.filter(i => i.id !== id);
+    /* =====================================================
+       SEGURANÇA DO TEXTO
+    ===================================================== */
 
-      salvarStorage();
-      vibrar();
-      renderizarTabela();
+    function escapeHTML(texto) {
+
+      return String(texto)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#039;");
+
     }
 
-    function toggleComprado(id) {
 
-      const item =
-        lista.find(i => i.id === id);
-
-      if (!item) return;
-
-      item.comprado =
-        !item.comprado;
-
-      salvarStorage();
-      vibrar();
-      renderizarTabela();
-    }
-
-   
+    /* =====================================================
+       GERAR TXT
+    ===================================================== */
 
     function gerarTXT() {
 
@@ -2303,13 +2780,16 @@ function salvarNovoItem() {
 
       let total = 0;
 
-      // largura fixa das colunas
+
       const COL_PRODUTO = 28;
+
       const COL_QTD = 8;
+
       const COL_VALOR = 12;
+
       const COL_TOTAL = 12;
 
-      // função auxiliar
+
       const linha = (
         produto,
         qtd,
@@ -2318,22 +2798,36 @@ function salvarNovoItem() {
       ) => {
 
         return (
-          produto.padEnd(COL_PRODUTO) +
-          qtd.padStart(COL_QTD) +
-          valor.padStart(COL_VALOR) +
-          subtotal.padStart(COL_TOTAL)
+
+          produto.padEnd(
+            COL_PRODUTO
+          ) +
+
+          qtd.padStart(
+            COL_QTD
+          ) +
+
+          valor.padStart(
+            COL_VALOR
+          ) +
+
+          subtotal.padStart(
+            COL_TOTAL
+          )
+
         );
 
       };
 
+
       texto +=
-        `============================================================
+`============================================================
                      LISTA DE COMPRAS
 ============================================================
 
 `;
 
-      // cabeçalho
+
       texto += linha(
         "PRODUTO",
         "QTD",
@@ -2341,111 +2835,193 @@ function salvarNovoItem() {
         "TOTAL"
       );
 
+
       texto += "\n";
 
-      texto +=
-        `${"-".repeat(60)}\n`;
-
-      lista.forEach((item, index) => {
-
-        const subtotal =
-          item.quantidade * item.valor;
-
-        total += subtotal;
-
-        texto += linha(
-
-          `${index + 1}. ${item.produto.substring(0, COL_PRODUTO - 3)}`,
-
-          item.quantidade.toString(),
-
-          `R$ ${item.valor.toFixed(2)}`,
-
-          `R$ ${subtotal.toFixed(2)}`
-
-        );
-
-        texto += "\n";
-      });
 
       texto +=
         `${"-".repeat(60)}\n`;
+
+
+      lista.forEach(
+        (item, index) => {
+
+          const subtotal =
+            item.quantidade *
+            item.valor;
+
+
+          total += subtotal;
+
+
+          texto += linha(
+
+            `${index + 1}. ${item.produto.substring(
+              0,
+              COL_PRODUTO - 3
+            )}`,
+
+            item.quantidade.toString(),
+
+            `R$ ${item.valor.toFixed(2)}`,
+
+            `R$ ${subtotal.toFixed(2)}`
+
+          );
+
+
+          texto += "\n";
+
+        }
+      );
+
+
+      texto +=
+        `${"-".repeat(60)}\n`;
+
 
       texto +=
         `TOTAL GERAL: R$ ${total.toFixed(2)}\n`;
 
+
       return texto;
+
     }
+
+
+    /* =====================================================
+       EXPORTAR TXT
+    ===================================================== */
 
     function exportarTXT() {
 
-      const texto = gerarTXT();
+      const texto =
+        gerarTXT();
 
-      // BOM UTF-8
-      const blob = new Blob(
-        ["\uFEFF" + texto],
-        { type: "text/plain;charset=utf-8" }
-      );
 
-      const link = document.createElement("a");
+      const blob =
+        new Blob(
+          [
+            "\uFEFF" + texto
+          ],
+          {
+            type:
+              "text/plain;charset=utf-8"
+          }
+        );
 
-      link.href = URL.createObjectURL(blob);
 
-      link.download = "lista_compras.txt";
+      const link =
+        document.createElement("a");
+
+
+      link.href =
+        URL.createObjectURL(blob);
+
+
+      link.download =
+        "lista_compras.txt";
+
 
       link.click();
 
-      URL.revokeObjectURL(link.href);
+
+      URL.revokeObjectURL(
+        link.href
+      );
+
     }
+
+
+    /* =====================================================
+       IMPRIMIR
+    ===================================================== */
 
     function imprimirTXT() {
 
-      const texto = gerarTXT();
+      const texto =
+        gerarTXT();
+
 
       const iframe =
         document.createElement("iframe");
 
-      iframe.style.position = "fixed";
-      iframe.style.right = "0";
-      iframe.style.bottom = "0";
-      iframe.style.width = "0";
-      iframe.style.height = "0";
-      iframe.style.border = "0";
 
-      document.body.appendChild(iframe);
+      iframe.style.position =
+        "fixed";
+
+      iframe.style.right =
+        "0";
+
+      iframe.style.bottom =
+        "0";
+
+      iframe.style.width =
+        "0";
+
+      iframe.style.height =
+        "0";
+
+      iframe.style.border =
+        "0";
+
+
+      document.body.appendChild(
+        iframe
+      );
+
 
       const doc =
         iframe.contentWindow.document;
 
+
       doc.open();
 
+
       doc.write(`
-    <html>
-      <head>
-        <title>Lista de Compras</title>
 
-        <style>
+        <html>
 
-  @page{
-    margin:10mm;
-  }
+          <head>
 
-  body{
-    font-family:Courier New, monospace;
-    white-space:pre;
-    padding:20px;
-    font-size:12px;
-    margin:0;
-  }
+            <title>
+              Lista de Compras
+            </title>
 
-</style>
-      </head>
+            <style>
 
-      <body>${texto}</body>
-    </html>
-  `);
+              @page {
+                margin: 10mm;
+              }
+
+              body {
+                font-family:
+                  Courier New,
+                  monospace;
+
+                white-space:
+                  pre;
+
+                padding: 20px;
+
+                font-size: 12px;
+
+                margin: 0;
+              }
+
+            </style>
+
+          </head>
+
+          <body>${escapeHTML(texto)}</body>
+
+        </html>
+
+      `);
+
 
       doc.close();
+
 
       iframe.onload = () => {
 
@@ -2453,45 +3029,65 @@ function salvarNovoItem() {
 
         iframe.contentWindow.print();
 
+
         setTimeout(() => {
 
-          document.body.removeChild(iframe);
+          document.body.removeChild(
+            iframe
+          );
 
         }, 1000);
+
       };
+
     }
+
+
+    /* =====================================================
+       PDF
+    ===================================================== */
 
     function gerarPDF() {
 
-      const { jsPDF } =
-        window.jspdf;
+      const {
+        jsPDF
+      } = window.jspdf;
+
 
       const doc =
         new jsPDF();
 
+
       let total = 0;
 
+
       const linhas =
-        lista.map(item => {
+        lista.map(
+          item => {
 
-          const subtotal =
-            item.quantidade * item.valor;
+            const subtotal =
+              item.quantidade *
+              item.valor;
 
-          total += subtotal;
 
-          return [
+            total += subtotal;
 
-            item.produto,
 
-            item.quantidade,
+            return [
 
-            item.valor.toFixed(2),
+              item.produto,
 
-            subtotal.toFixed(2)
+              item.quantidade,
 
-          ];
+              item.valor.toFixed(2),
 
-        });
+              subtotal.toFixed(2)
+
+            ];
+
+          }
+        );
+
 
       doc.text(
         "LISTA DE COMPRAS",
@@ -2499,12 +3095,18 @@ function salvarNovoItem() {
         15
       );
 
+
       doc.autoTable({
 
         startY: 20,
 
         head: [
-          ["Produto", "Qtd", "Valor", "Total"]
+          [
+            "Produto",
+            "Qtd",
+            "Valor",
+            "Total"
+          ]
         ],
 
         body: linhas,
@@ -2513,8 +3115,11 @@ function salvarNovoItem() {
 
       });
 
+
       const y =
-        doc.lastAutoTable.finalY || 20;
+        doc.lastAutoTable.finalY
+        || 20;
+
 
       doc.text(
         `TOTAL: R$ ${total.toFixed(2)}`,
@@ -2522,294 +3127,486 @@ function salvarNovoItem() {
         y + 10
       );
 
+
       return doc;
+
     }
+
 
     function exportarPDF() {
 
       gerarPDF()
-        .save("lista_compras.pdf");
+        .save(
+          "lista_compras.pdf"
+        );
+
     }
+
+
+    /* =====================================================
+       BACKUP
+    ===================================================== */
 
     function exportarLista() {
 
       const blob =
         new Blob(
-
-          [JSON.stringify(lista, null, 2)],
-
+          [
+            JSON.stringify(
+              lista,
+              null,
+              2
+            )
+          ],
           {
-            type: "application/json"
+            type:
+              "application/json"
           }
-
         );
+
 
       const link =
         document.createElement("a");
 
+
       link.href =
-        URL.createObjectURL(blob);
+        URL.createObjectURL(
+          blob
+        );
+
 
       link.download =
         "lista_compras.json";
 
+
       link.click();
+
+
+      URL.revokeObjectURL(
+        link.href
+      );
+
     }
 
-    $("arquivo")
-      .addEventListener(
-        "change",
-        importarLista
-      );
+
+    /* =====================================================
+       IMPORTAR
+    ===================================================== */
 
     function importarLista(event) {
 
       const arquivo =
         event.target.files[0];
 
-      if (!arquivo) return;
+
+      if (!arquivo)
+        return;
+
 
       const leitor =
         new FileReader();
+
 
       leitor.onload = e => {
 
         try {
 
           const dados =
-            JSON.parse(e.target.result);
+            JSON.parse(
+              e.target.result
+            );
+
 
           if (!Array.isArray(dados)) {
 
-            alert("Arquivo inválido");
+            alert(
+              "Arquivo inválido."
+            );
 
             return;
+
           }
 
-          lista = dados;
+
+          const dadosValidos =
+            dados.every(
+              item =>
+
+                item &&
+                typeof item.id === "number" &&
+                typeof item.produto === "string" &&
+                typeof item.quantidade === "number" &&
+                typeof item.valor === "number"
+
+            );
+
+
+          if (!dadosValidos) {
+
+            alert(
+              "Arquivo inválido ou incompatível."
+            );
+
+            return;
+
+          }
+
+
+          lista =
+            dados.map(
+              item => ({
+
+                id: item.id,
+
+                produto:
+                  item.produto,
+
+                quantidade:
+                  item.quantidade,
+
+                valor:
+                  item.valor,
+
+                tipo:
+                  item.tipo || "Unidade",
+
+                comprado:
+                  Boolean(
+                    item.comprado
+                  )
+
+              })
+            );
+
 
           idAtual =
             lista.length
-              ? Math.max(...lista.map(i => i.id)) + 1
+
+              ? Math.max(
+                  ...lista.map(
+                    i => i.id
+                  )
+                ) + 1
+
               : 1;
+
 
           salvarStorage();
 
           renderizarTabela();
 
-          alert("Lista importada com sucesso!");
 
-        } catch {
+          alert(
+            "Lista importada com sucesso!"
+          );
 
-          alert("Erro ao importar arquivo");
+
+        } catch (erro) {
+
+          console.error(erro);
+
+          alert(
+            "Erro ao importar arquivo."
+          );
 
         }
+
       };
 
-      leitor.readAsText(arquivo);
+
+      leitor.readAsText(
+        arquivo
+      );
+
+
+      /* permite importar o mesmo arquivo novamente */
+
+      event.target.value = "";
+
     }
 
-    console.log("lista:", lista);
 
-    if ("serviceWorker" in navigator) {
+    /* =====================================================
+       DOM READY
+    ===================================================== */
 
-      navigator.serviceWorker.register("./service-worker.js")
+    document.addEventListener(
+      "DOMContentLoaded",
+      () => {
+
+        carregarTema();
+
+        renderizarTabela();
+
+        atualizarTemaAtivo();
+
+
+        /* =========================
+           PESQUISA
+        ========================= */
+
+        $("pesquisa")
+          .addEventListener(
+            "input",
+            function () {
+
+              const termo =
+                this.value
+                  .toLowerCase()
+                  .trim();
+
+
+              const filtrado =
+                lista.filter(
+                  item =>
+
+                    String(
+                      item.produto
+                    )
+                      .toLowerCase()
+                      .includes(
+                        termo
+                      )
+
+                );
+
+
+              renderizarTabela(
+                filtrado
+              );
+
+            }
+          );
+
+
+        /* =========================
+           MODAL AÇÕES
+        ========================= */
+
+        const modal =
+          $("modalAcoes");
+
+
+        const modalConteudo =
+          document.querySelector(
+            "#modalAcoes .modal-conteudo"
+          );
+
+
+        modal.addEventListener(
+          "click",
+          () => {
+
+            fecharModal();
+
+            vibrar([
+              80,
+              40,
+              80
+            ]);
+
+          }
+        );
+
+
+        modalConteudo.addEventListener(
+          "click",
+          e => {
+
+            e.stopPropagation();
+
+          }
+        );
+
+
+        /* =========================
+           MODAL EDIÇÃO
+        ========================= */
+
+        const modalEdicao =
+          $("modalEdicao");
+
+
+        const conteudoEdicao =
+          document.querySelector(
+            "#modalEdicao .modal-edicao-conteudo"
+          );
+
+
+        modalEdicao.addEventListener(
+          "click",
+          () => {
+
+            fecharModalEdicao();
+
+          }
+        );
+
+
+        conteudoEdicao.addEventListener(
+          "click",
+          e => {
+
+            e.stopPropagation();
+
+          }
+        );
+
+
+        /* =========================
+           MODAL NOVO ITEM
+        ========================= */
+
+        const modalNovoItem =
+          $("modalNovoItem");
+
+
+        const conteudoNovoItem =
+          document.querySelector(
+            "#modalNovoItem .modal-novo-item"
+          );
+
+
+        modalNovoItem.addEventListener(
+          "click",
+          () => {
+
+            fecharModalNovoItem();
+
+          }
+        );
+
+
+        conteudoNovoItem.addEventListener(
+          "click",
+          e => {
+
+            e.stopPropagation();
+
+          }
+        );
+
+
+        /* =========================
+           MODAL TEMA
+        ========================= */
+
+        const modalTema =
+          $("modalTema");
+
+
+        modalTema.addEventListener(
+          "click",
+          () => {
+
+            fecharModalTema();
+
+          }
+        );
+
+        const conteudoTema =
+          document.querySelector(
+            "#modalTema .modal-temas"
+          );
+
+
+        conteudoTema.addEventListener(
+          "click",
+          e => {
+
+            e.stopPropagation();
+
+          }
+        );
+
+
+        /* =========================
+           IMPORTAÇÃO
+        ========================= */
+
+        $("arquivo")
+          .addEventListener(
+            "change",
+            importarLista
+          );
+
+
+        /* =========================
+           VIBRAÇÃO DOS BOTÕES
+        ========================= */
+
+        document.addEventListener(
+          "click",
+          e => {
+
+            if (
+              e.target.tagName === "BUTTON" ||
+              e.target.type === "checkbox"
+            ) {
+
+              vibrar();
+
+            }
+
+          }
+        );
+
+
+        /* =========================
+           PWA
+        ========================= */
+
+        if (
+          window.matchMedia(
+            "(display-mode: standalone)"
+          ).matches
+        ) {
+
+          console.log(
+            "Rodando como PWA"
+          );
+
+        }
+
+      }
+    );
+
+
+    /* =====================================================
+       SERVICE WORKER
+    ===================================================== */
+
+    if (
+      "serviceWorker" in navigator
+    ) {
+
+      navigator.serviceWorker
+        .register(
+          "./service-worker.js"
+        )
+
         .then(() => {
-          console.log("PWA instalada!");
+
+          console.log(
+            "PWA instalada!"
+          );
+
         })
-        .catch(err => {
-          console.log("Erro:", err);
-        });
+
+        .catch(
+          err => {
+
+            console.log(
+              "Erro:",
+              err
+            );
+
+          }
+        );
 
     }
+
   </script>
-
-  <div id="modalAcoes" class="modal">
-
-    <div class="modal-conteudo">
-
-      <h3 id="modalTitulo"></h3>
-
-      <div class="modal-botoes">
-
-        <button class="btn-editar" onclick="editarItemModal()">
-          ✏️ Alterar
-        </button>
-
-        <button class="btn-excluir" onclick="excluirItemModal()">
-          🗑️ Excluir
-        </button>
-
-        <button class="btn-cancelar" onclick="fecharModal()">
-          ❌ Cancelar
-        </button>
-
-      </div>
-    </div>
-  </div>
-
-  <div id="modalEdicao" class="modal">
-
-  <div class="modal-edicao-conteudo" onclick="event.stopPropagation()">
-
-    <h3>Alterar produto</h3>
-
-    <div class="form-edicao">
-
-      <input
-        type="text"
-        id="editarProduto"
-        placeholder="Produto"
-      >
-
-      <input
-        type="number"
-        id="editarQuantidade"
-        placeholder="Quantidade"
-        step="any"
-      >
-
-      <input
-        type="number"
-        id="editarValor"
-        placeholder="Valor"
-        step="0.01"
-      >
-
-      <select id="editarTipo">
-        <option>Unidade</option>
-        <option>Peso</option>
-      </select>
-
-      <div class="botoes-edicao">
-
-        <button
-          type="button"
-          class="btn-cancelar-edicao"
-          onclick="fecharModalEdicao()">
-          Cancelar
-        </button>
-
-        <button
-          type="button"
-          class="btn-salvar-edicao"
-          onclick="salvarEdicaoModal()">
-          Salvar
-        </button>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
-
-<div id="modalTema" class="modal">
-
-  <div class="modal-conteudo modal-temas" onclick="event.stopPropagation()">
-
-    <h3>🎨 Escolher tema</h3>
-
-    <div class="temas-botoes">
-
-      <button class="tema-btn tema-claro"
-        onclick="alterarTema('branco')">
-        ☀️ Claro
-      </button>
-
-      <button class="tema-btn tema-dark"
-        onclick="alterarTema('escuro')">
-        🌙 Dark
-      </button>
-
-      <button class="tema-btn tema-win98"
-        onclick="alterarTema('windows98')">
-        💾 Windows 98
-      </button>
-
-      <button class="tema-btn tema-matrix"
-        onclick="alterarTema('matrix')">
-        🟢 Matrix
-      </button>
-
-    </div>
-
-    <button class="btn-cancelar"
-      onclick="fecharModalTema()">
-      ❌ Fechar
-    </button>
-
-  </div>
-
-</div>
-
-	<!-- =====================================================
-     MODAL NOVO ITEM
-===================================================== -->
-
-<div id="modalNovoItem" class="modal">
-
-  <div
-    class="modal-novo-item"
-    onclick="event.stopPropagation()">
-
-    <h3>➕ Novo item</h3>
-
-    <div class="form-novo-item">
-
-      <input
-        type="text"
-        id="novoProduto"
-        placeholder="Produto"
-        autocomplete="off"
-      >
-
-      <input
-        type="number"
-        id="novaQuantidade"
-        placeholder="Quantidade"
-        step="any"
-        min="0"
-      >
-
-      <input
-        type="number"
-        id="novoValor"
-        placeholder="Valor"
-        step="0.01"
-        min="0"
-      >
-
-      <select id="novoTipo">
-        <option>Unidade</option>
-        <option>Peso</option>
-      </select>
-
-      <div class="botoes-novo-item">
-
-        <button
-          type="button"
-          class="btn-cancelar-novo"
-          onclick="fecharModalNovoItem()">
-          ❌ Cancelar
-        </button>
-
-        <button
-          type="button"
-          class="btn-salvar-novo"
-          onclick="salvarNovoItem()">
-          ✅ Adicionar
-        </button>
-
-      </div>
-
-    </div>
-
-  </div>
-
-</div>
-
 
 </body>
 
