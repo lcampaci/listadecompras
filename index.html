@@ -1352,6 +1352,7 @@ body.tema-matrix .modal-novo-item h3 {
     <div class="topo-app">
 	</div>
    <nav class="menu-mobile">
+	   <input type="text" id="pesquisa" placeholder="Pesquisar produto...">
     
   <button onclick="imprimirTXT()">
     <span>🖨️</span>
@@ -1448,7 +1449,7 @@ body.tema-matrix .modal-novo-item h3 {
       </div>
 
     </div>
-<input type="text" id="pesquisa" placeholder="Pesquisar produto...">
+
   </div>
   
 
@@ -1573,15 +1574,29 @@ function fecharModalTema() {
 }
 
 
-  document.addEventListener("DOMContentLoaded", () => {
+ document.addEventListener("DOMContentLoaded", () => {
 
   carregarTema();
 
-  console.log("Página carregou");
-
-  console.log(lista);
-
   renderizarTabela();
+
+  $("pesquisa").addEventListener("input", function () {
+
+    const termo = this.value
+      .toLowerCase()
+      .trim();
+
+    const filtrado = lista.filter(item =>
+      item.produto
+        .toLowerCase()
+        .includes(termo)
+    );
+
+    renderizarTabela(filtrado);
+
+  });
+
+});
 
       // 👇 AQUI
       if (window.matchMedia('(display-mode: standalone)').matches) {
@@ -2190,22 +2205,7 @@ function salvarNovoItem() {
       renderizarTabela();
     }
 
-    $("pesquisa")
-      .addEventListener("input", function () {
-
-        const termo =
-          this.value.toLowerCase();
-
-        const filtrado =
-          lista.filter(i =>
-            i.produto
-              .toLowerCase()
-              .includes(termo)
-          );
-
-        renderizarTabela(filtrado);
-
-      });
+   
 
     function gerarTXT() {
 
