@@ -1350,9 +1350,14 @@ body.tema-matrix .modal-novo-item h3 {
 
   <div class="container">
     <div class="topo-app">
+		 <input
+    type="text"
+    id="pesquisa"
+    placeholder="Pesquisar produto..."
+    autocomplete="off"
+  >
 	</div>
    <nav class="menu-mobile">
-	   <input type="text" id="pesquisa" placeholder="Pesquisar produto...">
     
   <button onclick="imprimirTXT()">
     <span>🖨️</span>
@@ -1577,12 +1582,12 @@ function fecharModalTema() {
 document.addEventListener("DOMContentLoaded", () => {
 
   carregarTema();
+
   renderizarTabela();
 
-
-  // =========================
-  // PESQUISA
-  // =========================
+  /* =========================
+     PESQUISA
+  ========================= */
 
   $("pesquisa").addEventListener("input", function () {
 
@@ -1601,23 +1606,26 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
-  // =========================
-  // PWA
-  // =========================
+  /* =========================
+     VERIFICAÇÃO PWA
+  ========================= */
 
-  if (window.matchMedia("(display-mode: standalone)").matches) {
+  if (
+    window.matchMedia("(display-mode: standalone)").matches
+  ) {
     console.log("Rodando como PWA");
   }
 
 
-  // =========================
-  // MODAL DE AÇÕES
-  // =========================
+  /* =========================
+     MODAL DE AÇÕES
+  ========================= */
 
   const modal = $("modalAcoes");
 
   const modalConteudo =
-    document.querySelector("#modalAcoes .modal-conteudo");
+    document.querySelector(".modal-conteudo");
+
 
   modal.addEventListener("click", () => {
 
@@ -1627,6 +1635,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   });
 
+
   modalConteudo.addEventListener("click", (e) => {
 
     e.stopPropagation();
@@ -1634,45 +1643,43 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 
 
-  // =========================
-  // MODAL DE EDIÇÃO
-  // =========================
+  /* =========================
+     MODAL DE EDIÇÃO
+  ========================= */
 
   const modalEdicao = $("modalEdicao");
 
-  modalEdicao.addEventListener("click", (e) => {
+  modalEdicao.addEventListener("click", () => {
 
-    if (e.target === modalEdicao) {
-      fecharModalEdicao();
-    }
+    fecharModalEdicao();
 
   });
 
+
+  /* =========================
+     MODAL NOVO ITEM
+  ========================= */
+
+  const modalNovoItem = $("modalNovoItem");
+
+  modalNovoItem.addEventListener("click", () => {
+
+    fecharModalNovoItem();
+
+  });
+
+
+  /* =========================
+     IMPORTAÇÃO
+  ========================= */
+
+  $("arquivo").addEventListener(
+    "change",
+    importarLista
+  );
+
 });
 
-
-     
-
-      const modalConteudo =
-        document.querySelector(".modal-conteudo");
-
-      /* clicar fora fecha */
-      modal.addEventListener("click", () => {
-
-        fecharModal();
-        /* vibração forte ao salvar */
-        vibrar([80, 40, 80]);
-
-      });
-
-      /* clicar dentro NÃO fecha */
-      modalConteudo.addEventListener("click", (e) => {
-
-        e.stopPropagation();
-
-      });
-
-    });
 
     let lista = [];
 
@@ -2096,12 +2103,7 @@ function salvarNovoItem() {
 
 }
 
-	  $("modalNovoItem")
-  .addEventListener("click", function () {
-
-    fecharModalNovoItem();
-
-  });
+	  
 
 
     function renderizarTabela(filtro = lista) {
