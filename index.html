@@ -2056,6 +2056,681 @@ body.tema-matrix .btn-excluir {
 
 }
 
+
+    /* =====================================================
+   WINDOWS 98 — VISUAL CLÁSSICO
+===================================================== */
+
+/* -----------------------------------------------------
+   ÁREA PRINCIPAL
+----------------------------------------------------- */
+
+body.tema-windows98 {
+  background: #008080;
+  color: #000000;
+
+  font-family:
+    "MS Sans Serif",
+    Tahoma,
+    Arial,
+    sans-serif;
+
+  font-size: 11px;
+}
+
+body.tema-windows98 .container {
+  background: #c0c0c0;
+
+  border: 2px outset #ffffff;
+
+  padding: 8px;
+
+  padding-bottom: 75px;
+
+  box-shadow:
+    inset 1px 1px 0 #dfdfdf,
+    inset -1px -1px 0 #808080;
+}
+
+
+/* -----------------------------------------------------
+   PESQUISA — WINDOWS 98
+----------------------------------------------------- */
+
+body.tema-windows98 .topo-app {
+  background: #000080;
+
+  padding: 3px;
+
+  margin-bottom: 5px;
+
+  border: 2px outset #ffffff;
+
+  justify-content: flex-start;
+}
+
+body.tema-windows98 #pesquisa {
+  width: 100%;
+
+  height: 24px;
+
+  padding: 2px 4px;
+
+  background: #ffffff;
+
+  color: #000000;
+
+  border: 2px inset #ffffff;
+
+  border-radius: 0;
+
+  outline: none;
+
+  box-shadow:
+    inset 1px 1px 0 #808080;
+
+  font-family:
+    "MS Sans Serif",
+    Tahoma,
+    Arial,
+    sans-serif;
+
+  font-size: 11px;
+
+  text-transform: none;
+}
+
+body.tema-windows98 #pesquisa:focus {
+  outline: 1px dotted #000000;
+  outline-offset: -3px;
+}
+
+body.tema-windows98 #pesquisa::placeholder {
+  color: #555555;
+}
+
+
+/* -----------------------------------------------------
+   TABELA — WINDOWS 98
+----------------------------------------------------- */
+
+body.tema-windows98 .tabela-wrapper {
+  background: #ffffff;
+
+  border: 2px inset #ffffff;
+
+  overflow-y: auto;
+
+  overflow-x: hidden;
+}
+
+body.tema-windows98 table {
+  width: 100%;
+
+  background: #ffffff;
+
+  color: #000000;
+
+  border-collapse: collapse;
+
+  table-layout: fixed;
+
+  font-family:
+    "MS Sans Serif",
+    Tahoma,
+    Arial,
+    sans-serif;
+
+  font-size: 11px;
+}
+
+
+/* -----------------------------------------------------
+   CABEÇALHO DA TABELA
+----------------------------------------------------- */
+
+body.tema-windows98 thead th {
+  position: sticky;
+
+  top: 0;
+
+  z-index: 5;
+
+  height: 22px;
+
+  padding: 2px 4px;
+
+  background: #c0c0c0;
+
+  color: #000000;
+
+  border: 1px solid;
+
+  border-top-color: #ffffff;
+  border-left-color: #ffffff;
+  border-right-color: #808080;
+  border-bottom-color: #808080;
+
+  font-family:
+    "MS Sans Serif",
+    Tahoma,
+    Arial,
+    sans-serif;
+
+  font-size: 11px;
+
+  font-weight: bold;
+
+  text-shadow: none;
+
+  white-space: nowrap;
+}
+
+
+/* -----------------------------------------------------
+   CÉLULAS
+----------------------------------------------------- */
+
+body.tema-windows98 td {
+  height: 22px;
+
+  padding: 3px 4px;
+
+  background: #ffffff;
+
+  color: #000000;
+
+  border-bottom: 1px solid #c0c0c0;
+
+  font-family:
+    "MS Sans Serif",
+    Tahoma,
+    Arial,
+    sans-serif;
+
+  font-size: 11px;
+
+  text-decoration: none;
+}
+
+
+/* -----------------------------------------------------
+   LINHAS
+----------------------------------------------------- */
+
+body.tema-windows98 tbody tr {
+  background: #ffffff;
+
+  cursor: pointer;
+}
+
+body.tema-windows98 tbody tr:hover {
+  background: #000080;
+
+  color: #ffffff;
+}
+
+body.tema-windows98 tbody tr:hover td {
+  background: #000080;
+
+  color: #ffffff;
+}
+
+
+/* -----------------------------------------------------
+   ITEM COMPRADO
+----------------------------------------------------- */
+
+body.tema-windows98 .comprado td {
+  background: #ffffff;
+
+  color: #808080;
+
+  text-decoration: line-through;
+
+  opacity: 1;
+}
+
+body.tema-windows98 .comprado:hover td {
+  background: #000080;
+
+  color: #ffffff;
+}
+
+
+/* -----------------------------------------------------
+   COLUNAS
+----------------------------------------------------- */
+
+body.tema-windows98 th:nth-child(1),
+body.tema-windows98 td:nth-child(1) {
+  width: 25px;
+
+  padding: 2px;
+
+  text-align: center;
+}
+
+body.tema-windows98 th:nth-child(2),
+body.tema-windows98 td:nth-child(2) {
+  width: auto;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+}
+
+body.tema-windows98 th:nth-child(3),
+body.tema-windows98 td:nth-child(3) {
+  width: 45px;
+
+  text-align: right;
+
+  white-space: nowrap;
+}
+
+body.tema-windows98 th:nth-child(4),
+body.tema-windows98 td:nth-child(4) {
+  width: 65px;
+
+  text-align: right;
+
+  white-space: nowrap;
+}
+
+body.tema-windows98 th:nth-child(5),
+body.tema-windows98 td:nth-child(5) {
+  width: 65px;
+
+  text-align: right;
+
+  white-space: nowrap;
+}
+
+body.tema-windows98 th:nth-child(6),
+body.tema-windows98 td:nth-child(6) {
+  width: 32px;
+
+  text-align: center;
+
+  white-space: nowrap;
+}
+
+
+/* -----------------------------------------------------
+   CHECKBOX — WINDOWS 98
+----------------------------------------------------- */
+
+body.tema-windows98 .check-container {
+  width: 16px;
+  height: 16px;
+
+  margin: auto;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+}
+
+body.tema-windows98 .check-container input {
+  position: absolute;
+
+  opacity: 0;
+
+  width: 16px;
+  height: 16px;
+
+  margin: 0;
+}
+
+body.tema-windows98 .checkmark {
+  position: absolute;
+
+  inset: 0;
+
+  width: 16px;
+  height: 16px;
+
+  background: #ffffff;
+
+  border-radius: 0;
+
+  border-top: 2px solid #808080;
+  border-left: 2px solid #808080;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+
+  box-shadow:
+    inset -1px -1px 0 #dfdfdf;
+
+  transition: none;
+}
+
+body.tema-windows98 .check-container input:checked + .checkmark {
+  background: #ffffff;
+
+  border-top-color: #808080;
+  border-left-color: #808080;
+  border-right-color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+
+body.tema-windows98 .checkmark::after {
+  display: none;
+
+  content: "×";
+
+  position: absolute;
+
+  left: 1px;
+  top: -5px;
+
+  width: 12px;
+  height: 14px;
+
+  border: none;
+
+  color: #000000;
+
+  font-family:
+    "MS Sans Serif",
+    Tahoma,
+    Arial,
+    sans-serif;
+
+  font-size: 14px;
+
+  font-weight: bold;
+
+  line-height: 14px;
+
+  transform: none;
+}
+
+body.tema-windows98
+.check-container input:checked
++ .checkmark::after {
+  display: block;
+}
+
+
+/* -----------------------------------------------------
+   TOTAL / RESUMO
+----------------------------------------------------- */
+
+body.tema-windows98 .total {
+  flex: 0 0 60px;
+
+  width: 100%;
+
+  height: 60px;
+
+  min-height: 60px;
+
+  margin-top: 4px;
+
+  padding: 5px 6px;
+
+  background: #c0c0c0;
+
+  color: #000000;
+
+  border: 2px outset #ffffff;
+
+  font-family:
+    "MS Sans Serif",
+    Tahoma,
+    Arial,
+    sans-serif;
+
+  font-size: 11px;
+
+  line-height: 14px;
+
+  overflow: visible;
+}
+
+body.tema-windows98 .resumo-esquerda,
+body.tema-windows98 .resumo-direita {
+  gap: 2px;
+
+  color: #000000;
+
+  font-size: 11px;
+}
+
+body.tema-windows98 .total strong {
+  font-weight: bold;
+}
+
+
+/* -----------------------------------------------------
+   BOTÕES DO MENU INFERIOR
+----------------------------------------------------- */
+
+body.tema-windows98 .menu-mobile {
+  background: #c0c0c0;
+
+  border: 2px outset #ffffff;
+
+  border-bottom: none;
+
+  padding: 3px 2px;
+
+  box-shadow: none;
+}
+
+body.tema-windows98 .menu-mobile button {
+  height: 44px;
+  min-height: 44px;
+
+  background: #c0c0c0;
+
+  color: #000000;
+
+  border: 2px outset #ffffff;
+
+  border-radius: 0;
+
+  box-shadow: none;
+
+  font-family:
+    "MS Sans Serif",
+    Tahoma,
+    Arial,
+    sans-serif;
+
+  font-size: 10px;
+
+  font-weight: normal;
+
+  text-shadow: none;
+}
+
+body.tema-windows98 .menu-mobile button:active {
+  border-top-color: #808080;
+  border-left-color: #808080;
+
+  border-right-color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+
+body.tema-windows98 .menu-mobile button .icone {
+  font-family:
+    "MS Sans Serif",
+    Tahoma,
+    Arial,
+    sans-serif;
+
+  font-size: 16px;
+
+  font-weight: bold;
+
+  line-height: 18px;
+
+  text-shadow: none;
+}
+
+body.tema-windows98 .menu-mobile button small {
+  font-size: 8px;
+
+  line-height: 10px;
+}
+
+
+/* -----------------------------------------------------
+   INPUTS E SELECTS DOS MODAIS
+----------------------------------------------------- */
+
+body.tema-windows98 input,
+body.tema-windows98 select {
+  border-radius: 0;
+
+  border-top: 2px solid #808080;
+  border-left: 2px solid #808080;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+
+  background: #ffffff;
+
+  color: #000000;
+
+  font-family:
+    "MS Sans Serif",
+    Tahoma,
+    Arial,
+    sans-serif;
+
+  font-size: 11px;
+
+  box-shadow: none;
+}
+
+body.tema-windows98 input:focus,
+body.tema-windows98 select:focus {
+  outline: 1px dotted #000000;
+
+  outline-offset: -3px;
+}
+
+
+/* -----------------------------------------------------
+   BOTÕES GERAIS
+----------------------------------------------------- */
+
+body.tema-windows98 button {
+  background: #c0c0c0;
+
+  color: #000000;
+
+  border: 2px outset #ffffff;
+
+  border-radius: 0;
+
+  box-shadow: none;
+
+  font-family:
+    "MS Sans Serif",
+    Tahoma,
+    Arial,
+    sans-serif;
+
+  font-size: 11px;
+
+  font-weight: normal;
+
+  text-shadow: none;
+}
+
+body.tema-windows98 button:hover {
+  background: #c0c0c0;
+
+  color: #000000;
+}
+
+body.tema-windows98 button:active {
+  border-top-color: #808080;
+  border-left-color: #808080;
+
+  border-right-color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+
+
+/* -----------------------------------------------------
+   MODAIS
+----------------------------------------------------- */
+
+body.tema-windows98 .modal-conteudo,
+body.tema-windows98 .modal-edicao-conteudo,
+body.tema-windows98 .modal-novo-item {
+  background: #c0c0c0;
+
+  border: 2px outset #ffffff;
+
+  border-radius: 0;
+
+  box-shadow:
+    1px 1px 0 #000000;
+
+  padding: 10px;
+}
+
+body.tema-windows98 .modal-conteudo h3,
+body.tema-windows98 .modal-edicao-conteudo h3,
+body.tema-windows98 .modal-novo-item h3 {
+  color: #000000;
+
+  font-family:
+    "MS Sans Serif",
+    Tahoma,
+    Arial,
+    sans-serif;
+
+  font-size: 12px;
+
+  font-weight: bold;
+}
+
+
+/* -----------------------------------------------------
+   SCROLLBAR — WINDOWS 98
+----------------------------------------------------- */
+
+body.tema-windows98 ::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+body.tema-windows98 ::-webkit-scrollbar-track {
+  background: #c0c0c0;
+}
+
+body.tema-windows98 ::-webkit-scrollbar-thumb {
+  background: #c0c0c0;
+
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+}
+
+body.tema-windows98 ::-webkit-scrollbar-button {
+  width: 16px;
+  height: 16px;
+
+  background: #c0c0c0;
+
+  border-top: 2px solid #ffffff;
+  border-left: 2px solid #ffffff;
+  border-right: 2px solid #808080;
+  border-bottom: 2px solid #808080;
+}
+
+
   </style>
 </head>
 
