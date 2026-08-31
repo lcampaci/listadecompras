@@ -1255,6 +1255,94 @@ body.tema-matrix td:nth-child(6) {
 }
 
 
+	  /* =====================================================
+   MODAL NOVO ITEM
+===================================================== */
+
+.modal-novo-item {
+  background: #fff;
+  width: 92%;
+  max-width: 360px;
+  border-radius: 12px;
+  padding: 20px;
+  animation: fade .2s ease;
+}
+
+.modal-novo-item h3 {
+  margin-bottom: 16px;
+  color: #333;
+  text-align: center;
+}
+
+.form-novo-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-novo-item input,
+.form-novo-item select {
+  width: 100%;
+  height: 40px;
+}
+
+.botoes-novo-item {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+
+.botoes-novo-item button {
+  flex: 1;
+  height: 40px;
+  border-radius: 8px;
+}
+
+.btn-salvar-novo {
+  background: #22c55e;
+}
+
+.btn-cancelar-novo {
+  background: #6b7280;
+}
+
+/* TEMA ESCURO */
+
+body.tema-escuro .modal-novo-item {
+  background: #1f2937;
+  color: #f9fafb;
+}
+
+body.tema-escuro .modal-novo-item h3 {
+  color: #f9fafb;
+}
+
+/* WINDOWS 98 */
+
+body.tema-windows98 .modal-novo-item {
+  background: #c0c0c0;
+  border: 3px outset #ffffff;
+  border-radius: 0;
+}
+
+body.tema-windows98 .modal-novo-item h3 {
+  color: #000;
+}
+
+/* MATRIX */
+
+body.tema-matrix .modal-novo-item {
+  background: #000;
+  border: 1px solid #00ff41;
+  border-radius: 0;
+  box-shadow: 0 0 20px rgba(0,255,65,.3);
+}
+
+body.tema-matrix .modal-novo-item h3 {
+  color: #00ff41;
+}
+
+
   </style>
 </head>
 
@@ -1262,31 +1350,7 @@ body.tema-matrix td:nth-child(6) {
 
   <div class="container">
     <div class="topo-app">
-
 	</div>
-    <div class="formulario">
-
-      <input type="text" id="produto" placeholder="Produto">
-
-      <div class="linha-secundaria">
-
-        <input type="number" id="quantidade" placeholder="Qtd">
-
-        <input type="number" id="valor" placeholder="Valor">
-
-        <select id="tipo">
-          <option>Unidade</option>
-          <option>Peso</option>
-        </select>
-
-        <button type="button" class="btn-salvar" onclick="salvarItem()">
-          Salvar
-        </button>
-
-      </div>
-
-    </div>
-
    <nav class="menu-mobile">
     
   <button onclick="imprimirTXT()">
@@ -1294,10 +1358,10 @@ body.tema-matrix td:nth-child(6) {
     <small>Print</small>
   </button>
 
-  <button onclick="exportarTXT()">
-    <span>📄</span>
-    <small>TXT</small>
-  </button>
+  <button onclick="abrirModalNovoItem()">
+  <span>➕</span>
+  <small>Adicionar</small>
+</button>
 
   <!-- <button onclick="exportarPDF()">
     <span>📕</span>
@@ -1878,6 +1942,110 @@ function salvarEdicaoModal() {
 
       renderizarTabela();
     }
+
+	  /* =====================================================
+   MODAL NOVO ITEM
+===================================================== */
+
+function abrirModalNovoItem() {
+
+  $("novoProduto").value = "";
+  $("novaQuantidade").value = "";
+  $("novoValor").value = "";
+  $("novoTipo").value = "Unidade";
+
+  $("modalNovoItem").style.display = "flex";
+
+  vibrar();
+
+  // Coloca o cursor diretamente no produto
+  setTimeout(() => {
+    $("novoProduto").focus();
+  }, 100);
+}
+
+
+function fecharModalNovoItem() {
+
+  $("modalNovoItem").style.display = "none";
+
+}
+
+
+/* =====================================================
+   SALVAR NOVO ITEM
+===================================================== */
+
+function salvarNovoItem() {
+
+  const produto =
+    $("novoProduto")
+      .value
+      .trim()
+      .toUpperCase();
+
+  const quantidade =
+    parseFloat(
+      $("novaQuantidade")
+        .value
+        .replace(",", ".")
+    );
+
+  const valor =
+    parseFloat(
+      $("novoValor")
+        .value
+        .replace(",", ".")
+    ) || 0;
+
+  const tipo =
+    $("novoTipo").value;
+
+
+  if (!produto || quantidade <= 0) {
+
+    alert("Preencha os campos corretamente.");
+
+    return;
+  }
+
+
+  const item = {
+
+    id: idAtual++,
+
+    produto,
+
+    quantidade,
+
+    valor,
+
+    tipo,
+
+    comprado: false
+
+  };
+
+
+  lista.push(item);
+
+  salvarStorage();
+
+  renderizarTabela();
+
+  fecharModalNovoItem();
+
+  vibrar([80, 40, 80]);
+
+}
+
+	  $("modalNovoItem")
+  .addEventListener("click", function () {
+
+    fecharModalNovoItem();
+
+  });
+
 
     function renderizarTabela(filtro = lista) {
 
@@ -2485,6 +2653,73 @@ function salvarEdicaoModal() {
   </div>
 
 </div>
+
+	<!-- =====================================================
+     MODAL NOVO ITEM
+===================================================== -->
+
+<div id="modalNovoItem" class="modal">
+
+  <div
+    class="modal-novo-item"
+    onclick="event.stopPropagation()">
+
+    <h3>➕ Novo item</h3>
+
+    <div class="form-novo-item">
+
+      <input
+        type="text"
+        id="novoProduto"
+        placeholder="Produto"
+        autocomplete="off"
+      >
+
+      <input
+        type="number"
+        id="novaQuantidade"
+        placeholder="Quantidade"
+        step="any"
+        min="0"
+      >
+
+      <input
+        type="number"
+        id="novoValor"
+        placeholder="Valor"
+        step="0.01"
+        min="0"
+      >
+
+      <select id="novoTipo">
+        <option>Unidade</option>
+        <option>Peso</option>
+      </select>
+
+      <div class="botoes-novo-item">
+
+        <button
+          type="button"
+          class="btn-cancelar-novo"
+          onclick="fecharModalNovoItem()">
+          ❌ Cancelar
+        </button>
+
+        <button
+          type="button"
+          class="btn-salvar-novo"
+          onclick="salvarNovoItem()">
+          ✅ Adicionar
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
 
 </body>
 
