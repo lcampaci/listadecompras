@@ -27,7 +27,6 @@
     src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.31/jspdf.plugin.autotable.min.js">
   </script>
 
-
   <style>
 
     /* =====================================================
@@ -50,7 +49,6 @@
 
     body {
       background: #ffffff;
-      color: #111827;
     }
 
 
@@ -60,13 +58,14 @@
 
     .container {
       width: 100%;
+      max-width: 100%;
       height: 100dvh;
 
       display: flex;
       flex-direction: column;
 
       padding: 12px;
-      padding-bottom: 88px;
+      padding-bottom: 70px;
 
       gap: 6px;
 
@@ -75,18 +74,23 @@
 
 
     /* =====================================================
-       TOPO / PESQUISA
+       TOPO
     ===================================================== */
 
     .topo-app {
       width: 100%;
-      flex-shrink: 0;
 
       display: flex;
       align-items: center;
+      justify-content: center;
 
-      margin-bottom: 4px;
+      margin-bottom: 2px;
     }
+
+
+    /* =====================================================
+       PESQUISA
+    ===================================================== */
 
     #pesquisa {
       width: 100%;
@@ -94,20 +98,146 @@
 
       margin: 0;
 
+      border-radius: 6px;
+      border: 1px solid #ddd;
+
       padding: 6px 10px;
 
-      border: 1px solid #ddd;
-      border-radius: 6px;
-
-      background: #fff;
-      color: #111827;
-
       font-size: 13px;
-      text-transform: none;
+
+      text-transform: uppercase;
     }
 
-    #pesquisa::placeholder {
-      color: #777;
+
+    /* =====================================================
+       MENU MOBILE
+    ===================================================== */
+
+    .menu-mobile {
+      position: fixed;
+
+      left: 0;
+      right: 0;
+      bottom: 0;
+
+      width: 100vw;
+      max-width: 100vw;
+
+      margin: 0;
+      padding: 5px 1px;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: stretch;
+
+      background: #ffffff;
+
+      border-top: 1px solid #e5e7eb;
+
+      box-shadow: 0 -2px 12px rgba(0, 0, 0, .08);
+
+      z-index: 9999;
+
+      overflow: hidden;
+    }
+
+
+    /* =====================================================
+       BOTÕES DO MENU
+    ===================================================== */
+
+    .menu-mobile button {
+      flex: 1 1 0;
+      min-width: 0;
+      width: 0;
+
+      height: 50px;
+      min-height: 50px;
+
+      border: none;
+      background: none;
+
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+
+      gap: 2px;
+
+      padding: 2px 0;
+
+      color: #6b7280;
+
+      overflow: hidden;
+
+      cursor: pointer;
+    }
+
+    .menu-mobile button span {
+      display: block;
+
+      font-size: 18px;
+      line-height: 19px;
+
+      max-width: 100%;
+    }
+
+    .menu-mobile button small {
+      display: block;
+
+      font-size: 7px;
+      line-height: 9px;
+
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+
+      max-width: 100%;
+    }
+
+
+    /* =====================================================
+       FORMULÁRIO
+    ===================================================== */
+
+    .formulario {
+      margin-bottom: 6px;
+
+      display: flex;
+      flex-direction: column;
+
+      gap: 8px;
+    }
+
+    input,
+    select {
+      height: 36px;
+
+      border-radius: 6px;
+      border: 1px solid #ddd;
+
+      padding: 6px 10px;
+
+      font-size: 13px;
+
+      box-sizing: border-box;
+
+      text-transform: uppercase;
+    }
+
+    button {
+      border: none;
+      cursor: pointer;
+
+      font-weight: bold;
+
+      color: #ffffff;
+
+      transition: .2s;
+    }
+
+    button:hover {
+      opacity: .9;
     }
 
 
@@ -120,61 +250,62 @@
 
       min-height: 0;
 
-      overflow-x: hidden;
       overflow-y: auto;
-
-      width: 100%;
+      overflow-x: hidden;
     }
 
     table {
       width: 100%;
+
       border-collapse: collapse;
+
       table-layout: fixed;
     }
 
     thead th {
       position: sticky;
+
       top: 0;
 
       z-index: 2;
-
-      background: #2563eb;
-      color: #ffffff;
     }
 
     th,
     td {
       padding: 8px;
 
-      border-bottom: 1px solid #eee;
+      border-bottom: 1px solid #eeeeee;
 
       word-break: break-word;
+    }
+
+    th {
+      background: #2563eb;
+
+      color: #ffffff;
+    }
+
+    tr:hover {
+      background: #f5f7fa;
     }
 
     tbody tr {
       cursor: pointer;
     }
 
-    tbody tr:hover {
-      background: #f5f7fa;
-    }
-
-    .comprado td {
-      text-decoration: line-through;
-      opacity: .6;
-      background: #e8f5e9;
-    }
-
 
     /* =====================================================
-       LARGURA DAS COLUNAS
+       COLUNAS
     ===================================================== */
 
     th:nth-child(1),
     td:nth-child(1) {
       width: 25px;
+
       padding: 4px 2px;
+
       text-align: center;
+
       white-space: nowrap;
     }
 
@@ -185,26 +316,43 @@
 
     th:nth-child(3),
     td:nth-child(3) {
-      width: 55px;
+      width: 45px;
+
       text-align: right;
     }
 
     th:nth-child(4),
     td:nth-child(4) {
-      width: 75px;
+      width: 70px;
+
       text-align: right;
     }
 
     th:nth-child(5),
     td:nth-child(5) {
-      width: 75px;
+      width: 70px;
+
       text-align: right;
     }
 
     th:nth-child(6),
     td:nth-child(6) {
-      width: 38px;
+      width: 35px;
+
       text-align: center;
+    }
+
+
+    /* =====================================================
+       ITEM COMPRADO
+    ===================================================== */
+
+    .comprado td {
+      text-decoration: line-through;
+
+      opacity: .6;
+
+      background: #e8f5e9;
     }
 
 
@@ -216,6 +364,7 @@
       position: relative;
 
       display: flex;
+
       align-items: center;
       justify-content: center;
 
@@ -236,15 +385,16 @@
 
     .checkmark {
       position: absolute;
+
       inset: 0;
 
       background: #e5e7eb;
 
-      border: 2px solid #cbd5e1;
-
       border-radius: 6px;
 
       transition: .2s;
+
+      border: 2px solid #cbd5e1;
     }
 
     .checkmark::after {
@@ -260,7 +410,8 @@
       width: 5px;
       height: 10px;
 
-      border: solid white;
+      border: solid #ffffff;
+
       border-width: 0 3px 3px 0;
 
       transform: rotate(45deg);
@@ -268,6 +419,7 @@
 
     .check-container input:checked + .checkmark {
       background: #22c55e;
+
       border-color: #22c55e;
     }
 
@@ -281,38 +433,34 @@
     ===================================================== */
 
     .total {
-      width: 100%;
-
-      flex: 0 0 auto;
+      flex-shrink: 0;
 
       display: flex;
+
       justify-content: space-between;
       align-items: flex-start;
 
       gap: 20px;
 
-      min-height: 60px;
-
-      margin: 0;
-      padding: 8px 0;
+      width: 100%;
 
       font-size: 18px;
 
-      color: #111827;
+      margin-top: 4px;
+      margin-bottom: 0;
 
-      background: transparent;
+      padding: 6px 0;
 
-      overflow: visible;
+      min-height: 60px;
     }
 
     .resumo-esquerda,
     .resumo-direita {
       display: flex;
+
       flex-direction: column;
 
       gap: 8px;
-
-      min-width: 0;
     }
 
     .resumo-direita {
@@ -321,118 +469,12 @@
 
 
     /* =====================================================
-       MENU MOBILE
-    ===================================================== */
-
-    .menu-mobile {
-      position: fixed;
-
-      left: 0;
-      right: 0;
-      bottom: 0;
-
-      width: 100%;
-
-      display: flex;
-
-      justify-content: space-around;
-      align-items: center;
-
-      gap: 0;
-
-      background: #ffffff;
-
-      border-top: 1px solid #e5e7eb;
-
-      padding: 6px 0;
-
-      box-shadow: 0 -2px 12px rgba(0, 0, 0, .08);
-
-      z-index: 9999;
-
-      overflow-x: auto;
-    }
-
-    .menu-mobile button {
-      flex: 1 0 70px;
-
-      min-width: 70px;
-
-      min-height: 56px;
-
-      border: none;
-      background: none;
-
-      display: flex;
-      flex-direction: column;
-
-      align-items: center;
-      justify-content: center;
-
-      gap: 4px;
-
-      color: #6b7280;
-
-      cursor: pointer;
-
-      font-weight: bold;
-    }
-
-    .menu-mobile button span {
-      font-size: 22px;
-      line-height: 1;
-    }
-
-    .menu-mobile button small {
-      font-size: 10px;
-    }
-
-
-    /* =====================================================
-       INPUTS
-    ===================================================== */
-
-    input,
-    select {
-      height: 36px;
-
-      border-radius: 6px;
-
-      border: 1px solid #ddd;
-
-      padding: 6px 10px;
-
-      font-size: 13px;
-
-      box-sizing: border-box;
-
-      text-transform: uppercase;
-    }
-
-    button {
-      border: none;
-
-      cursor: pointer;
-
-      font-weight: bold;
-
-      color: #fff;
-
-      transition: .2s;
-    }
-
-    button:hover {
-      opacity: .9;
-    }
-
-
-    /* =====================================================
-       CORES DOS BOTÕES
+       BOTÕES
     ===================================================== */
 
     .btn-salvar,
-    .btn-salvar-edicao,
-    .btn-salvar-novo {
+    .btn-salvar-novo,
+    .btn-salvar-edicao {
       background: #22c55e;
     }
 
@@ -458,11 +500,13 @@
 
     .btn-editar {
       background: #22c55e;
+
       padding: 5px 8px;
     }
 
     .btn-excluir {
       background: #ef4444;
+
       padding: 5px 8px;
     }
 
@@ -483,34 +527,54 @@
       align-items: center;
       justify-content: center;
 
-      z-index: 10000;
+      z-index: 99999;
     }
 
-    .modal-conteudo {
-      background: #fff;
+    .modal-conteudo,
+    .modal-edicao-conteudo,
+    .modal-novo-item {
+      background: #ffffff;
 
-      width: 90%;
-      max-width: 320px;
+      width: 92%;
+      max-width: 360px;
 
       border-radius: 12px;
 
       padding: 20px;
 
-      text-align: center;
-
       animation: fade .2s ease;
     }
 
-    .modal-conteudo h3 {
-      margin-bottom: 18px;
+    .modal-conteudo {
+      max-width: 320px;
 
-      color: #333;
-
-      font-size: 18px;
+      text-align: center;
     }
+
+    .modal-conteudo h3,
+    .modal-edicao-conteudo h3,
+    .modal-novo-item h3 {
+      margin-bottom: 16px;
+
+      color: #333333;
+
+      text-align: center;
+    }
+
+    .modal-conteudo h3 {
+      font-size: 18px;
+
+      margin-bottom: 18px;
+    }
+
+
+    /* =====================================================
+       BOTÕES DOS MODAIS
+    ===================================================== */
 
     .modal-botoes {
       display: flex;
+
       flex-direction: column;
 
       gap: 10px;
@@ -523,7 +587,7 @@
 
       border-radius: 8px;
 
-      color: #fff;
+      color: #ffffff;
 
       font-weight: bold;
 
@@ -536,102 +600,28 @@
 
 
     /* =====================================================
-       MODAL EDIÇÃO
+       EDIÇÃO
     ===================================================== */
 
-    .modal-edicao-conteudo {
-      background: #fff;
-
-      width: 92%;
-      max-width: 360px;
-
-      border-radius: 12px;
-
-      padding: 20px;
-
-      animation: fade .2s ease;
-    }
-
-    .modal-edicao-conteudo h3 {
-      margin-bottom: 16px;
-
-      color: #333;
-
-      text-align: center;
-    }
-
-    .form-edicao {
+    .form-edicao,
+    .form-novo-item {
       display: flex;
+
       flex-direction: column;
 
       gap: 10px;
     }
 
     .form-edicao input,
-    .form-edicao select {
-      width: 100%;
-      height: 40px;
-    }
-
-    .botoes-edicao {
-      display: flex;
-
-      gap: 8px;
-
-      margin-top: 8px;
-    }
-
-    .botoes-edicao button {
-      flex: 1;
-
-      height: 40px;
-
-      border-radius: 8px;
-    }
-
-    .btn-cancelar-edicao {
-      background: #6b7280;
-    }
-
-
-    /* =====================================================
-       MODAL NOVO ITEM
-    ===================================================== */
-
-    .modal-novo-item {
-      background: #fff;
-
-      width: 92%;
-      max-width: 360px;
-
-      border-radius: 12px;
-
-      padding: 20px;
-
-      animation: fade .2s ease;
-    }
-
-    .modal-novo-item h3 {
-      margin-bottom: 16px;
-
-      color: #333;
-
-      text-align: center;
-    }
-
-    .form-novo-item {
-      display: flex;
-      flex-direction: column;
-
-      gap: 10px;
-    }
-
+    .form-edicao select,
     .form-novo-item input,
     .form-novo-item select {
       width: 100%;
+
       height: 40px;
     }
 
+    .botoes-edicao,
     .botoes-novo-item {
       display: flex;
 
@@ -640,6 +630,7 @@
       margin-top: 8px;
     }
 
+    .botoes-edicao button,
     .botoes-novo-item button {
       flex: 1;
 
@@ -648,25 +639,452 @@
       border-radius: 8px;
     }
 
+    .btn-cancelar-edicao,
     .btn-cancelar-novo {
       background: #6b7280;
     }
 
 
     /* =====================================================
-       MODAL TEMAS
+       TEMAS
+    ===================================================== */
+
+    body.tema-branco {
+      background: #ffffff;
+
+      color: #111827;
+    }
+
+    body.tema-branco .container {
+      background: #ffffff;
+    }
+
+    body.tema-branco .topo-app h1 {
+      color: #111827;
+    }
+
+    body.tema-branco table {
+      background: #ffffff;
+
+      color: #111827;
+    }
+
+    body.tema-branco th {
+      background: #2563eb;
+
+      color: #ffffff;
+    }
+
+    body.tema-branco td {
+      border-bottom-color: #eeeeee;
+    }
+
+    body.tema-branco tr:hover {
+      background: #f5f7fa;
+    }
+
+    body.tema-branco input,
+    body.tema-branco select {
+      background: #ffffff;
+
+      color: #111827;
+
+      border-color: #d1d5db;
+    }
+
+    body.tema-branco .menu-mobile {
+      background: #ffffff;
+
+      border-top-color: #e5e7eb;
+    }
+
+    body.tema-branco .menu-mobile button {
+      color: #6b7280;
+    }
+
+
+    /* =====================================================
+       TEMA ESCURO
+    ===================================================== */
+
+    body.tema-escuro {
+      background: #111827;
+
+      color: #f9fafb;
+    }
+
+    body.tema-escuro .container {
+      background: #111827;
+    }
+
+    body.tema-escuro .topo-app h1 {
+      color: #f9fafb;
+    }
+
+    body.tema-escuro input,
+    body.tema-escuro select {
+      background: #1f2937;
+
+      color: #f9fafb;
+
+      border-color: #374151;
+    }
+
+    body.tema-escuro table {
+      background: #111827;
+
+      color: #f9fafb;
+    }
+
+    body.tema-escuro th {
+      background: #2f373d;
+
+      color: #ffffff;
+    }
+
+    body.tema-escuro td {
+      border-bottom-color: #374151;
+    }
+
+    body.tema-escuro tr:hover {
+      background: #1f2937;
+    }
+
+    body.tema-escuro .menu-mobile {
+      background: #1f2937;
+
+      border-top-color: #374151;
+
+      box-shadow: 0 -2px 12px rgba(0, 0, 0, .4);
+    }
+
+    body.tema-escuro .menu-mobile button {
+      color: #d1d5db;
+    }
+
+    body.tema-escuro .total {
+      color: #f9fafb;
+    }
+
+    body.tema-escuro .comprado td {
+      background: #16351f;
+    }
+
+    body.tema-escuro .modal-conteudo,
+    body.tema-escuro .modal-edicao-conteudo,
+    body.tema-escuro .modal-novo-item {
+      background: #1f2937;
+
+      color: #f9fafb;
+    }
+
+    body.tema-escuro .modal-conteudo h3,
+    body.tema-escuro .modal-edicao-conteudo h3,
+    body.tema-escuro .modal-novo-item h3 {
+      color: #f9fafb;
+    }
+
+
+    /* =====================================================
+       WINDOWS 98
+    ===================================================== */
+
+    body.tema-windows98 {
+      background: #008080;
+
+      color: #000000;
+
+      font-family:
+        "MS Sans Serif",
+        Tahoma,
+        Arial,
+        sans-serif;
+    }
+
+    body.tema-windows98 * {
+      font-family:
+        "MS Sans Serif",
+        Tahoma,
+        Arial,
+        sans-serif;
+    }
+
+    body.tema-windows98 .container {
+      background: #c0c0c0;
+
+      border: 3px outset #ffffff;
+
+      padding: 10px;
+
+      padding-bottom: 70px;
+    }
+
+    body.tema-windows98 .topo-app {
+      background: #000080;
+
+      padding: 4px 6px;
+
+      margin-bottom: 6px;
+    }
+
+    body.tema-windows98 input,
+    body.tema-windows98 select {
+      background: #ffffff;
+
+      color: #000000;
+
+      border: 2px inset #ffffff;
+
+      border-radius: 0;
+    }
+
+    body.tema-windows98 button {
+      border-radius: 0;
+
+      border: 2px outset #ffffff;
+
+      background: #c0c0c0;
+
+      color: #000000;
+    }
+
+    body.tema-windows98 button:active {
+      border-style: inset;
+    }
+
+    body.tema-windows98 th {
+      background: #000080;
+
+      color: #ffffff;
+    }
+
+    body.tema-windows98 td {
+      border-bottom: 1px solid #808080;
+    }
+
+    body.tema-windows98 tr:hover {
+      background: #000080;
+
+      color: #ffffff;
+    }
+
+    body.tema-windows98 .menu-mobile {
+      background: #c0c0c0;
+
+      border-top: 2px outset #ffffff;
+
+      box-shadow: none;
+
+      padding: 4px 1px;
+    }
+
+    body.tema-windows98 .menu-mobile button {
+      color: #000000;
+
+      border: none;
+
+      background: transparent;
+    }
+
+    /* CORREÇÃO PRINCIPAL DO TOTAL NO WINDOWS 98 */
+
+    body.tema-windows98 .total {
+      display: flex !important;
+
+      flex-shrink: 0;
+
+      width: 100%;
+
+      min-height: 60px;
+
+      margin-top: 4px;
+
+      margin-bottom: 0;
+
+      padding: 6px 4px;
+
+      background: #c0c0c0;
+
+      color: #000000;
+
+      overflow: visible;
+    }
+
+    body.tema-windows98 .resumo-esquerda,
+    body.tema-windows98 .resumo-direita {
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 6px;
+
+      color: #000000;
+    }
+
+    body.tema-windows98 .tabela-wrapper {
+      flex: 1 1 auto;
+
+      min-height: 0;
+
+      overflow-y: auto;
+
+      overflow-x: hidden;
+    }
+
+    body.tema-windows98 .modal-conteudo,
+    body.tema-windows98 .modal-edicao-conteudo,
+    body.tema-windows98 .modal-novo-item {
+      background: #c0c0c0;
+
+      border: 3px outset #ffffff;
+
+      border-radius: 0;
+    }
+
+    body.tema-windows98 .modal-conteudo h3,
+    body.tema-windows98 .modal-edicao-conteudo h3,
+    body.tema-windows98 .modal-novo-item h3 {
+      color: #000000;
+    }
+
+    body.tema-windows98 .checkmark {
+      border-radius: 0;
+
+      background: #ffffff;
+
+      border: 2px inset #ffffff;
+    }
+
+
+    /* =====================================================
+       MATRIX
+    ===================================================== */
+
+    body.tema-matrix {
+      background: #000000;
+
+      color: #00ff41;
+    }
+
+    body.tema-matrix * {
+      font-family: "Courier New", monospace;
+    }
+
+    body.tema-matrix .container {
+      background: #000000;
+    }
+
+    body.tema-matrix .topo-app h1 {
+      color: #00ff41;
+
+      text-shadow: 0 0 8px #00ff41;
+    }
+
+    body.tema-matrix input,
+    body.tema-matrix select {
+      background: #000000;
+
+      color: #00ff41;
+
+      border: 1px solid #00ff41;
+
+      border-radius: 0;
+    }
+
+    body.tema-matrix input::placeholder {
+      color: #008f11;
+    }
+
+    body.tema-matrix th {
+      background: #003b00;
+
+      color: #00ff41;
+
+      border-bottom: 1px solid #00ff41;
+    }
+
+    body.tema-matrix td {
+      color: #00ff41;
+
+      border-bottom: 1px solid #003b00;
+    }
+
+    body.tema-matrix tr:hover {
+      background: #001f00;
+    }
+
+    body.tema-matrix .menu-mobile {
+      background: #000000;
+
+      border-top: 1px solid #00ff41;
+
+      box-shadow:
+        0 -2px 15px rgba(0, 255, 65, .2);
+    }
+
+    body.tema-matrix .menu-mobile button {
+      color: #00ff41;
+
+      border: none;
+
+      background: transparent;
+    }
+
+    body.tema-matrix .total {
+      color: #00ff41;
+    }
+
+    body.tema-matrix .comprado td {
+      background: #002b00;
+
+      color: #00aa22;
+    }
+
+    body.tema-matrix .checkmark {
+      background: #000000;
+
+      border-color: #00ff41;
+
+      border-radius: 0;
+    }
+
+    body.tema-matrix .check-container input:checked + .checkmark {
+      background: #003b00;
+
+      border-color: #00ff41;
+    }
+
+    body.tema-matrix .modal-conteudo,
+    body.tema-matrix .modal-edicao-conteudo,
+    body.tema-matrix .modal-novo-item {
+      background: #000000;
+
+      border: 1px solid #00ff41;
+
+      border-radius: 0;
+
+      box-shadow:
+        0 0 20px rgba(0, 255, 65, .3);
+    }
+
+    body.tema-matrix .modal-conteudo h3,
+    body.tema-matrix .modal-edicao-conteudo h3,
+    body.tema-matrix .modal-novo-item h3 {
+      color: #00ff41;
+    }
+
+
+    /* =====================================================
+       MODAL DE TEMAS
     ===================================================== */
 
     .modal-temas {
       max-width: 340px;
     }
 
-    .modal-temas h3 {
-      margin-bottom: 18px;
-    }
-
     .temas-botoes {
       display: flex;
+
       flex-direction: column;
 
       gap: 10px;
@@ -713,7 +1131,11 @@
 
       border-radius: 0;
 
-      font-family: "MS Sans Serif", Tahoma, Arial, sans-serif;
+      font-family:
+        "MS Sans Serif",
+        Tahoma,
+        Arial,
+        sans-serif;
     }
 
     .tema-matrix {
@@ -749,548 +1171,16 @@
 
       from {
         transform: scale(.95);
+
         opacity: 0;
       }
 
       to {
         transform: scale(1);
+
         opacity: 1;
       }
 
-    }
-
-
-    /* =====================================================
-       TEMA BRANCO
-    ===================================================== */
-
-    body.tema-branco {
-      background: #ffffff;
-      color: #111827;
-    }
-
-    body.tema-branco .container {
-      background: #ffffff;
-    }
-
-    body.tema-branco #pesquisa {
-      background: #ffffff;
-      color: #111827;
-      border-color: #d1d5db;
-    }
-
-    body.tema-branco table {
-      background: #ffffff;
-      color: #111827;
-    }
-
-    body.tema-branco th {
-      background: #2563eb;
-      color: #ffffff;
-    }
-
-    body.tema-branco td {
-      border-bottom-color: #eeeeee;
-    }
-
-    body.tema-branco tr:hover {
-      background: #f5f7fa;
-    }
-
-    body.tema-branco .menu-mobile {
-      background: #ffffff;
-      border-top-color: #e5e7eb;
-    }
-
-    body.tema-branco .menu-mobile button {
-      color: #6b7280;
-    }
-
-
-    /* =====================================================
-       TEMA ESCURO
-    ===================================================== */
-
-    body.tema-escuro {
-      background: #111827;
-      color: #f9fafb;
-    }
-
-    body.tema-escuro .container {
-      background: #111827;
-    }
-
-    body.tema-escuro #pesquisa {
-      background: #1f2937;
-      color: #f9fafb;
-      border-color: #374151;
-    }
-
-    body.tema-escuro input,
-    body.tema-escuro select {
-      background: #1f2937;
-      color: #f9fafb;
-      border-color: #374151;
-    }
-
-    body.tema-escuro table {
-      background: #111827;
-      color: #f9fafb;
-    }
-
-    body.tema-escuro th {
-      background: #2f373d;
-      color: #ffffff;
-    }
-
-    body.tema-escuro td {
-      border-bottom-color: #374151;
-    }
-
-    body.tema-escuro tr:hover {
-      background: #1f2937;
-    }
-
-    body.tema-escuro .menu-mobile {
-      background: #1f2937;
-      border-top-color: #374151;
-      box-shadow: 0 -2px 12px rgba(0, 0, 0, .4);
-    }
-
-    body.tema-escuro .menu-mobile button {
-      color: #d1d5db;
-    }
-
-    body.tema-escuro .total {
-      color: #f9fafb;
-    }
-
-    body.tema-escuro .comprado td {
-      background: #16351f;
-    }
-
-    body.tema-escuro .modal-conteudo,
-    body.tema-escuro .modal-edicao-conteudo,
-    body.tema-escuro .modal-novo-item {
-      background: #1f2937;
-      color: #f9fafb;
-    }
-
-    body.tema-escuro .modal-conteudo h3,
-    body.tema-escuro .modal-edicao-conteudo h3,
-    body.tema-escuro .modal-novo-item h3 {
-      color: #f9fafb;
-    }
-
-
-    /* =====================================================
-       TEMA WINDOWS 98
-    ===================================================== */
-
-    body.tema-windows98 {
-      background: #008080;
-
-      color: #000000;
-
-      font-family:
-        "MS Sans Serif",
-        Tahoma,
-        Arial,
-        sans-serif;
-    }
-
-    body.tema-windows98 * {
-      font-family:
-        "MS Sans Serif",
-        Tahoma,
-        Arial,
-        sans-serif;
-    }
-
-    body.tema-windows98 .container {
-      background: #c0c0c0;
-
-      border: 3px outset #ffffff;
-
-      padding: 10px;
-
-      /* IMPORTANTE:
-         mantém espaço para o menu inferior */
-      padding-bottom: 88px;
-
-      height: 100dvh;
-
-      min-height: 0;
-
-      overflow: hidden;
-    }
-
-    body.tema-windows98 .topo-app {
-      margin-bottom: 6px;
-    }
-
-    body.tema-windows98 #pesquisa {
-      display: block;
-
-      width: 100%;
-
-      height: 36px;
-
-      flex-shrink: 0;
-
-      background: #ffffff;
-
-      color: #000000;
-
-      border: 2px inset #ffffff;
-
-      border-radius: 0;
-
-      margin: 0;
-    }
-
-    body.tema-windows98 #pesquisa::placeholder {
-      color: #555555;
-    }
-
-    body.tema-windows98 .tabela-wrapper {
-      flex: 1 1 auto;
-
-      min-height: 0;
-
-      overflow-x: hidden;
-
-      overflow-y: auto;
-    }
-
-    body.tema-windows98 table {
-      background: #c0c0c0;
-
-      color: #000000;
-    }
-
-    body.tema-windows98 th {
-      background: #000080;
-
-      color: #ffffff;
-
-      border-bottom: 1px solid #808080;
-    }
-
-    body.tema-windows98 td {
-      background: #c0c0c0;
-
-      color: #000000;
-
-      border-bottom: 1px solid #808080;
-    }
-
-    body.tema-windows98 tr:hover td {
-      background: #000080;
-
-      color: #ffffff;
-    }
-
-    /* =====================================================
-       CORREÇÃO PRINCIPAL DO TOTAL WINDOWS 98
-    ===================================================== */
-
-    body.tema-windows98 .total {
-      display: flex !important;
-
-      flex: 0 0 auto !important;
-
-      width: 100%;
-
-      min-height: 60px;
-
-      height: auto;
-
-      margin: 6px 0 0 0;
-
-      padding: 8px 6px;
-
-      background: #c0c0c0;
-
-      color: #000000;
-
-      border: 2px inset #ffffff;
-
-      box-sizing: border-box;
-
-      overflow: visible;
-
-      position: relative;
-
-      z-index: 10;
-    }
-
-    body.tema-windows98 .resumo-esquerda,
-    body.tema-windows98 .resumo-direita {
-      display: flex !important;
-
-      flex-direction: column;
-
-      gap: 5px;
-
-      color: #000000;
-
-      visibility: visible;
-
-      opacity: 1;
-    }
-
-    body.tema-windows98 .resumo-direita {
-      text-align: right;
-    }
-
-    body.tema-windows98 .total strong,
-    body.tema-windows98 .total span {
-      color: #000000;
-    }
-
-    body.tema-windows98 .menu-mobile {
-      background: #c0c0c0;
-
-      border-top: 2px outset #ffffff;
-
-      box-shadow: none;
-
-      padding: 5px 0;
-    }
-
-    body.tema-windows98 .menu-mobile button {
-      color: #000000;
-
-      background: #c0c0c0;
-
-      border: 2px outset #ffffff;
-
-      min-height: 52px;
-    }
-
-    body.tema-windows98 .menu-mobile button:active {
-      border-style: inset;
-    }
-
-    body.tema-windows98 button {
-      border-radius: 0;
-
-      border: 2px outset #ffffff;
-
-      background: #c0c0c0;
-
-      color: #000000;
-    }
-
-    body.tema-windows98 button:active {
-      border-style: inset;
-    }
-
-    body.tema-windows98 .btn-editar {
-      background: #c0c0c0;
-
-      color: #000000;
-    }
-
-    body.tema-windows98 .btn-excluir {
-      background: #c0c0c0;
-
-      color: #000000;
-    }
-
-    body.tema-windows98 .btn-cancelar {
-      background: #c0c0c0;
-
-      color: #000000;
-    }
-
-    body.tema-windows98 .modal-conteudo,
-    body.tema-windows98 .modal-edicao-conteudo,
-    body.tema-windows98 .modal-novo-item {
-      background: #c0c0c0;
-
-      color: #000000;
-
-      border: 3px outset #ffffff;
-
-      border-radius: 0;
-    }
-
-    body.tema-windows98 .modal-conteudo h3,
-    body.tema-windows98 .modal-edicao-conteudo h3,
-    body.tema-windows98 .modal-novo-item h3 {
-      color: #000000;
-    }
-
-    body.tema-windows98 .checkmark {
-      border-radius: 0;
-
-      background: #ffffff;
-
-      border: 2px inset #ffffff;
-    }
-
-
-    /* =====================================================
-       TEMA MATRIX
-    ===================================================== */
-
-    body.tema-matrix {
-      background: #000000;
-
-      color: #00ff41;
-    }
-
-    body.tema-matrix * {
-      font-family: "Courier New", monospace;
-    }
-
-    body.tema-matrix .container {
-      background: #000000;
-    }
-
-    body.tema-matrix #pesquisa {
-      background: #000000;
-
-      color: #00ff41;
-
-      border: 1px solid #00ff41;
-
-      border-radius: 0;
-    }
-
-    body.tema-matrix #pesquisa::placeholder {
-      color: #008f11;
-    }
-
-    body.tema-matrix table {
-      table-layout: auto;
-
-      width: 100%;
-    }
-
-    body.tema-matrix th,
-    body.tema-matrix td {
-      white-space: nowrap;
-
-      word-break: normal;
-
-      overflow: hidden;
-    }
-
-    body.tema-matrix th {
-      background: #003b00;
-
-      color: #00ff41;
-
-      border-bottom: 1px solid #00ff41;
-    }
-
-    body.tema-matrix td {
-      color: #00ff41;
-
-      border-bottom: 1px solid #003b00;
-    }
-
-    body.tema-matrix tr:hover {
-      background: #001f00;
-    }
-
-    body.tema-matrix .menu-mobile {
-      background: #000000;
-
-      border-top: 1px solid #00ff41;
-
-      box-shadow:
-        0 -2px 15px rgba(0, 255, 65, .2);
-    }
-
-    body.tema-matrix .menu-mobile button {
-      color: #00ff41;
-    }
-
-    body.tema-matrix .total {
-      color: #00ff41;
-    }
-
-    body.tema-matrix .total strong,
-    body.tema-matrix .total span {
-      color: #00ff41;
-    }
-
-    body.tema-matrix .comprado td {
-      background: #002b00;
-
-      color: #00aa22;
-    }
-
-    body.tema-matrix .checkmark {
-      background: #000000;
-
-      border-color: #00ff41;
-
-      border-radius: 0;
-    }
-
-    body.tema-matrix .check-container input:checked + .checkmark {
-      background: #003b00;
-
-      border-color: #00ff41;
-    }
-
-    body.tema-matrix .modal-conteudo,
-    body.tema-matrix .modal-edicao-conteudo,
-    body.tema-matrix .modal-novo-item {
-      background: #000000;
-
-      border: 1px solid #00ff41;
-
-      border-radius: 0;
-
-      box-shadow:
-        0 0 20px rgba(0, 255, 65, .3);
-    }
-
-    body.tema-matrix .modal-conteudo h3,
-    body.tema-matrix .modal-edicao-conteudo h3,
-    body.tema-matrix .modal-novo-item h3 {
-      color: #00ff41;
-    }
-
-    body.tema-matrix th:nth-child(1),
-    body.tema-matrix td:nth-child(1) {
-      width: 25px;
-    }
-
-    body.tema-matrix th:nth-child(2),
-    body.tema-matrix td:nth-child(2) {
-      width: auto;
-
-      text-align: left;
-    }
-
-    body.tema-matrix th:nth-child(3),
-    body.tema-matrix td:nth-child(3) {
-      width: 45px;
-
-      text-align: right;
-    }
-
-    body.tema-matrix th:nth-child(4),
-    body.tema-matrix td:nth-child(4),
-    body.tema-matrix th:nth-child(5),
-    body.tema-matrix td:nth-child(5) {
-      width: 70px;
-
-      text-align: right;
-    }
-
-    body.tema-matrix th:nth-child(6),
-    body.tema-matrix td:nth-child(6) {
-      width: 35px;
-
-      text-align: center;
     }
 
 
@@ -1300,18 +1190,59 @@
 
     @media (max-width: 768px) {
 
-      .container {
-        padding: 10px;
+      html,
+      body {
+        width: 100%;
 
-        padding-bottom: 88px;
+        max-width: 100%;
 
-        gap: 5px;
+        overflow-x: hidden;
       }
 
-      #pesquisa {
-        height: 34px;
+      .container {
+        width: 100%;
 
-        font-size: 12px;
+        max-width: 100%;
+
+        height: 100dvh;
+
+        padding: 12px;
+
+        padding-bottom: 70px;
+
+        overflow: hidden;
+      }
+
+      .menu-mobile {
+        width: 100vw;
+
+        max-width: 100vw;
+
+        left: 0;
+
+        right: auto;
+
+        padding: 4px 1px;
+      }
+
+      .menu-mobile button {
+        min-height: 50px;
+
+        height: 50px;
+
+        padding: 2px 0;
+      }
+
+      .menu-mobile button span {
+        font-size: 18px;
+
+        line-height: 19px;
+      }
+
+      .menu-mobile button small {
+        font-size: 7px;
+
+        line-height: 9px;
       }
 
       .tabela-wrapper {
@@ -1320,10 +1251,12 @@
         min-height: 0;
 
         overflow-y: auto;
+
+        overflow-x: hidden;
       }
 
       table {
-        font-size: 11px;
+        width: 100%;
 
         table-layout: auto;
       }
@@ -1331,6 +1264,8 @@
       th,
       td {
         padding: 4px;
+
+        font-size: 11px;
       }
 
       th:nth-child(1),
@@ -1340,8 +1275,6 @@
         padding: 2px;
 
         font-size: 10px;
-
-        text-align: center;
       }
 
       th:nth-child(2),
@@ -1357,38 +1290,31 @@
 
       th:nth-child(3),
       td:nth-child(3) {
-        width: 45px;
+        width: 42px;
       }
 
       th:nth-child(4),
       td:nth-child(4),
       th:nth-child(5),
       td:nth-child(5) {
-        width: 70px;
+        width: 65px;
       }
 
       th:nth-child(6),
       td:nth-child(6) {
-        width: 36px;
+        width: 32px;
 
         text-align: center;
       }
 
-      .check-container {
-        width: 22px;
-        height: 22px;
-      }
-
       .total {
-        min-height: 58px;
-
         font-size: 14px;
 
         gap: 10px;
 
-        padding: 6px 0;
+        min-height: 60px;
 
-        flex-shrink: 0;
+        padding: 6px 0;
       }
 
       .resumo-esquerda,
@@ -1396,78 +1322,21 @@
         gap: 5px;
       }
 
-      .menu-mobile {
-        padding: 5px 0;
-
-        overflow-x: auto;
-
-        justify-content: flex-start;
-      }
-
-      .menu-mobile button {
-        flex: 0 0 68px;
-
-        min-width: 68px;
-
-        min-height: 54px;
-      }
-
-      .menu-mobile button span {
-        font-size: 20px;
-      }
-
-      .menu-mobile button small {
-        font-size: 9px;
-      }
-
-
-      /* WINDOWS 98 MOBILE */
-
-      body.tema-windows98 .container {
-        padding: 8px;
-
-        padding-bottom: 88px;
-      }
-
       body.tema-windows98 .total {
         display: flex !important;
 
-        flex: 0 0 auto !important;
+        min-height: 60px;
 
-        min-height: 58px;
-
-        height: auto;
-
-        margin-top: 5px;
+        margin-top: 4px;
 
         margin-bottom: 0;
 
         padding: 6px 4px;
 
-        font-size: 13px;
+        color: #000000;
 
-        overflow: visible;
+        background: #c0c0c0;
       }
-
-      body.tema-windows98 .resumo-esquerda,
-      body.tema-windows98 .resumo-direita {
-        display: flex !important;
-
-        visibility: visible;
-
-        opacity: 1;
-
-        gap: 4px;
-      }
-
-      body.tema-windows98 .menu-mobile button {
-        min-height: 50px;
-
-        flex: 0 0 68px;
-      }
-
-
-      /* MATRIX MOBILE */
 
       body.tema-matrix th,
       body.tema-matrix td {
@@ -1503,27 +1372,19 @@
     @media print {
 
       body {
-        background: #fff;
+        background: #ffffff;
+
         padding: 0;
       }
 
       .formulario,
-      .acoes-topo,
-      #pesquisa,
-      .menu-mobile {
-        display: none !important;
+      .menu-mobile,
+      #pesquisa {
+        display: none;
       }
 
       .container {
-        height: auto;
-
         padding: 0;
-
-        overflow: visible;
-      }
-
-      .tabela-wrapper {
-        overflow: visible;
       }
 
     }
@@ -1536,9 +1397,10 @@
 
   <div class="container">
 
-    <!-- =================================================
-         TOPO
-    ================================================= -->
+
+    <!-- =====================================================
+         PESQUISA
+    ===================================================== -->
 
     <div class="topo-app">
 
@@ -1546,15 +1408,64 @@
         type="text"
         id="pesquisa"
         placeholder="Pesquisar produto..."
-        autocomplete="off"
-      >
+        autocomplete="off">
 
     </div>
 
 
-    <!-- =================================================
+    <!-- =====================================================
+         MENU
+    ===================================================== -->
+
+    <nav class="menu-mobile">
+
+      <button onclick="imprimirTXT()">
+        <span>🖨️</span>
+        <small>Print</small>
+      </button>
+
+      <button onclick="abrirModalNovoItem()">
+        <span>➕</span>
+        <small>Adicionar</small>
+      </button>
+
+      <button onclick="abrirModalTema()">
+        <span>🎨</span>
+        <small>Tema</small>
+      </button>
+
+      <button onclick="exportarLista()">
+        <span>⬇️</span>
+        <small>Backup</small>
+      </button>
+
+      <button onclick="document.getElementById('arquivo').click()">
+        <span>⬆️</span>
+        <small>Importar</small>
+      </button>
+
+      <button onclick="ordenarAlfabetico()">
+        <span>🔤</span>
+        <small>A-Z</small>
+      </button>
+
+      <button onclick="desmarcarTodos()">
+        <span>☑️</span>
+        <small>Desmarcar</small>
+      </button>
+
+      <input
+        type="file"
+        id="arquivo"
+        hidden
+        accept=".json">
+
+    </nav>
+
+
+    <!-- =====================================================
          TABELA
-    ================================================= -->
+    ===================================================== -->
 
     <div class="tabela-wrapper">
 
@@ -1595,9 +1506,9 @@
     </div>
 
 
-    <!-- =================================================
+    <!-- =====================================================
          RESUMO
-    ================================================= -->
+    ===================================================== -->
 
     <div class="total">
 
@@ -1633,64 +1544,6 @@
     </div>
 
   </div>
-
-
-  <!-- =====================================================
-       MENU INFERIOR
-  ===================================================== -->
-
-  <nav class="menu-mobile">
-
-    <button onclick="imprimirTXT()">
-      <span>🖨️</span>
-      <small>Print</small>
-    </button>
-
-
-    <button onclick="abrirModalNovoItem()">
-      <span>➕</span>
-      <small>Adicionar</small>
-    </button>
-
-
-    <button onclick="abrirModalTema()">
-      <span>🎨</span>
-      <small>Tema</small>
-    </button>
-
-
-    <button onclick="exportarLista()">
-      <span>⬇️</span>
-      <small>Backup</small>
-    </button>
-
-
-    <button onclick="document.getElementById('arquivo').click()">
-      <span>⬆️</span>
-      <small>Importar</small>
-    </button>
-
-
-    <button onclick="ordenarAlfabetico()">
-      <span>🔤</span>
-      <small>A-Z</small>
-    </button>
-
-
-    <button onclick="desmarcarTodos()">
-      <span>☑️</span>
-      <small>Desmarcar</small>
-    </button>
-
-
-    <input
-      type="file"
-      id="arquivo"
-      hidden
-      accept=".json"
-    >
-
-  </nav>
 
 
   <!-- =====================================================
@@ -1747,24 +1600,19 @@
         <input
           type="text"
           id="editarProduto"
-          placeholder="Produto"
-        >
+          placeholder="Produto">
 
         <input
           type="number"
           id="editarQuantidade"
           placeholder="Quantidade"
-          step="any"
-          min="0"
-        >
+          step="any">
 
         <input
           type="number"
           id="editarValor"
           placeholder="Valor"
-          step="0.01"
-          min="0"
-        >
+          step="0.01">
 
         <select id="editarTipo">
 
@@ -1819,20 +1667,17 @@
           ☀️ Claro
         </button>
 
-
         <button
           class="tema-btn tema-dark"
           onclick="alterarTema('escuro')">
           🌙 Dark
         </button>
 
-
         <button
           class="tema-btn tema-win98"
           onclick="alterarTema('windows98')">
           💾 Windows 98
         </button>
-
 
         <button
           class="tema-btn tema-matrix"
@@ -1841,7 +1686,6 @@
         </button>
 
       </div>
-
 
       <button
         class="btn-cancelar"
@@ -1872,24 +1716,21 @@
           type="text"
           id="novoProduto"
           placeholder="Produto"
-          autocomplete="off"
-        >
+          autocomplete="off">
 
         <input
           type="number"
           id="novaQuantidade"
           placeholder="Quantidade"
           step="any"
-          min="0"
-        >
+          min="0">
 
         <input
           type="number"
           id="novoValor"
           placeholder="Valor"
           step="0.01"
-          min="0"
-        >
+          min="0">
 
         <select id="novoTipo">
 
@@ -1907,7 +1748,6 @@
             onclick="fecharModalNovoItem()">
             ❌ Cancelar
           </button>
-
 
           <button
             type="button"
@@ -1951,14 +1791,10 @@
           ? JSON.parse(data)
           : [];
 
-      if (!Array.isArray(lista)) {
-        lista = [];
-      }
-
     } catch (e) {
 
       console.log(
-        "Erro no storage, resetando lista."
+        "Erro no storage, resetando lista"
       );
 
       lista = [];
@@ -1966,17 +1802,12 @@
     }
 
 
-    /* =====================================================
-       ID
-    ===================================================== */
+    let editando = null;
 
     let idAtual =
       Number(
         localStorage.getItem("id")
       ) || 1;
-
-
-    let editando = null;
 
     let itemSelecionado = null;
 
@@ -2019,6 +1850,23 @@
     }
 
 
+    document.addEventListener(
+      "click",
+      e => {
+
+        if (
+          e.target.tagName === "BUTTON" ||
+          e.target.type === "checkbox"
+        ) {
+
+          vibrar();
+
+        }
+
+      }
+    );
+
+
     /* =====================================================
        TEMAS
     ===================================================== */
@@ -2045,41 +1893,15 @@
 
       fecharModalTema();
 
-      vibrar();
-
-    }
-
-
-    function carregarTema() {
-
-      const temaSalvo =
-        localStorage.getItem("tema")
-        || "branco";
-
-      const temasValidos = [
-        "branco",
-        "escuro",
-        "windows98",
-        "matrix"
-      ];
-
-      const tema =
-        temasValidos.includes(temaSalvo)
-          ? temaSalvo
-          : "branco";
-
-      document.body.classList.add(
-        "tema-" + tema
-      );
-
     }
 
 
     function atualizarTemaAtivo() {
 
       const temaAtual =
-        localStorage.getItem("tema")
-        || "branco";
+        localStorage.getItem(
+          "tema"
+        ) || "branco";
 
       document
         .querySelectorAll(".tema-btn")
@@ -2122,6 +1944,24 @@
     }
 
 
+    function carregarTema() {
+
+      const temaSalvo =
+        localStorage.getItem(
+          "tema"
+        ) || "branco";
+
+
+      document.body.classList.add(
+        "tema-" + temaSalvo
+      );
+
+
+      atualizarTemaAtivo();
+
+    }
+
+
     /* =====================================================
        MODAL TEMA
     ===================================================== */
@@ -2153,7 +1993,6 @@
     function abrirModal(id) {
 
       itemSelecionado = id;
-
 
       const item =
         lista.find(
@@ -2198,8 +2037,7 @@
         );
 
 
-      if (!item)
-        return;
+      if (!item) return;
 
 
       $("editarProduto").value =
@@ -2212,7 +2050,7 @@
         item.valor;
 
       $("editarTipo").value =
-        item.tipo || "Unidade";
+        item.tipo;
 
 
       $("modalAcoes").style.display =
@@ -2221,13 +2059,6 @@
 
       $("modalEdicao").style.display =
         "flex";
-
-
-      setTimeout(() => {
-
-        $("editarProduto").focus();
-
-      }, 100);
 
 
       vibrar();
@@ -2290,7 +2121,6 @@
 
       if (
         !produto ||
-        !quantidade ||
         quantidade <= 0
       ) {
 
@@ -2342,24 +2172,16 @@
 
 
       if (
-        confirm("Excluir item?")
+        confirm(
+          "Excluir item?"
+        )
       ) {
 
-        const id =
-          itemSelecionado;
-
-
-        excluir(id);
+        excluir(
+          itemSelecionado
+        );
 
         fecharModal();
-
-        itemSelecionado = null;
-
-        vibrar([
-          80,
-          40,
-          80
-        ]);
 
       }
 
@@ -2373,7 +2195,10 @@
           i => i.id !== id
         );
 
+
       salvarStorage();
+
+      vibrar();
 
       renderizarTabela();
 
@@ -2386,11 +2211,14 @@
 
     function abrirModalNovoItem() {
 
-      $("novoProduto").value = "";
+      $("novoProduto").value =
+        "";
 
-      $("novaQuantidade").value = "";
+      $("novaQuantidade").value =
+        "";
 
-      $("novoValor").value = "";
+      $("novoValor").value =
+        "";
 
       $("novoTipo").value =
         "Unidade";
@@ -2403,11 +2231,14 @@
       vibrar();
 
 
-      setTimeout(() => {
+      setTimeout(
+        () => {
 
-        $("novoProduto").focus();
+          $("novoProduto").focus();
 
-      }, 100);
+        },
+        100
+      );
 
     }
 
@@ -2451,7 +2282,6 @@
 
       if (
         !produto ||
-        !quantidade ||
         quantidade <= 0
       ) {
 
@@ -2489,7 +2319,6 @@
 
       fecharModalNovoItem();
 
-
       vibrar([
         80,
         40,
@@ -2500,7 +2329,7 @@
 
 
     /* =====================================================
-       MARCAR / DESMARCAR
+       CHECKBOX
     ===================================================== */
 
     function toggleComprado(id) {
@@ -2527,6 +2356,10 @@
 
     }
 
+
+    /* =====================================================
+       DESMARCAR TODOS
+    ===================================================== */
 
     function desmarcarTodos() {
 
@@ -2555,17 +2388,19 @@
         return;
 
 
-      lista.forEach(item => {
+      lista.forEach(
+        item => {
 
-        item.comprado = false;
+          item.comprado =
+            false;
 
-      });
+        }
+      );
 
 
       salvarStorage();
 
       renderizarTabela();
-
 
       vibrar([
         80,
@@ -2590,7 +2425,8 @@
               b.produto,
               "pt-BR",
               {
-                sensitivity: "base"
+                sensitivity:
+                  "base"
               }
             );
 
@@ -2610,7 +2446,6 @@
       salvarStorage();
 
       renderizarTabela();
-
 
       vibrar([
         80,
@@ -2633,7 +2468,8 @@
         $("tabelaItens");
 
 
-      tbody.innerHTML = "";
+      tbody.innerHTML =
+        "";
 
 
       let total = 0;
@@ -2646,18 +2482,13 @@
       filtro.forEach(
         (item, index) => {
 
-          const quantidade =
-            Number(item.quantidade) || 0;
-
-          const valor =
-            Number(item.valor) || 0;
-
-
           const subtotal =
-            quantidade * valor;
+            item.quantidade *
+            item.valor;
 
 
-          total += subtotal;
+          total +=
+            subtotal;
 
 
           if (item.comprado) {
@@ -2671,7 +2502,9 @@
 
 
           const tr =
-            document.createElement("tr");
+            document.createElement(
+              "tr"
+            );
 
 
           if (item.comprado) {
@@ -2683,8 +2516,11 @@
           }
 
 
-          tr.onclick = () =>
-            abrirModal(item.id);
+          tr.onclick =
+            () =>
+              abrirModal(
+                item.id
+              );
 
 
           tr.innerHTML = `
@@ -2694,15 +2530,15 @@
             </td>
 
             <td>
-              ${escapeHTML(item.produto || "")}
+              ${item.produto}
             </td>
 
             <td style="text-align:right;">
-              ${quantidade}
+              ${item.quantidade}
             </td>
 
             <td style="text-align:right;">
-              R$ ${valor.toFixed(2)}
+              R$ ${item.valor.toFixed(2)}
             </td>
 
             <td style="text-align:right;">
@@ -2718,8 +2554,7 @@
                 <input
                   type="checkbox"
                   ${item.comprado ? "checked" : ""}
-                  onchange="toggleComprado(${item.id})"
-                >
+                  onchange="toggleComprado(${item.id})">
 
                 <span class="checkmark"></span>
 
@@ -2730,7 +2565,9 @@
           `;
 
 
-          tbody.appendChild(tr);
+          tbody.appendChild(
+            tr
+          );
 
         }
       );
@@ -2755,17 +2592,37 @@
 
 
     /* =====================================================
-       SEGURANÇA DO TEXTO
+       PESQUISA
     ===================================================== */
 
-    function escapeHTML(texto) {
+    function configurarPesquisa() {
 
-      return String(texto)
-        .replaceAll("&", "&amp;")
-        .replaceAll("<", "&lt;")
-        .replaceAll(">", "&gt;")
-        .replaceAll('"', "&quot;")
-        .replaceAll("'", "&#039;");
+      $("pesquisa")
+        .addEventListener(
+          "input",
+          function () {
+
+            const termo =
+              this.value
+                .toLowerCase()
+                .trim();
+
+
+            const filtrado =
+              lista.filter(
+                item =>
+                  item.produto
+                    .toLowerCase()
+                    .includes(termo)
+              );
+
+
+            renderizarTabela(
+              filtrado
+            );
+
+          }
+        );
 
     }
 
@@ -2790,34 +2647,35 @@
       const COL_TOTAL = 12;
 
 
-      const linha = (
-        produto,
-        qtd,
-        valor,
-        subtotal
-      ) => {
+      const linha =
+        (
+          produto,
+          qtd,
+          valor,
+          subtotal
+        ) => {
 
-        return (
+          return (
 
-          produto.padEnd(
-            COL_PRODUTO
-          ) +
+            produto.padEnd(
+              COL_PRODUTO
+            ) +
 
-          qtd.padStart(
-            COL_QTD
-          ) +
+            qtd.padStart(
+              COL_QTD
+            ) +
 
-          valor.padStart(
-            COL_VALOR
-          ) +
+            valor.padStart(
+              COL_VALOR
+            ) +
 
-          subtotal.padStart(
-            COL_TOTAL
-          )
+            subtotal.padStart(
+              COL_TOTAL
+            )
 
-        );
+          );
 
-      };
+        };
 
 
       texto +=
@@ -2828,12 +2686,13 @@
 `;
 
 
-      texto += linha(
-        "PRODUTO",
-        "QTD",
-        "VALOR",
-        "TOTAL"
-      );
+      texto +=
+        linha(
+          "PRODUTO",
+          "QTD",
+          "VALOR",
+          "TOTAL"
+        );
 
 
       texto += "\n";
@@ -2851,23 +2710,26 @@
             item.valor;
 
 
-          total += subtotal;
+          total +=
+            subtotal;
 
 
-          texto += linha(
+          texto +=
+            linha(
 
-            `${index + 1}. ${item.produto.substring(
-              0,
-              COL_PRODUTO - 3
-            )}`,
+              `${index + 1}. ${item.produto.substring(
+                0,
+                COL_PRODUTO - 3
+              )}`,
 
-            item.quantidade.toString(),
+              item.quantidade
+                .toString(),
 
-            `R$ ${item.valor.toFixed(2)}`,
+              `R$ ${item.valor.toFixed(2)}`,
 
-            `R$ ${subtotal.toFixed(2)}`
+              `R$ ${subtotal.toFixed(2)}`
 
-          );
+            );
 
 
           texto += "\n";
@@ -2890,50 +2752,6 @@
 
 
     /* =====================================================
-       EXPORTAR TXT
-    ===================================================== */
-
-    function exportarTXT() {
-
-      const texto =
-        gerarTXT();
-
-
-      const blob =
-        new Blob(
-          [
-            "\uFEFF" + texto
-          ],
-          {
-            type:
-              "text/plain;charset=utf-8"
-          }
-        );
-
-
-      const link =
-        document.createElement("a");
-
-
-      link.href =
-        URL.createObjectURL(blob);
-
-
-      link.download =
-        "lista_compras.txt";
-
-
-      link.click();
-
-
-      URL.revokeObjectURL(
-        link.href
-      );
-
-    }
-
-
-    /* =====================================================
        IMPRIMIR
     ===================================================== */
 
@@ -2944,7 +2762,9 @@
 
 
       const iframe =
-        document.createElement("iframe");
+        document.createElement(
+          "iframe"
+        );
 
 
       iframe.style.position =
@@ -2999,8 +2819,7 @@
                   Courier New,
                   monospace;
 
-                white-space:
-                  pre;
+                white-space: pre;
 
                 padding: 20px;
 
@@ -3013,7 +2832,7 @@
 
           </head>
 
-          <body>${escapeHTML(texto)}</body>
+          <body>${texto}</body>
 
         </html>
 
@@ -3023,122 +2842,29 @@
       doc.close();
 
 
-      iframe.onload = () => {
+      iframe.onload =
+        () => {
 
-        iframe.contentWindow.focus();
+          iframe.contentWindow
+            .focus();
 
-        iframe.contentWindow.print();
+          iframe.contentWindow
+            .print();
 
 
-        setTimeout(() => {
+          setTimeout(
+            () => {
 
-          document.body.removeChild(
-            iframe
+              document.body
+                .removeChild(
+                  iframe
+                );
+
+            },
+            1000
           );
 
-        }, 1000);
-
-      };
-
-    }
-
-
-    /* =====================================================
-       PDF
-    ===================================================== */
-
-    function gerarPDF() {
-
-      const {
-        jsPDF
-      } = window.jspdf;
-
-
-      const doc =
-        new jsPDF();
-
-
-      let total = 0;
-
-
-      const linhas =
-        lista.map(
-          item => {
-
-            const subtotal =
-              item.quantidade *
-              item.valor;
-
-
-            total += subtotal;
-
-
-            return [
-
-              item.produto,
-
-              item.quantidade,
-
-              item.valor.toFixed(2),
-
-              subtotal.toFixed(2)
-
-            ];
-
-          }
-        );
-
-
-      doc.text(
-        "LISTA DE COMPRAS",
-        14,
-        15
-      );
-
-
-      doc.autoTable({
-
-        startY: 20,
-
-        head: [
-          [
-            "Produto",
-            "Qtd",
-            "Valor",
-            "Total"
-          ]
-        ],
-
-        body: linhas,
-
-        theme: "grid"
-
-      });
-
-
-      const y =
-        doc.lastAutoTable.finalY
-        || 20;
-
-
-      doc.text(
-        `TOTAL: R$ ${total.toFixed(2)}`,
-        14,
-        y + 10
-      );
-
-
-      return doc;
-
-    }
-
-
-    function exportarPDF() {
-
-      gerarPDF()
-        .save(
-          "lista_compras.pdf"
-        );
+        };
 
     }
 
@@ -3166,7 +2892,9 @@
 
 
       const link =
-        document.createElement("a");
+        document.createElement(
+          "a"
+        );
 
 
       link.href =
@@ -3193,7 +2921,9 @@
        IMPORTAR
     ===================================================== */
 
-    function importarLista(event) {
+    function importarLista(
+      event
+    ) {
 
       const arquivo =
         event.target.files[0];
@@ -3207,127 +2937,78 @@
         new FileReader();
 
 
-      leitor.onload = e => {
+      leitor.onload =
+        e => {
 
-        try {
+          try {
 
-          const dados =
-            JSON.parse(
-              e.target.result
-            );
+            const dados =
+              JSON.parse(
+                e.target.result
+              );
 
 
-          if (!Array.isArray(dados)) {
+            if (
+              !Array.isArray(
+                dados
+              )
+            ) {
+
+              alert(
+                "Arquivo inválido"
+              );
+
+              return;
+
+            }
+
+
+            lista =
+              dados;
+
+
+            idAtual =
+              lista.length
+
+                ? Math.max(
+                    ...lista.map(
+                      i => Number(i.id) || 0
+                    )
+                  ) + 1
+
+                : 1;
+
+
+            salvarStorage();
+
+            renderizarTabela();
+
 
             alert(
-              "Arquivo inválido."
+              "Lista importada com sucesso!"
             );
 
-            return;
+
+          } catch {
+
+            alert(
+              "Erro ao importar arquivo"
+            );
 
           }
 
-
-          const dadosValidos =
-            dados.every(
-              item =>
-
-                item &&
-                typeof item.id === "number" &&
-                typeof item.produto === "string" &&
-                typeof item.quantidade === "number" &&
-                typeof item.valor === "number"
-
-            );
-
-
-          if (!dadosValidos) {
-
-            alert(
-              "Arquivo inválido ou incompatível."
-            );
-
-            return;
-
-          }
-
-
-          lista =
-            dados.map(
-              item => ({
-
-                id: item.id,
-
-                produto:
-                  item.produto,
-
-                quantidade:
-                  item.quantidade,
-
-                valor:
-                  item.valor,
-
-                tipo:
-                  item.tipo || "Unidade",
-
-                comprado:
-                  Boolean(
-                    item.comprado
-                  )
-
-              })
-            );
-
-
-          idAtual =
-            lista.length
-
-              ? Math.max(
-                  ...lista.map(
-                    i => i.id
-                  )
-                ) + 1
-
-              : 1;
-
-
-          salvarStorage();
-
-          renderizarTabela();
-
-
-          alert(
-            "Lista importada com sucesso!"
-          );
-
-
-        } catch (erro) {
-
-          console.error(erro);
-
-          alert(
-            "Erro ao importar arquivo."
-          );
-
-        }
-
-      };
+        };
 
 
       leitor.readAsText(
         arquivo
       );
 
-
-      /* permite importar o mesmo arquivo novamente */
-
-      event.target.value = "";
-
     }
 
 
     /* =====================================================
-       DOM READY
+       MODAIS - EVENTOS
     ===================================================== */
 
     document.addEventListener(
@@ -3338,50 +3019,8 @@
 
         renderizarTabela();
 
-        atualizarTemaAtivo();
+        configurarPesquisa();
 
-
-        /* =========================
-           PESQUISA
-        ========================= */
-
-        $("pesquisa")
-          .addEventListener(
-            "input",
-            function () {
-
-              const termo =
-                this.value
-                  .toLowerCase()
-                  .trim();
-
-
-              const filtrado =
-                lista.filter(
-                  item =>
-
-                    String(
-                      item.produto
-                    )
-                      .toLowerCase()
-                      .includes(
-                        termo
-                      )
-
-                );
-
-
-              renderizarTabela(
-                filtrado
-              );
-
-            }
-          );
-
-
-        /* =========================
-           MODAL AÇÕES
-        ========================= */
 
         const modal =
           $("modalAcoes");
@@ -3399,12 +3038,6 @@
 
             fecharModal();
 
-            vibrar([
-              80,
-              40,
-              80
-            ]);
-
           }
         );
 
@@ -3419,18 +3052,8 @@
         );
 
 
-        /* =========================
-           MODAL EDIÇÃO
-        ========================= */
-
         const modalEdicao =
           $("modalEdicao");
-
-
-        const conteudoEdicao =
-          document.querySelector(
-            "#modalEdicao .modal-edicao-conteudo"
-          );
 
 
         modalEdicao.addEventListener(
@@ -3443,28 +3066,8 @@
         );
 
 
-        conteudoEdicao.addEventListener(
-          "click",
-          e => {
-
-            e.stopPropagation();
-
-          }
-        );
-
-
-        /* =========================
-           MODAL NOVO ITEM
-        ========================= */
-
         const modalNovoItem =
           $("modalNovoItem");
-
-
-        const conteudoNovoItem =
-          document.querySelector(
-            "#modalNovoItem .modal-novo-item"
-          );
 
 
         modalNovoItem.addEventListener(
@@ -3476,20 +3079,6 @@
           }
         );
 
-
-        conteudoNovoItem.addEventListener(
-          "click",
-          e => {
-
-            e.stopPropagation();
-
-          }
-        );
-
-
-        /* =========================
-           MODAL TEMA
-        ========================= */
 
         const modalTema =
           $("modalTema");
@@ -3504,25 +3093,6 @@
           }
         );
 
-        const conteudoTema =
-          document.querySelector(
-            "#modalTema .modal-temas"
-          );
-
-
-        conteudoTema.addEventListener(
-          "click",
-          e => {
-
-            e.stopPropagation();
-
-          }
-        );
-
-
-        /* =========================
-           IMPORTAÇÃO
-        ========================= */
 
         $("arquivo")
           .addEventListener(
@@ -3530,31 +3100,6 @@
             importarLista
           );
 
-
-        /* =========================
-           VIBRAÇÃO DOS BOTÕES
-        ========================= */
-
-        document.addEventListener(
-          "click",
-          e => {
-
-            if (
-              e.target.tagName === "BUTTON" ||
-              e.target.type === "checkbox"
-            ) {
-
-              vibrar();
-
-            }
-
-          }
-        );
-
-
-        /* =========================
-           PWA
-        ========================= */
 
         if (
           window.matchMedia(
@@ -3585,13 +3130,15 @@
           "./service-worker.js"
         )
 
-        .then(() => {
+        .then(
+          () => {
 
-          console.log(
-            "PWA instalada!"
-          );
+            console.log(
+              "PWA instalada!"
+            );
 
-        })
+          }
+        )
 
         .catch(
           err => {
