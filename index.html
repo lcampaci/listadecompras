@@ -30,1389 +30,1285 @@
   <style>
 
     /* =====================================================
-       RESET
-    ===================================================== */
-
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-    }
-
-    html,
-    body {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-    }
-
-    body {
-      background: #ffffff;
-    }
-
-
-    /* =====================================================
-       CONTAINER
-    ===================================================== */
-
-    .container {
-      width: 100%;
-      max-width: 100%;
-      height: 100dvh;
-
-      display: flex;
-      flex-direction: column;
-
-      padding: 12px;
-      padding-bottom: 70px;
-
-      gap: 6px;
-
-      overflow: hidden;
-    }
-
-
-    /* =====================================================
-       TOPO
-    ===================================================== */
-
-    .topo-app {
-      width: 100%;
-
-      display: flex;
-      align-items: center;
-      justify-content: center;
-
-      margin-bottom: 2px;
-    }
-
-
-    /* =====================================================
-       PESQUISA
-    ===================================================== */
-
-    #pesquisa {
-      width: 100%;
-      height: 36px;
-
-      margin: 0;
-
-      border-radius: 6px;
-      border: 1px solid #ddd;
-
-      padding: 6px 10px;
-
-      font-size: 13px;
-
-      text-transform: uppercase;
-    }
-
-
-    /* =====================================================
-       MENU MOBILE
-    ===================================================== */
-
-    .menu-mobile {
-      position: fixed;
-
-      left: 0;
-      right: 0;
-      bottom: 0;
-
-      width: 100vw;
-      max-width: 100vw;
-
-      margin: 0;
-      padding: 5px 1px;
-
-      display: flex;
-      justify-content: space-between;
-      align-items: stretch;
-
-      background: #ffffff;
-
-      border-top: 1px solid #e5e7eb;
-
-      box-shadow: 0 -2px 12px rgba(0, 0, 0, .08);
-
-      z-index: 9999;
-
-      overflow: hidden;
-    }
-
-
-    /* =====================================================
-       BOTÕES DO MENU
-    ===================================================== */
-
-    .menu-mobile button {
-      flex: 1 1 0;
-      min-width: 0;
-      width: 0;
-
-      height: 50px;
-      min-height: 50px;
-
-      border: none;
-      background: none;
-
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-
-      gap: 2px;
-
-      padding: 2px 0;
-
-      color: #6b7280;
-
-      overflow: hidden;
-
-      cursor: pointer;
-    }
-
-    .menu-mobile button span {
-      display: block;
-
-      font-size: 18px;
-      line-height: 19px;
-
-      max-width: 100%;
-    }
-
-    .menu-mobile button small {
-      display: block;
-
-      font-size: 7px;
-      line-height: 9px;
-
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-
-      max-width: 100%;
-    }
-
-
-    /* =====================================================
-       FORMULÁRIO
-    ===================================================== */
-
-    .formulario {
-      margin-bottom: 6px;
-
-      display: flex;
-      flex-direction: column;
-
-      gap: 8px;
-    }
-
-    input,
-    select {
-      height: 36px;
-
-      border-radius: 6px;
-      border: 1px solid #ddd;
-
-      padding: 6px 10px;
-
-      font-size: 13px;
-
-      box-sizing: border-box;
-
-      text-transform: uppercase;
-    }
-
-    button {
-      border: none;
-      cursor: pointer;
-
-      font-weight: bold;
-
-      color: #ffffff;
-
-      transition: .2s;
-    }
-
-    button:hover {
-      opacity: .9;
-    }
-
-
-    /* =====================================================
-       TABELA
-    ===================================================== */
-
-    .tabela-wrapper {
-      flex: 1 1 auto;
-
-      min-height: 0;
-
-      overflow-y: auto;
-      overflow-x: hidden;
-    }
-
-    table {
-      width: 100%;
-
-      border-collapse: collapse;
-
-      table-layout: fixed;
-    }
-
-    thead th {
-      position: sticky;
-
-      top: 0;
-
-      z-index: 2;
-    }
-
-    th,
-    td {
-      padding: 8px;
-
-      border-bottom: 1px solid #eeeeee;
-
-      word-break: break-word;
-    }
-
-    th {
-      background: #2563eb;
-
-      color: #ffffff;
-    }
-
-    tr:hover {
-      background: #f5f7fa;
-    }
-
-    tbody tr {
-      cursor: pointer;
-    }
-
-
-    /* =====================================================
-       COLUNAS
-    ===================================================== */
-
-    th:nth-child(1),
-    td:nth-child(1) {
-      width: 25px;
-
-      padding: 4px 2px;
-
-      text-align: center;
-
-      white-space: nowrap;
-    }
-
-    th:nth-child(2),
-    td:nth-child(2) {
-      width: 40%;
-    }
-
-    th:nth-child(3),
-    td:nth-child(3) {
-      width: 45px;
-
-      text-align: right;
-    }
-
-    th:nth-child(4),
-    td:nth-child(4) {
-      width: 70px;
-
-      text-align: right;
-    }
-
-    th:nth-child(5),
-    td:nth-child(5) {
-      width: 70px;
-
-      text-align: right;
-    }
-
-    th:nth-child(6),
-    td:nth-child(6) {
-      width: 35px;
-
-      text-align: center;
-    }
-
-
-    /* =====================================================
-       ITEM COMPRADO
-    ===================================================== */
-
-    .comprado td {
-      text-decoration: line-through;
-
-      opacity: .6;
-
-      background: #e8f5e9;
-    }
-
-
-    /* =====================================================
-       CHECKBOX
-    ===================================================== */
-
-    .check-container {
-      position: relative;
-
-      display: flex;
-
-      align-items: center;
-      justify-content: center;
-
-      width: 24px;
-      height: 24px;
-
-      margin: auto;
-
-      cursor: pointer;
-    }
-
-    .check-container input {
-      opacity: 0;
-
-      width: 0;
-      height: 0;
-    }
-
-    .checkmark {
-      position: absolute;
-
-      inset: 0;
-
-      background: #e5e7eb;
-
-      border-radius: 6px;
-
-      transition: .2s;
-
-      border: 2px solid #cbd5e1;
-    }
-
-    .checkmark::after {
-      content: "";
-
-      position: absolute;
-
-      display: none;
-
-      left: 7px;
-      top: 2px;
-
-      width: 5px;
-      height: 10px;
-
-      border: solid #ffffff;
-
-      border-width: 0 3px 3px 0;
-
-      transform: rotate(45deg);
-    }
-
-    .check-container input:checked + .checkmark {
-      background: #22c55e;
-
-      border-color: #22c55e;
-    }
-
-    .check-container input:checked + .checkmark::after {
-      display: block;
-    }
-
-
-    /* =====================================================
-       RESUMO / TOTAL
-    ===================================================== */
-
-    .total {
-      flex-shrink: 0;
-
-      display: flex;
-
-      justify-content: space-between;
-      align-items: flex-start;
-
-      gap: 20px;
-
-      width: 100%;
-
-      font-size: 18px;
-
-      margin-top: 4px;
-      margin-bottom: 0;
-
-      padding: 6px 0;
-
-      min-height: 60px;
-    }
-
-    .resumo-esquerda,
-    .resumo-direita {
-      display: flex;
-
-      flex-direction: column;
-
-      gap: 8px;
-    }
-
-    .resumo-direita {
-      text-align: right;
-    }
-
-
-    /* =====================================================
-       BOTÕES
-    ===================================================== */
-
-    .btn-salvar,
-    .btn-salvar-novo,
-    .btn-salvar-edicao {
-      background: #22c55e;
-    }
-
-    .btn-txt {
-      background: #6b7280;
-    }
-
-    .btn-pdf {
-      background: #dc2626;
-    }
-
-    .btn-print {
-      background: #0891b2;
-    }
-
-    .btn-export {
-      background: #2563eb;
-    }
-
-    .btn-import {
-      background: #16a34a;
-    }
-
-    .btn-editar {
-      background: #22c55e;
-
-      padding: 5px 8px;
-    }
-
-    .btn-excluir {
-      background: #ef4444;
-
-      padding: 5px 8px;
-    }
-
-
-    /* =====================================================
-       MODAIS
-    ===================================================== */
-
-    .modal {
-      position: fixed;
-
-      inset: 0;
-
-      background: rgba(0, 0, 0, .45);
-
-      display: none;
-
-      align-items: center;
-      justify-content: center;
-
-      z-index: 99999;
-    }
-
-    .modal-conteudo,
-    .modal-edicao-conteudo,
-    .modal-novo-item {
-      background: #ffffff;
-
-      width: 92%;
-      max-width: 360px;
-
-      border-radius: 12px;
-
-      padding: 20px;
-
-      animation: fade .2s ease;
-    }
-
-    .modal-conteudo {
-      max-width: 320px;
-
-      text-align: center;
-    }
-
-    .modal-conteudo h3,
-    .modal-edicao-conteudo h3,
-    .modal-novo-item h3 {
-      margin-bottom: 16px;
-
-      color: #333333;
-
-      text-align: center;
-    }
-
-    .modal-conteudo h3 {
-      font-size: 18px;
-
-      margin-bottom: 18px;
-    }
-
-
-    /* =====================================================
-       BOTÕES DOS MODAIS
-    ===================================================== */
-
-    .modal-botoes {
-      display: flex;
-
-      flex-direction: column;
-
-      gap: 10px;
-    }
-
-    .modal-botoes button {
-      height: 42px;
-
-      border: none;
-
-      border-radius: 8px;
-
-      color: #ffffff;
-
-      font-weight: bold;
-
-      font-size: 14px;
-    }
-
-    .btn-cancelar {
-      background: #6b7280;
-    }
-
-
-    /* =====================================================
-       EDIÇÃO
-    ===================================================== */
-
-    .form-edicao,
-    .form-novo-item {
-      display: flex;
-
-      flex-direction: column;
-
-      gap: 10px;
-    }
-
-    .form-edicao input,
-    .form-edicao select,
-    .form-novo-item input,
-    .form-novo-item select {
-      width: 100%;
-
-      height: 40px;
-    }
-
-    .botoes-edicao,
-    .botoes-novo-item {
-      display: flex;
-
-      gap: 8px;
-
-      margin-top: 8px;
-    }
-
-    .botoes-edicao button,
-    .botoes-novo-item button {
-      flex: 1;
-
-      height: 40px;
-
-      border-radius: 8px;
-    }
-
-    .btn-cancelar-edicao,
-    .btn-cancelar-novo {
-      background: #6b7280;
-    }
-
-
-    /* =====================================================
-       TEMAS
-    ===================================================== */
-
-    body.tema-branco {
-      background: #ffffff;
-
-      color: #111827;
-    }
-
-    body.tema-branco .container {
-      background: #ffffff;
-    }
-
-    body.tema-branco .topo-app h1 {
-      color: #111827;
-    }
-
-    body.tema-branco table {
-      background: #ffffff;
-
-      color: #111827;
-    }
-
-    body.tema-branco th {
-      background: #2563eb;
-
-      color: #ffffff;
-    }
-
-    body.tema-branco td {
-      border-bottom-color: #eeeeee;
-    }
-
-    body.tema-branco tr:hover {
-      background: #f5f7fa;
-    }
-
-    body.tema-branco input,
-    body.tema-branco select {
-      background: #ffffff;
-
-      color: #111827;
-
-      border-color: #d1d5db;
-    }
-
-    body.tema-branco .menu-mobile {
-      background: #ffffff;
-
-      border-top-color: #e5e7eb;
-    }
-
-    body.tema-branco .menu-mobile button {
-      color: #6b7280;
-    }
-
-
-    /* =====================================================
-       TEMA ESCURO
-    ===================================================== */
-
-    body.tema-escuro {
-      background: #111827;
-
-      color: #f9fafb;
-    }
-
-    body.tema-escuro .container {
-      background: #111827;
-    }
-
-    body.tema-escuro .topo-app h1 {
-      color: #f9fafb;
-    }
-
-    body.tema-escuro input,
-    body.tema-escuro select {
-      background: #1f2937;
-
-      color: #f9fafb;
-
-      border-color: #374151;
-    }
-
-    body.tema-escuro table {
-      background: #111827;
-
-      color: #f9fafb;
-    }
-
-    body.tema-escuro th {
-      background: #2f373d;
-
-      color: #ffffff;
-    }
-
-    body.tema-escuro td {
-      border-bottom-color: #374151;
-    }
-
-    body.tema-escuro tr:hover {
-      background: #1f2937;
-    }
-
-    body.tema-escuro .menu-mobile {
-      background: #1f2937;
-
-      border-top-color: #374151;
-
-      box-shadow: 0 -2px 12px rgba(0, 0, 0, .4);
-    }
-
-    body.tema-escuro .menu-mobile button {
-      color: #d1d5db;
-    }
-
-    body.tema-escuro .total {
-      color: #f9fafb;
-    }
-
-    body.tema-escuro .comprado td {
-      background: #16351f;
-    }
-
-    body.tema-escuro .modal-conteudo,
-    body.tema-escuro .modal-edicao-conteudo,
-    body.tema-escuro .modal-novo-item {
-      background: #1f2937;
-
-      color: #f9fafb;
-    }
-
-    body.tema-escuro .modal-conteudo h3,
-    body.tema-escuro .modal-edicao-conteudo h3,
-    body.tema-escuro .modal-novo-item h3 {
-      color: #f9fafb;
-    }
-
-
-    /* =====================================================
-       WINDOWS 98
-    ===================================================== */
-
-    body.tema-windows98 {
-      background: #008080;
-
-      color: #000000;
-
-      font-family:
-        "MS Sans Serif",
-        Tahoma,
-        Arial,
-        sans-serif;
-    }
-
-    body.tema-windows98 * {
-      font-family:
-        "MS Sans Serif",
-        Tahoma,
-        Arial,
-        sans-serif;
-    }
-
-    body.tema-windows98 .container {
-      background: #c0c0c0;
-
-      border: 3px outset #ffffff;
-
-      padding: 10px;
-
-      padding-bottom: 70px;
-    }
-
-    body.tema-windows98 .topo-app {
-      background: #000080;
-
-      padding: 4px 6px;
-
-      margin-bottom: 6px;
-    }
-
-    body.tema-windows98 input,
-    body.tema-windows98 select {
-      background: #ffffff;
-
-      color: #000000;
-
-      border: 2px inset #ffffff;
-
-      border-radius: 0;
-    }
-
-    body.tema-windows98 button {
-      border-radius: 0;
-
-      border: 2px outset #ffffff;
-
-      background: #c0c0c0;
-
-      color: #000000;
-    }
-
-    body.tema-windows98 button:active {
-      border-style: inset;
-    }
-
-    body.tema-windows98 th {
-      background: #000080;
-
-      color: #ffffff;
-    }
-
-    body.tema-windows98 td {
-      border-bottom: 1px solid #808080;
-    }
-
-    body.tema-windows98 tr:hover {
-      background: #000080;
-
-      color: #ffffff;
-    }
-
-    body.tema-windows98 .menu-mobile {
-      background: #c0c0c0;
-
-      border-top: 2px outset #ffffff;
-
-      box-shadow: none;
-
-      padding: 4px 1px;
-    }
-
-    body.tema-windows98 .menu-mobile button {
-      color: #000000;
-
-      border: none;
-
-      background: transparent;
-    }
-
-    /* CORREÇÃO PRINCIPAL DO TOTAL NO WINDOWS 98 */
-
-    body.tema-windows98 .total {
-      display: flex !important;
-
-      flex-shrink: 0;
-
-      width: 100%;
-
-      min-height: 60px;
-
-      margin-top: 4px;
-
-      margin-bottom: 0;
-
-      padding: 6px 4px;
-
-      background: #c0c0c0;
-
-      color: #000000;
-
-      overflow: visible;
-    }
-
-    body.tema-windows98 .resumo-esquerda,
-    body.tema-windows98 .resumo-direita {
-      display: flex;
-
-      flex-direction: column;
-
-      gap: 6px;
-
-      color: #000000;
-    }
-
-    body.tema-windows98 .tabela-wrapper {
-      flex: 1 1 auto;
-
-      min-height: 0;
-
-      overflow-y: auto;
-
-      overflow-x: hidden;
-    }
-
-    body.tema-windows98 .modal-conteudo,
-    body.tema-windows98 .modal-edicao-conteudo,
-    body.tema-windows98 .modal-novo-item {
-      background: #c0c0c0;
-
-      border: 3px outset #ffffff;
-
-      border-radius: 0;
-    }
-
-    body.tema-windows98 .modal-conteudo h3,
-    body.tema-windows98 .modal-edicao-conteudo h3,
-    body.tema-windows98 .modal-novo-item h3 {
-      color: #000000;
-    }
-
-    body.tema-windows98 .checkmark {
-      border-radius: 0;
-
-      background: #ffffff;
-
-      border: 2px inset #ffffff;
-    }
-
-
-    /* =====================================================
-       MATRIX
-    ===================================================== */
-
-    body.tema-matrix {
-      background: #000000;
-
-      color: #00ff41;
-    }
-
-    body.tema-matrix * {
-      font-family: "Courier New", monospace;
-    }
-
-    body.tema-matrix .container {
-      background: #000000;
-    }
-
-    body.tema-matrix .topo-app h1 {
-      color: #00ff41;
-
-      text-shadow: 0 0 8px #00ff41;
-    }
-
-    body.tema-matrix input,
-    body.tema-matrix select {
-      background: #000000;
-
-      color: #00ff41;
-
-      border: 1px solid #00ff41;
-
-      border-radius: 0;
-    }
-
-    body.tema-matrix input::placeholder {
-      color: #008f11;
-    }
-
-    body.tema-matrix th {
-      background: #003b00;
-
-      color: #00ff41;
-
-      border-bottom: 1px solid #00ff41;
-    }
-
-    body.tema-matrix td {
-      color: #00ff41;
-
-      border-bottom: 1px solid #003b00;
-    }
-
-    body.tema-matrix tr:hover {
-      background: #001f00;
-    }
-
-    body.tema-matrix .menu-mobile {
-      background: #000000;
-
-      border-top: 1px solid #00ff41;
-
-      box-shadow:
-        0 -2px 15px rgba(0, 255, 65, .2);
-    }
-
-    body.tema-matrix .menu-mobile button {
-      color: #00ff41;
-
-      border: none;
-
-      background: transparent;
-    }
-
-    body.tema-matrix .total {
-      color: #00ff41;
-    }
-
-    body.tema-matrix .comprado td {
-      background: #002b00;
-
-      color: #00aa22;
-    }
-
-    body.tema-matrix .checkmark {
-      background: #000000;
-
-      border-color: #00ff41;
-
-      border-radius: 0;
-    }
-
-    body.tema-matrix .check-container input:checked + .checkmark {
-      background: #003b00;
-
-      border-color: #00ff41;
-    }
-
-    body.tema-matrix .modal-conteudo,
-    body.tema-matrix .modal-edicao-conteudo,
-    body.tema-matrix .modal-novo-item {
-      background: #000000;
-
-      border: 1px solid #00ff41;
-
-      border-radius: 0;
-
-      box-shadow:
-        0 0 20px rgba(0, 255, 65, .3);
-    }
-
-    body.tema-matrix .modal-conteudo h3,
-    body.tema-matrix .modal-edicao-conteudo h3,
-    body.tema-matrix .modal-novo-item h3 {
-      color: #00ff41;
-    }
-
-
-    /* =====================================================
-       MODAL DE TEMAS
-    ===================================================== */
-
-    .modal-temas {
-      max-width: 340px;
-    }
-
-    .temas-botoes {
-      display: flex;
-
-      flex-direction: column;
-
-      gap: 10px;
-
-      margin-bottom: 12px;
-    }
-
-    .tema-btn {
-      width: 100%;
-
-      height: 48px;
-
-      border-radius: 8px;
-
-      border: none;
-
-      font-size: 14px;
-
-      font-weight: bold;
-
-      cursor: pointer;
-    }
-
-    .tema-claro {
-      background: #ffffff;
-
-      color: #111827;
-
-      border: 2px solid #d1d5db;
-    }
-
-    .tema-dark {
-      background: #1f2937;
-
-      color: #ffffff;
-    }
-
-    .tema-win98 {
-      background: #c0c0c0;
-
-      color: #000000;
-
-      border: 2px outset #ffffff;
-
-      border-radius: 0;
-
-      font-family:
-        "MS Sans Serif",
-        Tahoma,
-        Arial,
-        sans-serif;
-    }
-
-    .tema-matrix {
-      background: #000000;
-
-      color: #00ff41;
-
-      border: 1px solid #00ff41;
-
-      border-radius: 0;
-
-      font-family: "Courier New", monospace;
-
-      text-shadow: 0 0 5px #00ff41;
-    }
-
-    .tema-btn:active {
-      transform: scale(.97);
-    }
-
-    .tema-btn.tema-ativo {
-      outline: 3px solid #2563eb;
-
-      outline-offset: 2px;
-    }
-
-
-    /* =====================================================
-       ANIMAÇÃO
-    ===================================================== */
-
-    @keyframes fade {
-
-      from {
-        transform: scale(.95);
-
-        opacity: 0;
-      }
-
-      to {
-        transform: scale(1);
-
-        opacity: 1;
-      }
-
-    }
-
-
-    /* =====================================================
-       MOBILE
-    ===================================================== */
-
-    @media (max-width: 768px) {
-
-      html,
-      body {
-        width: 100%;
-
-        max-width: 100%;
-
-        overflow-x: hidden;
-      }
-
-      .container {
-        width: 100%;
-
-        max-width: 100%;
-
-        height: 100dvh;
-
-        padding: 12px;
-
-        padding-bottom: 70px;
-
-        overflow: hidden;
-      }
-
-      .menu-mobile {
-        width: 100vw;
-
-        max-width: 100vw;
-
-        left: 0;
-
-        right: auto;
-
-        padding: 4px 1px;
-      }
-
-      .menu-mobile button {
-        min-height: 50px;
-
-        height: 50px;
-
-        padding: 2px 0;
-      }
-
-      .menu-mobile button span {
-        font-size: 18px;
-
-        line-height: 19px;
-      }
-
-      .menu-mobile button small {
-        font-size: 7px;
-
-        line-height: 9px;
-      }
-
-      .tabela-wrapper {
-        flex: 1 1 auto;
-
-        min-height: 0;
-
-        overflow-y: auto;
-
-        overflow-x: hidden;
-      }
-
-      table {
-        width: 100%;
-
-        table-layout: auto;
-      }
-
-      th,
-      td {
-        padding: 4px;
-
-        font-size: 11px;
-      }
-
-      th:nth-child(1),
-      td:nth-child(1) {
-        width: 20px;
-
-        padding: 2px;
-
-        font-size: 10px;
-      }
-
-      th:nth-child(2),
-      td:nth-child(2) {
-        width: auto;
-
-        white-space: nowrap;
-
-        overflow: hidden;
-
-        text-overflow: ellipsis;
-      }
-
-      th:nth-child(3),
-      td:nth-child(3) {
-        width: 42px;
-      }
-
-      th:nth-child(4),
-      td:nth-child(4),
-      th:nth-child(5),
-      td:nth-child(5) {
-        width: 65px;
-      }
-
-      th:nth-child(6),
-      td:nth-child(6) {
-        width: 32px;
-
-        text-align: center;
-      }
-
-      .total {
-        font-size: 14px;
-
-        gap: 10px;
-
-        min-height: 60px;
-
-        padding: 6px 0;
-      }
-
-      .resumo-esquerda,
-      .resumo-direita {
-        gap: 5px;
-      }
-
-      body.tema-windows98 .total {
-        display: flex !important;
-
-        min-height: 60px;
-
-        margin-top: 4px;
-
-        margin-bottom: 0;
-
-        padding: 6px 4px;
-
-        color: #000000;
-
-        background: #c0c0c0;
-      }
-
-      body.tema-matrix th,
-body.tema-matrix td {
-  padding: 4px 3px;
-  font-size: 11px;
+   RESET
+===================================================== */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  font-family: Arial, sans-serif;
 }
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+
+  overflow: hidden;
+}
+
+body {
+  background: #ffffff;
+}
+
+
+/* =====================================================
+   CONTAINER
+===================================================== */
+
+.container {
+  width: 100%;
+  max-width: 100%;
+
+  height: 100dvh;
+
+  display: flex;
+  flex-direction: column;
+
+  padding: 12px;
+  padding-bottom: 70px;
+
+  gap: 6px;
+
+  overflow: hidden;
+}
+
+
+/* =====================================================
+   TOPO
+===================================================== */
+
+.topo-app {
+  width: 100%;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 2px;
+}
+
+
+/* =====================================================
+   PESQUISA
+===================================================== */
+
+#pesquisa {
+  width: 100%;
+  height: 36px;
+
+  margin: 0;
+
+  border-radius: 6px;
+  border: 1px solid #ddd;
+
+  padding: 6px 10px;
+
+  font-size: 13px;
+
+  text-transform: uppercase;
+}
+
+
+/* =====================================================
+   MENU MOBILE
+===================================================== */
+
+.menu-mobile {
+  position: fixed;
+
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  width: 100vw;
+  max-width: 100vw;
+
+  margin: 0;
+
+  padding: 5px 1px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+
+  background: #ffffff;
+
+  border-top: 1px solid #e5e7eb;
+
+  box-shadow:
+    0 -2px 12px rgba(0, 0, 0, .08);
+
+  z-index: 9999;
+
+  overflow: hidden;
+}
+
+
+/* =====================================================
+   BOTÕES DO MENU
+===================================================== */
+
+.menu-mobile button {
+  flex: 1 1 0;
+
+  min-width: 0;
+  width: 0;
+
+  height: 50px;
+  min-height: 50px;
+
+  border: none;
+
+  background: none;
+
+  display: flex;
+  flex-direction: column;
+
+  align-items: center;
+  justify-content: center;
+
+  gap: 2px;
+
+  padding: 2px 0;
+
+  color: #6b7280;
+
+  overflow: hidden;
+
+  cursor: pointer;
+}
+
+.menu-mobile button span {
+  display: block;
+
+  font-size: 18px;
+  line-height: 19px;
+
+  max-width: 100%;
+}
+
+.menu-mobile button small {
+  display: block;
+
+  font-size: 7px;
+  line-height: 9px;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  max-width: 100%;
+}
+
+
+/* =====================================================
+   FORMULÁRIO
+===================================================== */
+
+.formulario {
+  margin-bottom: 6px;
+
+  display: flex;
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+input,
+select {
+  height: 36px;
+
+  border-radius: 6px;
+  border: 1px solid #ddd;
+
+  padding: 6px 10px;
+
+  font-size: 13px;
+
+  box-sizing: border-box;
+
+  text-transform: uppercase;
+}
+
+button {
+  border: none;
+
+  cursor: pointer;
+
+  font-weight: bold;
+
+  color: #ffffff;
+
+  transition: .2s;
+}
+
+button:hover {
+  opacity: .9;
+}
+
+
+/* =====================================================
+   TABELA
+===================================================== */
+
+.tabela-wrapper {
+  flex: 1 1 auto;
+
+  min-height: 0;
+
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+table {
+  width: 100%;
+
+  border-collapse: collapse;
+
+  table-layout: fixed;
+}
+
+thead th {
+  position: sticky;
+
+  top: 0;
+
+  z-index: 2;
+}
+
+th,
+td {
+  padding: 8px;
+
+  border-bottom: 1px solid #eeeeee;
+
+  word-break: break-word;
+}
+
+th {
+  background: #2563eb;
+
+  color: #ffffff;
+}
+
+tr:hover {
+  background: #f5f7fa;
+}
+
+tbody tr {
+  cursor: pointer;
+}
+
+
+/* =====================================================
+   COLUNAS
+===================================================== */
+
+th:nth-child(1),
+td:nth-child(1) {
+  width: 25px;
+
+  padding: 4px 2px;
+
+  text-align: center;
+
+  white-space: nowrap;
+}
+
+th:nth-child(2),
+td:nth-child(2) {
+  width: 40%;
+}
+
+th:nth-child(3),
+td:nth-child(3) {
+  width: 45px;
+
+  text-align: right;
+
+  white-space: nowrap;
+}
+
+th:nth-child(4),
+td:nth-child(4) {
+  width: 70px;
+
+  text-align: right;
+
+  white-space: nowrap;
+}
+
+th:nth-child(5),
+td:nth-child(5) {
+  width: 70px;
+
+  text-align: right;
+
+  white-space: nowrap;
+}
+
+th:nth-child(6),
+td:nth-child(6) {
+  width: 35px;
+
+  text-align: center;
+
+  white-space: nowrap;
+}
+
+
+/* =====================================================
+   ITEM COMPRADO
+===================================================== */
+
+.comprado td {
+  text-decoration: line-through;
+
+  opacity: .6;
+
+  background: #e8f5e9;
+}
+
+
+/* =====================================================
+   CHECKBOX
+===================================================== */
+
+.check-container {
+  position: relative;
+
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 24px;
+  height: 24px;
+
+  margin: auto;
+
+  cursor: pointer;
+}
+
+.check-container input {
+  opacity: 0;
+
+  width: 0;
+  height: 0;
+}
+
+.checkmark {
+  position: absolute;
+
+  inset: 0;
+
+  background: #e5e7eb;
+
+  border-radius: 6px;
+
+  transition: .2s;
+
+  border: 2px solid #cbd5e1;
+}
+
+.checkmark::after {
+  content: "";
+
+  position: absolute;
+
+  display: none;
+
+  left: 7px;
+  top: 2px;
+
+  width: 5px;
+  height: 10px;
+
+  border: solid #ffffff;
+
+  border-width: 0 3px 3px 0;
+
+  transform: rotate(45deg);
+}
+
+.check-container input:checked + .checkmark {
+  background: #22c55e;
+
+  border-color: #22c55e;
+}
+
+.check-container input:checked + .checkmark::after {
+  display: block;
+}
+
+
+/* =====================================================
+   RESUMO / TOTAL
+===================================================== */
+
+.total {
+  flex-shrink: 0;
+
+  display: flex;
+
+  justify-content: space-between;
+  align-items: flex-start;
+
+  gap: 20px;
+
+  width: 100%;
+
+  font-size: 18px;
+
+  margin-top: 4px;
+  margin-bottom: 0;
+
+  padding: 6px 0;
+
+  min-height: 60px;
+}
+
+.resumo-esquerda,
+.resumo-direita {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 8px;
+}
+
+.resumo-direita {
+  text-align: right;
+}
+
+
+/* =====================================================
+   BOTÕES
+===================================================== */
+
+.btn-salvar,
+.btn-salvar-novo,
+.btn-salvar-edicao {
+  background: #22c55e;
+}
+
+.btn-txt {
+  background: #6b7280;
+}
+
+.btn-pdf {
+  background: #dc2626;
+}
+
+.btn-print {
+  background: #0891b2;
+}
+
+.btn-export {
+  background: #2563eb;
+}
+
+.btn-import {
+  background: #16a34a;
+}
+
+.btn-editar {
+  background: #22c55e;
+
+  padding: 5px 8px;
+}
+
+.btn-excluir {
+  background: #ef4444;
+
+  padding: 5px 8px;
+}
+
+
+/* =====================================================
+   MODAIS
+===================================================== */
+
+.modal {
+  position: fixed;
+
+  inset: 0;
+
+  background: rgba(0, 0, 0, .45);
+
+  display: none;
+
+  align-items: center;
+  justify-content: center;
+
+  z-index: 99999;
+}
+
+.modal-conteudo,
+.modal-edicao-conteudo,
+.modal-novo-item {
+  background: #ffffff;
+
+  width: 92%;
+  max-width: 360px;
+
+  border-radius: 12px;
+
+  padding: 20px;
+
+  animation: fade .2s ease;
+}
+
+.modal-conteudo {
+  max-width: 320px;
+
+  text-align: center;
+}
+
+.modal-conteudo h3,
+.modal-edicao-conteudo h3,
+.modal-novo-item h3 {
+  margin-bottom: 16px;
+
+  color: #333333;
+
+  text-align: center;
+}
+
+.modal-conteudo h3 {
+  font-size: 18px;
+
+  margin-bottom: 18px;
+}
+
+
+/* =====================================================
+   BOTÕES DOS MODAIS
+===================================================== */
+
+.modal-botoes {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.modal-botoes button {
+  height: 42px;
+
+  border: none;
+
+  border-radius: 8px;
+
+  color: #ffffff;
+
+  font-weight: bold;
+
+  font-size: 14px;
+}
+
+.btn-cancelar {
+  background: #6b7280;
+}
+
+
+/* =====================================================
+   EDIÇÃO
+===================================================== */
+
+.form-edicao,
+.form-novo-item {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+}
+
+.form-edicao input,
+.form-edicao select,
+.form-novo-item input,
+.form-novo-item select {
+  width: 100%;
+
+  height: 40px;
+}
+
+.botoes-edicao,
+.botoes-novo-item {
+  display: flex;
+
+  gap: 8px;
+
+  margin-top: 8px;
+}
+
+.botoes-edicao button,
+.botoes-novo-item button {
+  flex: 1;
+
+  height: 40px;
+
+  border-radius: 8px;
+}
+
+.btn-cancelar-edicao,
+.btn-cancelar-novo {
+  background: #6b7280;
+}
+
+
+/* =====================================================
+   TEMA BRANCO
+===================================================== */
+
+body.tema-branco {
+  background: #ffffff;
+
+  color: #111827;
+}
+
+body.tema-branco .container {
+  background: #ffffff;
+}
+
+body.tema-branco .topo-app h1 {
+  color: #111827;
+}
+
+body.tema-branco table {
+  background: #ffffff;
+
+  color: #111827;
+}
+
+body.tema-branco th {
+  background: #2563eb;
+
+  color: #ffffff;
+}
+
+body.tema-branco td {
+  border-bottom-color: #eeeeee;
+}
+
+body.tema-branco tr:hover {
+  background: #f5f7fa;
+}
+
+body.tema-branco input,
+body.tema-branco select {
+  background: #ffffff;
+
+  color: #111827;
+
+  border-color: #d1d5db;
+}
+
+body.tema-branco .menu-mobile {
+  background: #ffffff;
+
+  border-top-color: #e5e7eb;
+}
+
+body.tema-branco .menu-mobile button {
+  color: #6b7280;
+}
+
+
+/* =====================================================
+   TEMA ESCURO
+===================================================== */
+
+body.tema-escuro {
+  background: #111827;
+
+  color: #f9fafb;
+}
+
+body.tema-escuro .container {
+  background: #111827;
+}
+
+body.tema-escuro .topo-app h1 {
+  color: #f9fafb;
+}
+
+body.tema-escuro input,
+body.tema-escuro select {
+  background: #1f2937;
+
+  color: #f9fafb;
+
+  border-color: #374151;
+}
+
+body.tema-escuro table {
+  background: #111827;
+
+  color: #f9fafb;
+}
+
+body.tema-escuro th {
+  background: #2f373d;
+
+  color: #ffffff;
+}
+
+body.tema-escuro td {
+  border-bottom-color: #374151;
+}
+
+body.tema-escuro tr:hover {
+  background: #1f2937;
+}
+
+body.tema-escuro .menu-mobile {
+  background: #1f2937;
+
+  border-top-color: #374151;
+
+  box-shadow:
+    0 -2px 12px rgba(0, 0, 0, .4);
+}
+
+body.tema-escuro .menu-mobile button {
+  color: #d1d5db;
+}
+
+body.tema-escuro .total {
+  color: #f9fafb;
+}
+
+body.tema-escuro .comprado td {
+  background: #16351f;
+}
+
+body.tema-escuro .modal-conteudo,
+body.tema-escuro .modal-edicao-conteudo,
+body.tema-escuro .modal-novo-item {
+  background: #1f2937;
+
+  color: #f9fafb;
+}
+
+body.tema-escuro .modal-conteudo h3,
+body.tema-escuro .modal-edicao-conteudo h3,
+body.tema-escuro .modal-novo-item h3 {
+  color: #f9fafb;
+}
+
+
+/* =====================================================
+   WINDOWS 98
+===================================================== */
+
+body.tema-windows98 {
+  background: #008080;
+
+  color: #000000;
+
+  font-family:
+    "MS Sans Serif",
+    Tahoma,
+    Arial,
+    sans-serif;
+}
+
+body.tema-windows98 * {
+  font-family:
+    "MS Sans Serif",
+    Tahoma,
+    Arial,
+    sans-serif;
+}
+
+body.tema-windows98 .container {
+  background: #c0c0c0;
+
+  border: 3px outset #ffffff;
+
+  padding: 10px;
+
+  padding-bottom: 70px;
+}
+
+body.tema-windows98 .topo-app {
+  background: #000080;
+
+  padding: 4px 6px;
+
+  margin-bottom: 6px;
+}
+
+body.tema-windows98 input,
+body.tema-windows98 select {
+  background: #ffffff;
+
+  color: #000000;
+
+  border: 2px inset #ffffff;
+
+  border-radius: 0;
+}
+
+body.tema-windows98 button {
+  border-radius: 0;
+
+  border: 2px outset #ffffff;
+
+  background: #c0c0c0;
+
+  color: #000000;
+}
+
+body.tema-windows98 button:active {
+  border-style: inset;
+}
+
+body.tema-windows98 th {
+  background: #000080;
+
+  color: #ffffff;
+}
+
+body.tema-windows98 td {
+  border-bottom: 1px solid #808080;
+}
+
+body.tema-windows98 tr:hover {
+  background: #000080;
+
+  color: #ffffff;
+}
+
+body.tema-windows98 .menu-mobile {
+  background: #c0c0c0;
+
+  border-top: 2px outset #ffffff;
+
+  box-shadow: none;
+
+  padding: 4px 1px;
+}
+
+body.tema-windows98 .menu-mobile button {
+  color: #000000;
+
+  border: none;
+
+  background: transparent;
+}
+
+
+/* =====================================================
+   WINDOWS 98 — TOTAL
+===================================================== */
+
+body.tema-windows98 .total {
+  display: flex !important;
+
+  flex-shrink: 0;
+
+  width: 100%;
+
+  min-height: 60px;
+
+  margin-top: 4px;
+
+  margin-bottom: 0;
+
+  padding: 6px 4px;
+
+  background: #c0c0c0;
+
+  color: #000000;
+
+  overflow: visible;
+}
+
+body.tema-windows98 .resumo-esquerda,
+body.tema-windows98 .resumo-direita {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 6px;
+
+  color: #000000;
+}
+
+body.tema-windows98 .tabela-wrapper {
+  flex: 1 1 auto;
+
+  min-height: 0;
+
+  overflow-y: auto;
+
+  overflow-x: hidden;
+}
+
+body.tema-windows98 .modal-conteudo,
+body.tema-windows98 .modal-edicao-conteudo,
+body.tema-windows98 .modal-novo-item {
+  background: #c0c0c0;
+
+  border: 3px outset #ffffff;
+
+  border-radius: 0;
+}
+
+body.tema-windows98 .modal-conteudo h3,
+body.tema-windows98 .modal-edicao-conteudo h3,
+body.tema-windows98 .modal-novo-item h3 {
+  color: #000000;
+}
+
+body.tema-windows98 .checkmark {
+  border-radius: 0;
+
+  background: #ffffff;
+
+  border: 2px inset #ffffff;
+}
+
+
+/* =====================================================
+   MATRIX
+===================================================== */
+
+body.tema-matrix {
+  background: #000000;
+
+  color: #00ff41;
+}
+
+body.tema-matrix * {
+  font-family: "Courier New", monospace;
+}
+
+body.tema-matrix .container {
+  background: #000000;
+}
+
+body.tema-matrix .topo-app h1 {
+  color: #00ff41;
+
+  text-shadow:
+    0 0 8px #00ff41;
+}
+
+body.tema-matrix input,
+body.tema-matrix select {
+  background: #000000;
+
+  color: #00ff41;
+
+  border: 1px solid #00ff41;
+
+  border-radius: 0;
+}
+
+body.tema-matrix input::placeholder {
+  color: #008f11;
+}
+
+body.tema-matrix th {
+  background: #003b00;
+
+  color: #00ff41;
+
+  border-bottom: 1px solid #00ff41;
+}
+
+body.tema-matrix td {
+  color: #00ff41;
+
+  border-bottom: 1px solid #003b00;
+}
+
+body.tema-matrix tr:hover {
+  background: #001f00;
+}
+
+body.tema-matrix .menu-mobile {
+  background: #000000;
+
+  border-top: 1px solid #00ff41;
+
+  box-shadow:
+    0 -2px 15px rgba(0, 255, 65, .2);
+}
+
+body.tema-matrix .menu-mobile button {
+  color: #00ff41;
+
+  border: none;
+
+  background: transparent;
+}
+
+body.tema-matrix .total {
+  color: #00ff41;
+}
+
+body.tema-matrix .comprado td {
+  background: #002b00;
+
+  color: #00aa22;
+}
+
+body.tema-matrix .checkmark {
+  background: #000000;
+
+  border-color: #00ff41;
+
+  border-radius: 0;
+}
+
+body.tema-matrix .check-container input:checked + .checkmark {
+  background: #003b00;
+
+  border-color: #00ff41;
+}
+
+body.tema-matrix .modal-conteudo,
+body.tema-matrix .modal-edicao-conteudo,
+body.tema-matrix .modal-novo-item {
+  background: #000000;
+
+  border: 1px solid #00ff41;
+
+  border-radius: 0;
+
+  box-shadow:
+    0 0 20px rgba(0, 255, 65, .3);
+}
+
+body.tema-matrix .modal-conteudo h3,
+body.tema-matrix .modal-edicao-conteudo h3,
+body.tema-matrix .modal-novo-item h3 {
+  color: #00ff41;
+}
+
+
+/* =====================================================
+   MATRIX — TABELA
+===================================================== */
+
+body.tema-matrix th,
+body.tema-matrix td {
+  padding: 4px 2px;
+
+  font-size: 11px;
+
+  white-space: nowrap;
+
+  word-break: normal;
+}
+
+
+/* Nº */
+
+body.tema-matrix th:nth-child(1),
+body.tema-matrix td:nth-child(1) {
+  width: 22px;
+
+  padding-left: 2px;
+  padding-right: 2px;
+}
+
+
+/* PRODUTO */
+
+body.tema-matrix th:nth-child(2),
+body.tema-matrix td:nth-child(2) {
+  width: auto;
+
+  white-space: nowrap;
+
+  overflow: hidden;
+
+  text-overflow: ellipsis;
+
+  word-break: normal;
+}
+
 
 /* QTD */
+
 body.tema-matrix th:nth-child(3),
 body.tema-matrix td:nth-child(3) {
-  width: 48px;
+  width: 43px;
 
   white-space: nowrap;
 
   word-break: normal;
 
-  overflow: hidden;
+  text-align: right;
 }
+
 
 /* VALOR */
+
 body.tema-matrix th:nth-child(4),
 body.tema-matrix td:nth-child(4) {
-  width: 78px;
+  width: 70px;
 
   white-space: nowrap;
 
   word-break: normal;
 
-  overflow: hidden;
+  text-align: right;
 }
+
 
 /* TOTAL */
+
 body.tema-matrix th:nth-child(5),
 body.tema-matrix td:nth-child(5) {
-  width: 78px;
+  width: 70px;
 
   white-space: nowrap;
 
   word-break: normal;
 
-  overflow: hidden;
+  text-align: right;
 }
 
-      body.tema-matrix th:nth-child(6),
-      body.tema-matrix td:nth-child(6) {
-        width: 32px;
-      }
 
-    }
+/* CHECK */
+
+body.tema-matrix th:nth-child(6),
+body.tema-matrix td:nth-child(6) {
+  width: 32px;
+
+  padding-left: 1px;
+  padding-right: 1px;
+
+  text-align: center;
+
+  white-space: nowrap;
+}
 
 
-    /* =====================================================
-       IMPRESSÃO
-    ===================================================== */
+/* =====================================================
+   MODAL DE TEMAS
+===================================================== */
 
-    @media print {
+.modal-temas {
+  max-width: 340px;
+}
 
-      body {
-        background: #ffffff;
+.temas-botoes {
+  display: flex;
 
-        padding: 0;
-      }
+  flex-direction: column;
 
-      .formulario,
-      .menu-mobile,
-      #pesquisa {
-        display: none;
-      }
+  gap: 10px;
 
-      .container {
-        padding: 0;
-      }
+  margin-bottom: 12px;
+}
 
-    }
+.tema-btn {
+  width: 100%;
 
-    /* =====================================================
+  height: 48px;
+
+  border-radius: 8px;
+
+  border: none;
+
+  font-size: 14px;
+
+  font-weight: bold;
+
+  cursor: pointer;
+}
+
+.tema-claro {
+  background: #ffffff;
+
+  color: #111827;
+
+  border: 2px solid #d1d5db;
+}
+
+.tema-dark {
+  background: #1f2937;
+
+  color: #ffffff;
+}
+
+.tema-win98 {
+  background: #c0c0c0;
+
+  color: #000000;
+
+  border: 2px outset #ffffff;
+
+  border-radius: 0;
+
+  font-family:
+    "MS Sans Serif",
+    Tahoma,
+    Arial,
+    sans-serif;
+}
+
+.tema-matrix {
+  background: #000000;
+
+  color: #00ff41;
+
+  border: 1px solid #00ff41;
+
+  border-radius: 0;
+
+  font-family: "Courier New", monospace;
+
+  text-shadow:
+    0 0 5px #00ff41;
+}
+
+.tema-btn:active {
+  transform: scale(.97);
+}
+
+.tema-btn.tema-ativo {
+  outline: 3px solid #2563eb;
+
+  outline-offset: 2px;
+}
+
+
+/* =====================================================
+   ANIMAÇÃO
+===================================================== */
+
+@keyframes fade {
+
+  from {
+    transform: scale(.95);
+
+    opacity: 0;
+  }
+
+  to {
+    transform: scale(1);
+
+    opacity: 1;
+  }
+
+}
+
+
+/* =====================================================
    ÍCONES MONOCROMÁTICOS
 ===================================================== */
 
@@ -1425,19 +1321,20 @@ body.tema-matrix td:nth-child(5) {
   width: 22px;
   height: 22px;
 
-  font-family: "Courier New", monospace;
+  font-family:
+    "Courier New",
+    monospace;
 
   font-size: 19px;
+
   font-weight: bold;
 
   line-height: 22px;
 
   color: currentColor;
 
-  transition:
-    .2s ease;
+  transition: .2s ease;
 
-  /* impede aparência de emoji */
   font-variant-emoji: text;
 }
 
@@ -1447,62 +1344,7 @@ body.tema-matrix td:nth-child(5) {
 
 
 /* =====================================================
-   ÍCONES — MATRIX
-===================================================== */
-
-body.tema-matrix .menu-mobile button .icone {
-  color: #00ff41;
-
-  text-shadow:
-    0 0 4px #00ff41,
-    0 0 8px rgba(0, 255, 65, .7);
-}
-
-body.tema-matrix .menu-mobile button:hover .icone {
-  color: #7cff9b;
-
-  text-shadow:
-    0 0 5px #00ff41,
-    0 0 12px #00ff41;
-}
-
-
-/* =====================================================
-   ÍCONES — DARK
-===================================================== */
-
-body.tema-escuro .menu-mobile button .icone {
-  color: #f9fafb;
-}
-
-
-/* =====================================================
-   ÍCONES — WINDOWS 98
-===================================================== */
-
-body.tema-windows98 .menu-mobile button .icone {
-  color: #000000;
-
-  text-shadow: none;
-
-  font-family:
-    "MS Sans Serif",
-    Tahoma,
-    Arial,
-    sans-serif;
-}
-
-
-/* =====================================================
-   ÍCONES — BRANCO
-===================================================== */
-
-body.tema-branco .menu-mobile button .icone {
-  color: #6b7280;
-}
-
-    /* =====================================================
-   A-Z — ÍCONE CSS MONOCROMÁTICO
+   A-Z — ÍCONE CSS
 ===================================================== */
 
 .menu-mobile button .icone-az {
@@ -1519,6 +1361,7 @@ body.tema-branco .menu-mobile button .icone {
   font-family: Arial, sans-serif;
 
   font-size: 17px;
+
   font-weight: bold;
 
   color: currentColor;
@@ -1553,7 +1396,7 @@ body.tema-branco .menu-mobile button .icone {
 
 
 /* =====================================================
-   CHECK — ÍCONE CSS MONOCROMÁTICO
+   CHECK — ÍCONE CSS
 ===================================================== */
 
 .menu-mobile button .icone-check {
@@ -1585,9 +1428,10 @@ body.tema-branco .menu-mobile button .icone {
 
 
 /* =====================================================
-   MATRIX
+   ÍCONES — MATRIX
 ===================================================== */
 
+body.tema-matrix .menu-mobile button .icone,
 body.tema-matrix .menu-mobile button .icone-az,
 body.tema-matrix .menu-mobile button .icone-check {
   color: #00ff41;
@@ -1597,23 +1441,22 @@ body.tema-matrix .menu-mobile button .icone-check {
     0 0 8px rgba(0, 255, 65, .7);
 }
 
+body.tema-matrix .menu-mobile button:hover .icone,
+body.tema-matrix .menu-mobile button:hover .icone-az,
+body.tema-matrix .menu-mobile button:hover .icone-check {
+  color: #7cff9b;
 
-/* =====================================================
-   WINDOWS 98
-===================================================== */
-
-body.tema-windows98 .menu-mobile button .icone-az,
-body.tema-windows98 .menu-mobile button .icone-check {
-  color: #000000;
-
-  text-shadow: none;
+  text-shadow:
+    0 0 5px #00ff41,
+    0 0 12px #00ff41;
 }
 
 
 /* =====================================================
-   DARK
+   ÍCONES — DARK
 ===================================================== */
 
+body.tema-escuro .menu-mobile button .icone,
 body.tema-escuro .menu-mobile button .icone-az,
 body.tema-escuro .menu-mobile button .icone-check {
   color: #f9fafb;
@@ -1621,13 +1464,365 @@ body.tema-escuro .menu-mobile button .icone-check {
 
 
 /* =====================================================
-   BRANCO
+   ÍCONES — WINDOWS 98
 ===================================================== */
 
+body.tema-windows98 .menu-mobile button .icone,
+body.tema-windows98 .menu-mobile button .icone-az,
+body.tema-windows98 .menu-mobile button .icone-check {
+  color: #000000;
+
+  text-shadow: none;
+
+  font-family:
+    "MS Sans Serif",
+    Tahoma,
+    Arial,
+    sans-serif;
+}
+
+
+/* =====================================================
+   ÍCONES — BRANCO
+===================================================== */
+
+body.tema-branco .menu-mobile button .icone,
 body.tema-branco .menu-mobile button .icone-az,
 body.tema-branco .menu-mobile button .icone-check {
   color: #6b7280;
 }
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 768px) {
+
+  html,
+  body {
+    width: 100%;
+
+    max-width: 100%;
+
+    overflow-x: hidden;
+  }
+
+
+  .container {
+    width: 100%;
+
+    max-width: 100%;
+
+    height: 100dvh;
+
+    padding: 12px;
+
+    padding-bottom: 70px;
+
+    overflow: hidden;
+  }
+
+
+  /* ===================================================
+     MENU
+  =================================================== */
+
+  .menu-mobile {
+    width: 100vw;
+
+    max-width: 100vw;
+
+    left: 0;
+
+    right: auto;
+
+    padding: 4px 1px;
+  }
+
+  .menu-mobile button {
+    min-height: 50px;
+
+    height: 50px;
+
+    padding: 2px 0;
+  }
+
+  .menu-mobile button span {
+    font-size: 18px;
+
+    line-height: 19px;
+  }
+
+  .menu-mobile button small {
+    font-size: 7px;
+
+    line-height: 9px;
+  }
+
+
+  /* ===================================================
+     TABELA
+  =================================================== */
+
+  .tabela-wrapper {
+    flex: 1 1 auto;
+
+    min-height: 0;
+
+    overflow-y: auto;
+
+    overflow-x: hidden;
+  }
+
+  table {
+    width: 100%;
+
+    table-layout: auto;
+  }
+
+  th,
+  td {
+    padding: 4px;
+
+    font-size: 11px;
+  }
+
+
+  /* Nº */
+
+  th:nth-child(1),
+  td:nth-child(1) {
+    width: 20px;
+
+    padding: 2px;
+
+    font-size: 10px;
+  }
+
+
+  /* PRODUTO */
+
+  th:nth-child(2),
+  td:nth-child(2) {
+    width: auto;
+
+    max-width: 15ch;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+  }
+
+
+  /* QTD */
+
+  th:nth-child(3),
+  td:nth-child(3) {
+    width: 42px;
+
+    white-space: nowrap;
+  }
+
+
+  /* VALOR */
+
+  th:nth-child(4),
+  td:nth-child(4) {
+    width: 65px;
+
+    white-space: nowrap;
+  }
+
+
+  /* TOTAL */
+
+  th:nth-child(5),
+  td:nth-child(5) {
+    width: 65px;
+
+    white-space: nowrap;
+  }
+
+
+  /* CHECK */
+
+  th:nth-child(6),
+  td:nth-child(6) {
+    width: 32px;
+
+    padding-left: 1px;
+    padding-right: 1px;
+
+    text-align: center;
+
+    white-space: nowrap;
+  }
+
+
+  /* ===================================================
+     TOTAL
+  =================================================== */
+
+  .total {
+    font-size: 14px;
+
+    gap: 10px;
+
+    min-height: 60px;
+
+    padding: 6px 0;
+  }
+
+  .resumo-esquerda,
+  .resumo-direita {
+    gap: 5px;
+  }
+
+
+  /* ===================================================
+     WINDOWS 98 — TOTAL
+  =================================================== */
+
+  body.tema-windows98 .total {
+    display: flex !important;
+
+    min-height: 60px;
+
+    margin-top: 4px;
+
+    margin-bottom: 0;
+
+    padding: 6px 4px;
+
+    color: #000000;
+
+    background: #c0c0c0;
+  }
+
+
+  /* ===================================================
+     MATRIX — TABELA MOBILE
+  =================================================== */
+
+  body.tema-matrix th,
+  body.tema-matrix td {
+    padding: 4px 2px;
+
+    font-size: 11px;
+
+    white-space: nowrap;
+
+    word-break: normal;
+  }
+
+
+  /* Nº */
+
+  body.tema-matrix th:nth-child(1),
+  body.tema-matrix td:nth-child(1) {
+    width: 22px;
+
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+
+
+  /* PRODUTO */
+
+  body.tema-matrix th:nth-child(2),
+  body.tema-matrix td:nth-child(2) {
+    width: auto;
+
+    max-width: 15ch;
+
+    white-space: nowrap;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+  }
+
+
+  /* QTD */
+
+  body.tema-matrix th:nth-child(3),
+  body.tema-matrix td:nth-child(3) {
+    width: 43px;
+
+    white-space: nowrap;
+
+    word-break: normal;
+  }
+
+
+  /* VALOR */
+
+  body.tema-matrix th:nth-child(4),
+  body.tema-matrix td:nth-child(4) {
+    width: 70px;
+
+    white-space: nowrap;
+
+    word-break: normal;
+  }
+
+
+  /* TOTAL */
+
+  body.tema-matrix th:nth-child(5),
+  body.tema-matrix td:nth-child(5) {
+    width: 70px;
+
+    white-space: nowrap;
+
+    word-break: normal;
+  }
+
+
+  /* CHECK */
+
+  body.tema-matrix th:nth-child(6),
+  body.tema-matrix td:nth-child(6) {
+    width: 32px;
+
+    padding-left: 1px;
+    padding-right: 1px;
+
+    text-align: center;
+
+    white-space: nowrap;
+  }
+
+}
+
+
+/* =====================================================
+   IMPRESSÃO
+===================================================== */
+
+@media print {
+
+  body {
+    background: #ffffff;
+
+    padding: 0;
+  }
+
+  .formulario,
+  .menu-mobile,
+  #pesquisa {
+    display: none;
+  }
+
+  .container {
+    padding: 0;
+  }
+
+}
+
 
 
 
