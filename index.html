@@ -1389,6 +1389,96 @@
 
     }
 
+    /* =====================================================
+   ÍCONES MONOCROMÁTICOS
+===================================================== */
+
+.menu-mobile button .icone {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
+  width: 22px;
+  height: 22px;
+
+  font-family: "Courier New", monospace;
+
+  font-size: 19px;
+  font-weight: bold;
+
+  line-height: 22px;
+
+  color: currentColor;
+
+  transition:
+    .2s ease;
+
+  /* impede aparência de emoji */
+  font-variant-emoji: text;
+}
+
+.menu-mobile button:hover .icone {
+  transform: scale(1.12);
+}
+
+
+/* =====================================================
+   ÍCONES — MATRIX
+===================================================== */
+
+body.tema-matrix .menu-mobile button .icone {
+  color: #00ff41;
+
+  text-shadow:
+    0 0 4px #00ff41,
+    0 0 8px rgba(0, 255, 65, .7);
+}
+
+body.tema-matrix .menu-mobile button:hover .icone {
+  color: #7cff9b;
+
+  text-shadow:
+    0 0 5px #00ff41,
+    0 0 12px #00ff41;
+}
+
+
+/* =====================================================
+   ÍCONES — DARK
+===================================================== */
+
+body.tema-escuro .menu-mobile button .icone {
+  color: #f9fafb;
+}
+
+
+/* =====================================================
+   ÍCONES — WINDOWS 98
+===================================================== */
+
+body.tema-windows98 .menu-mobile button .icone {
+  color: #000000;
+
+  text-shadow: none;
+
+  font-family:
+    "MS Sans Serif",
+    Tahoma,
+    Arial,
+    sans-serif;
+}
+
+
+/* =====================================================
+   ÍCONES — BRANCO
+===================================================== */
+
+body.tema-branco .menu-mobile button .icone {
+  color: #6b7280;
+}
+
+
   </style>
 </head>
 
@@ -1417,7 +1507,7 @@
          MENU
     ===================================================== -->
 
-    <nav class="menu-mobile">
+  <!--<nav class="menu-mobile">
 
       <button onclick="imprimirTXT()">
         <span>🖨️</span>
@@ -1460,7 +1550,53 @@
         hidden
         accept=".json">
 
-    </nav>
+    </nav>-->
+
+    <nav class="menu-mobile">
+
+  <button onclick="imprimirTXT()">
+    <span class="icone">▣</span>
+    <small>Print</small>
+  </button>
+
+  <button onclick="abrirModalNovoItem()">
+    <span class="icone">+</span>
+    <small>Adicionar</small>
+  </button>
+
+  <button onclick="abrirModalTema()">
+    <span class="icone">◈</span>
+    <small>Tema</small>
+  </button>
+
+  <button onclick="exportarLista()">
+    <span class="icone">↓</span>
+    <small>Backup</small>
+  </button>
+
+  <button onclick="document.getElementById('arquivo').click()">
+    <span class="icone">↑</span>
+    <small>Importar</small>
+  </button>
+
+  <button onclick="ordenarAlfabetico()">
+    <span class="icone">A↕</span>
+    <small>A-Z</small>
+  </button>
+
+  <button onclick="desmarcarTodos()">
+    <span class="icone">☑</span>
+    <small>Desmarcar</small>
+  </button>
+
+  <input
+    type="file"
+    id="arquivo"
+    hidden
+    accept=".json">
+
+</nav>
+
 
 
     <!-- =====================================================
