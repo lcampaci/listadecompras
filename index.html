@@ -1574,11 +1574,15 @@ function fecharModalTema() {
 }
 
 
- document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => {
 
   carregarTema();
-
   renderizarTabela();
+
+
+  // =========================
+  // PESQUISA
+  // =========================
 
   $("pesquisa").addEventListener("input", function () {
 
@@ -1596,20 +1600,58 @@ function fecharModalTema() {
 
   });
 
+
+  // =========================
+  // PWA
+  // =========================
+
+  if (window.matchMedia("(display-mode: standalone)").matches) {
+    console.log("Rodando como PWA");
+  }
+
+
+  // =========================
+  // MODAL DE AÇÕES
+  // =========================
+
+  const modal = $("modalAcoes");
+
+  const modalConteudo =
+    document.querySelector("#modalAcoes .modal-conteudo");
+
+  modal.addEventListener("click", () => {
+
+    fecharModal();
+
+    vibrar([80, 40, 80]);
+
+  });
+
+  modalConteudo.addEventListener("click", (e) => {
+
+    e.stopPropagation();
+
+  });
+
+
+  // =========================
+  // MODAL DE EDIÇÃO
+  // =========================
+
+  const modalEdicao = $("modalEdicao");
+
+  modalEdicao.addEventListener("click", (e) => {
+
+    if (e.target === modalEdicao) {
+      fecharModalEdicao();
+    }
+
+  });
+
 });
 
-      // 👇 AQUI
-      if (window.matchMedia('(display-mode: standalone)').matches) {
-        console.log("Rodando como PWA");
-      }
 
-      const modal = $("modalAcoes");
-
-      const modalEdicao = $("modalEdicao");
-
-modalEdicao.addEventListener("click", () => {
-  fecharModalEdicao();
-});
+     
 
       const modalConteudo =
         document.querySelector(".modal-conteudo");
