@@ -831,9 +831,16 @@ body.tema-windows98 .container {
   border: 3px outset #ffffff;
 
   padding: 10px;
+  padding-bottom: 75px;
 
-  padding-bottom: 70px;
+  height: 100dvh;
+
+  display: flex;
+  flex-direction: column;
+
+  overflow: hidden;
 }
+
 
 body.tema-windows98 .topo-app {
   background: #000080;
@@ -922,16 +929,16 @@ body.tema-windows98 button:active {
 ===================================================== */
 
 body.tema-windows98 .total {
-  display: flex !important;
+  flex: 0 0 auto;
 
-  flex-shrink: 0;
+  display: flex !important;
 
   width: 100%;
 
   min-height: 60px;
+  height: 60px;
 
   margin-top: 4px;
-
   margin-bottom: 0;
 
   padding: 6px 4px;
@@ -941,6 +948,10 @@ body.tema-windows98 .total {
   color: #000000;
 
   overflow: visible;
+
+  position: relative;
+
+  z-index: 10;
 }
 
 body.tema-windows98 .resumo-esquerda,
@@ -952,40 +963,12 @@ body.tema-windows98 .resumo-direita {
   gap: 6px;
 
   color: #000000;
+
+  flex: 1;
 }
 
-body.tema-windows98 .tabela-wrapper {
-  flex: 1 1 auto;
-
-  min-height: 0;
-
-  overflow-y: auto;
-
-  overflow-x: hidden;
-}
-
-body.tema-windows98 .modal-conteudo,
-body.tema-windows98 .modal-edicao-conteudo,
-body.tema-windows98 .modal-novo-item {
-  background: #c0c0c0;
-
-  border: 3px outset #ffffff;
-
-  border-radius: 0;
-}
-
-body.tema-windows98 .modal-conteudo h3,
-body.tema-windows98 .modal-edicao-conteudo h3,
-body.tema-windows98 .modal-novo-item h3 {
-  color: #000000;
-}
-
-body.tema-windows98 .checkmark {
-  border-radius: 0;
-
-  background: #ffffff;
-
-  border: 2px inset #ffffff;
+body.tema-windows98 .resumo-direita {
+  text-align: right;
 }
 
 /* =====================================================
@@ -1940,20 +1923,29 @@ body.tema-matrix .btn-excluir {
   =================================================== */
 
   body.tema-windows98 .total {
-    display: flex !important;
+  display: flex !important;
 
-    min-height: 60px;
+  flex: 0 0 60px;
 
-    margin-top: 4px;
+  width: 100%;
 
-    margin-bottom: 0;
+  height: 60px;
+  min-height: 60px;
 
-    padding: 6px 4px;
+  margin-top: 4px;
+  margin-bottom: 0;
 
-    color: #000000;
+  padding: 6px 4px;
 
-    background: #c0c0c0;
-  }
+  color: #000000;
+
+  background: #c0c0c0;
+
+  position: relative;
+
+  z-index: 10;
+}
+
 
 
   /* ===================================================
