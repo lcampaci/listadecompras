@@ -33,6 +33,10 @@
    RESET
 ===================================================== */
 
+/* =====================================================
+   RESET
+===================================================== */
+
 * {
   margin: 0;
   padding: 0;
@@ -74,7 +78,7 @@ body {
 
 
 /* =====================================================
-   TOPO
+   TOPO / PESQUISA
 ===================================================== */
 
 .topo-app {
@@ -85,12 +89,9 @@ body {
   justify-content: center;
 
   margin-bottom: 2px;
+
+  background: #ffffff;
 }
-
-
-/* =====================================================
-   PESQUISA
-===================================================== */
 
 #pesquisa {
   width: 100%;
@@ -124,7 +125,6 @@ body {
   max-width: 100vw;
 
   margin: 0;
-
   padding: 5px 1px;
 
   display: flex;
@@ -135,8 +135,7 @@ body {
 
   border-top: 1px solid #e5e7eb;
 
-  box-shadow:
-    0 -2px 12px rgba(0, 0, 0, .08);
+  box-shadow: 0 -2px 12px rgba(0, 0, 0, .08);
 
   z-index: 9999;
 
@@ -150,7 +149,6 @@ body {
 
 .menu-mobile button {
   flex: 1 1 0;
-
   min-width: 0;
   width: 0;
 
@@ -158,12 +156,10 @@ body {
   min-height: 50px;
 
   border: none;
-
   background: none;
 
   display: flex;
   flex-direction: column;
-
   align-items: center;
   justify-content: center;
 
@@ -194,7 +190,6 @@ body {
   line-height: 9px;
 
   white-space: nowrap;
-
   overflow: hidden;
   text-overflow: ellipsis;
 
@@ -233,7 +228,6 @@ select {
 
 button {
   border: none;
-
   cursor: pointer;
 
   font-weight: bold;
@@ -326,8 +320,6 @@ td:nth-child(3) {
   width: 45px;
 
   text-align: right;
-
-  white-space: nowrap;
 }
 
 th:nth-child(4),
@@ -335,8 +327,6 @@ td:nth-child(4) {
   width: 70px;
 
   text-align: right;
-
-  white-space: nowrap;
 }
 
 th:nth-child(5),
@@ -344,8 +334,6 @@ td:nth-child(5) {
   width: 70px;
 
   text-align: right;
-
-  white-space: nowrap;
 }
 
 th:nth-child(6),
@@ -353,8 +341,6 @@ td:nth-child(6) {
   width: 35px;
 
   text-align: center;
-
-  white-space: nowrap;
 }
 
 
@@ -674,8 +660,24 @@ body.tema-branco .container {
   background: #ffffff;
 }
 
+body.tema-branco .topo-app {
+  background: #ffffff;
+}
+
 body.tema-branco .topo-app h1 {
   color: #111827;
+}
+
+body.tema-branco #pesquisa {
+  background: #ffffff;
+
+  color: #111827;
+
+  border-color: #d1d5db;
+}
+
+body.tema-branco #pesquisa::placeholder {
+  color: #6b7280;
 }
 
 body.tema-branco table {
@@ -732,8 +734,24 @@ body.tema-escuro .container {
   background: #111827;
 }
 
+body.tema-escuro .topo-app {
+  background: #111827;
+}
+
 body.tema-escuro .topo-app h1 {
   color: #f9fafb;
+}
+
+body.tema-escuro #pesquisa {
+  background: #1f2937;
+
+  color: #f9fafb;
+
+  border-color: #374151;
+}
+
+body.tema-escuro #pesquisa::placeholder {
+  color: #9ca3af;
 }
 
 body.tema-escuro input,
@@ -786,20 +804,6 @@ body.tema-escuro .comprado td {
   background: #16351f;
 }
 
-body.tema-escuro .modal-conteudo,
-body.tema-escuro .modal-edicao-conteudo,
-body.tema-escuro .modal-novo-item {
-  background: #1f2937;
-
-  color: #f9fafb;
-}
-
-body.tema-escuro .modal-conteudo h3,
-body.tema-escuro .modal-edicao-conteudo h3,
-body.tema-escuro .modal-novo-item h3 {
-  color: #f9fafb;
-}
-
 
 /* =====================================================
    WINDOWS 98
@@ -841,6 +845,20 @@ body.tema-windows98 .topo-app {
   padding: 4px 6px;
 
   margin-bottom: 6px;
+}
+
+body.tema-windows98 #pesquisa {
+  background: #ffffff;
+
+  color: #000000;
+
+  border: 2px inset #ffffff;
+
+  border-radius: 0;
+}
+
+body.tema-windows98 #pesquisa::placeholder {
+  color: #555555;
 }
 
 body.tema-windows98 input,
@@ -904,7 +922,7 @@ body.tema-windows98 .menu-mobile button {
 
 
 /* =====================================================
-   WINDOWS 98 — TOTAL
+   TOTAL WINDOWS 98
 ===================================================== */
 
 body.tema-windows98 .total {
@@ -993,11 +1011,29 @@ body.tema-matrix .container {
   background: #000000;
 }
 
-body.tema-matrix .topo-app h1 {
+body.tema-matrix .topo-app {
+  background: #000000;
+
+  padding: 0;
+}
+
+body.tema-matrix #pesquisa {
+  background: #000000;
+
   color: #00ff41;
 
-  text-shadow:
-    0 0 8px #00ff41;
+  border: 1px solid #00ff41;
+
+  border-radius: 0;
+
+  box-shadow:
+    0 0 5px rgba(0, 255, 65, .25);
+
+  font-family: "Courier New", monospace;
+}
+
+body.tema-matrix #pesquisa::placeholder {
+  color: #008f11;
 }
 
 body.tema-matrix input,
@@ -1050,7 +1086,13 @@ body.tema-matrix .menu-mobile button {
   background: transparent;
 }
 
+body.tema-matrix .menu-mobile button:hover {
+  color: #7cff9b;
+}
+
 body.tema-matrix .total {
+  background: #000000;
+
   color: #00ff41;
 }
 
@@ -1095,84 +1137,139 @@ body.tema-matrix .modal-novo-item h3 {
 
 
 /* =====================================================
-   MATRIX — TABELA
+   BOTÕES DOS MODAIS — MATRIX
 ===================================================== */
 
-body.tema-matrix th,
-body.tema-matrix td {
-  padding: 4px 2px;
+body.tema-matrix .modal button {
+  background: #003b00;
 
-  font-size: 11px;
+  color: #00ff41;
 
-  white-space: nowrap;
+  border: 1px solid #00ff41;
 
-  word-break: normal;
+  border-radius: 0;
+
+  box-shadow:
+    0 0 5px rgba(0, 255, 65, .15);
 }
 
-body.tema-matrix th:nth-child(1),
-body.tema-matrix td:nth-child(1) {
+body.tema-matrix .modal button:hover {
+  background: #005500;
+
+  color: #7cff9b;
+}
+
+body.tema-matrix .btn-cancelar,
+body.tema-matrix .btn-cancelar-edicao,
+body.tema-matrix .btn-cancelar-novo {
+  background: #001f00;
+}
+
+body.tema-matrix .btn-editar,
+body.tema-matrix .btn-salvar,
+body.tema-matrix .btn-salvar-novo,
+body.tema-matrix .btn-salvar-edicao {
+  background: #003b00;
+}
+
+body.tema-matrix .btn-excluir {
+  background: #330000;
+
+  color: #ff5555;
+
+  border-color: #ff3333;
+}
+
+
+/* =====================================================
+   ÍCONES MONOCROMÁTICOS
+===================================================== */
+
+.menu-mobile button .icone {
+  display: flex;
+
+  align-items: center;
+  justify-content: center;
+
   width: 22px;
+  height: 22px;
 
-  padding-left: 2px;
-  padding-right: 2px;
+  font-family: "Courier New", monospace;
+
+  font-size: 19px;
+  font-weight: bold;
+
+  line-height: 22px;
+
+  color: currentColor;
+
+  transition: .2s ease;
+
+  font-variant-emoji: text;
 }
 
-body.tema-matrix th:nth-child(2),
-body.tema-matrix td:nth-child(2) {
-  width: auto;
-
-  white-space: nowrap;
-
-  overflow: hidden;
-
-  text-overflow: ellipsis;
-
-  word-break: normal;
+.menu-mobile button:hover .icone {
+  transform: scale(1.12);
 }
 
-body.tema-matrix th:nth-child(3),
-body.tema-matrix td:nth-child(3) {
-  width: 43px;
 
-  white-space: nowrap;
+/* =====================================================
+   ÍCONES MATRIX
+===================================================== */
 
-  word-break: normal;
+body.tema-matrix .menu-mobile button .icone {
+  color: #00ff41;
 
-  text-align: right;
+  text-shadow:
+    0 0 4px #00ff41,
+    0 0 8px rgba(0, 255, 65, .7);
+
+  font-family: "Courier New", monospace;
+
+  font-variant-emoji: text;
 }
 
-body.tema-matrix th:nth-child(4),
-body.tema-matrix td:nth-child(4) {
-  width: 70px;
+body.tema-matrix .menu-mobile button:hover .icone {
+  color: #7cff9b;
 
-  white-space: nowrap;
-
-  word-break: normal;
-
-  text-align: right;
+  text-shadow:
+    0 0 5px #00ff41,
+    0 0 12px #00ff41;
 }
 
-body.tema-matrix th:nth-child(5),
-body.tema-matrix td:nth-child(5) {
-  width: 70px;
 
-  white-space: nowrap;
+/* =====================================================
+   ÍCONES DARK
+===================================================== */
 
-  word-break: normal;
-
-  text-align: right;
+body.tema-escuro .menu-mobile button .icone {
+  color: #f9fafb;
 }
 
-body.tema-matrix th:nth-child(6),
-body.tema-matrix td:nth-child(6) {
-  width: 32px;
 
-  padding-left: 1px;
-  padding-right: 1px;
+/* =====================================================
+   ÍCONES WINDOWS 98
+===================================================== */
 
-  text-align: center;
+body.tema-windows98 .menu-mobile button .icone {
+  color: #000000;
 
-  white-space: nowrap;
+  text-shadow: none;
+
+  font-family:
+    "MS Sans Serif",
+    Tahoma,
+    Arial,
+    sans-serif;
+}
+
+
+/* =====================================================
+   ÍCONES BRANCO
+===================================================== */
+
+body.tema-branco .menu-mobile button .icone {
+  color: #6b7280;
 }
 
 
@@ -1251,8 +1348,7 @@ body.tema-matrix td:nth-child(6) {
 
   font-family: "Courier New", monospace;
 
-  text-shadow:
-    0 0 5px #00ff41;
+  text-shadow: 0 0 5px #00ff41;
 }
 
 .tema-btn:active {
@@ -1288,382 +1384,6 @@ body.tema-matrix td:nth-child(6) {
 
 
 /* =====================================================
-   ÍCONES MONOCROMÁTICOS
-===================================================== */
-
-.menu-mobile button .icone {
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  width: 22px;
-  height: 22px;
-
-  font-family:
-    "Courier New",
-    monospace;
-
-  font-size: 19px;
-
-  font-weight: bold;
-
-  line-height: 22px;
-
-  color: currentColor;
-
-  transition: .2s ease;
-
-  font-variant-emoji: text;
-}
-
-.menu-mobile button:hover .icone {
-  transform: scale(1.12);
-}
-
-
-/* =====================================================
-   A-Z — ÍCONE CSS
-===================================================== */
-
-.menu-mobile button .icone-az {
-  position: relative;
-
-  display: flex;
-
-  align-items: center;
-  justify-content: center;
-
-  width: 24px;
-  height: 22px;
-
-  font-family: Arial, sans-serif;
-
-  font-size: 17px;
-
-  font-weight: bold;
-
-  color: currentColor;
-}
-
-.icone-az > span:first-child {
-  line-height: 22px;
-}
-
-.icone-az .seta-cima,
-.icone-az .seta-baixo {
-  position: absolute;
-
-  font-family: Arial, sans-serif;
-
-  font-size: 6px;
-
-  line-height: 6px;
-
-  color: currentColor;
-}
-
-.icone-az .seta-cima {
-  right: 1px;
-  top: 3px;
-}
-
-.icone-az .seta-baixo {
-  right: 1px;
-  bottom: 3px;
-}
-
-
-/* =====================================================
-   CHECK — ÍCONE CSS
-===================================================== */
-
-.menu-mobile button .icone-check {
-  position: relative;
-
-  width: 20px;
-  height: 20px;
-
-  border: 2px solid currentColor;
-
-  border-radius: 3px;
-}
-
-.icone-check span {
-  position: absolute;
-
-  left: 4px;
-  top: 1px;
-
-  width: 7px;
-  height: 12px;
-
-  border: solid currentColor;
-
-  border-width: 0 2px 2px 0;
-
-  transform: rotate(45deg);
-}
-
-
-/* =====================================================
-   ÍCONES — MATRIX
-===================================================== */
-
-body.tema-matrix .menu-mobile button .icone,
-body.tema-matrix .menu-mobile button .icone-az,
-body.tema-matrix .menu-mobile button .icone-check {
-  color: #00ff41;
-
-  text-shadow:
-    0 0 4px #00ff41,
-    0 0 8px rgba(0, 255, 65, .7);
-}
-
-body.tema-matrix .menu-mobile button:hover .icone,
-body.tema-matrix .menu-mobile button:hover .icone-az,
-body.tema-matrix .menu-mobile button:hover .icone-check {
-  color: #7cff9b;
-
-  text-shadow:
-    0 0 5px #00ff41,
-    0 0 12px #00ff41;
-}
-
-
-/* =====================================================
-   ÍCONES — DARK
-===================================================== */
-
-body.tema-escuro .menu-mobile button .icone,
-body.tema-escuro .menu-mobile button .icone-az,
-body.tema-escuro .menu-mobile button .icone-check {
-  color: #f9fafb;
-}
-
-
-/* =====================================================
-   ÍCONES — WINDOWS 98
-===================================================== */
-
-body.tema-windows98 .menu-mobile button .icone,
-body.tema-windows98 .menu-mobile button .icone-az,
-body.tema-windows98 .menu-mobile button .icone-check {
-  color: #000000;
-
-  text-shadow: none;
-
-  font-family:
-    "MS Sans Serif",
-    Tahoma,
-    Arial,
-    sans-serif;
-}
-
-
-/* =====================================================
-   ÍCONES — BRANCO
-===================================================== */
-
-body.tema-branco .menu-mobile button .icone,
-body.tema-branco .menu-mobile button .icone-az,
-body.tema-branco .menu-mobile button .icone-check {
-  color: #6b7280;
-}
-
-
-/* =====================================================
-   MATRIX — BOTÕES MONOCROMÁTICOS
-===================================================== */
-
-body.tema-matrix button {
-  background: #000000;
-
-  color: #00ff41;
-
-  border: 1px solid #00ff41;
-
-  border-radius: 0;
-
-  font-family: "Courier New", monospace;
-
-  text-shadow:
-    0 0 4px #00ff41;
-
-  box-shadow:
-    0 0 5px rgba(0, 255, 65, .15);
-}
-
-body.tema-matrix button:hover {
-  background: #001f00;
-
-  color: #7cff9b;
-
-  border-color: #7cff9b;
-
-  box-shadow:
-    0 0 8px rgba(0, 255, 65, .35);
-}
-
-body.tema-matrix button:active {
-  background: #003b00;
-
-  color: #00ff41;
-
-  transform: scale(.98);
-}
-
-
-/* =====================================================
-   MATRIX — MENU INFERIOR
-===================================================== */
-
-body.tema-matrix .menu-mobile button {
-  background: transparent;
-
-  color: #00ff41;
-
-  border: none;
-
-  box-shadow: none;
-
-  text-shadow:
-    0 0 4px #00ff41;
-}
-
-body.tema-matrix .menu-mobile button:hover {
-  background: transparent;
-
-  color: #7cff9b;
-
-  border: none;
-
-  box-shadow: none;
-}
-
-
-/* =====================================================
-   MATRIX — BOTÕES DOS MODAIS
-===================================================== */
-
-body.tema-matrix .modal-botoes button,
-body.tema-matrix .botoes-edicao button,
-body.tema-matrix .botoes-novo-item button {
-  background: #000000;
-
-  color: #00ff41;
-
-  border: 1px solid #00ff41;
-
-  border-radius: 0;
-
-  box-shadow:
-    0 0 5px rgba(0, 255, 65, .2);
-}
-
-body.tema-matrix .modal-botoes button:hover,
-body.tema-matrix .botoes-edicao button:hover,
-body.tema-matrix .botoes-novo-item button:hover {
-  background: #001f00;
-
-  color: #7cff9b;
-
-  border-color: #7cff9b;
-
-  box-shadow:
-    0 0 10px rgba(0, 255, 65, .4);
-}
-
-
-/* =====================================================
-   MATRIX — BOTÕES DE TEMA
-===================================================== */
-
-body.tema-matrix .tema-btn {
-  background: #000000;
-
-  color: #00ff41;
-
-  border: 1px solid #00ff41;
-
-  border-radius: 0;
-
-  text-shadow:
-    0 0 4px #00ff41;
-
-  box-shadow:
-    0 0 5px rgba(0, 255, 65, .2);
-}
-
-body.tema-matrix .tema-btn:hover {
-  background: #001f00;
-
-  color: #7cff9b;
-
-  border-color: #7cff9b;
-
-  box-shadow:
-    0 0 10px rgba(0, 255, 65, .4);
-}
-
-
-/* =====================================================
-   MATRIX — CANCELAR
-===================================================== */
-
-body.tema-matrix .btn-cancelar,
-body.tema-matrix .btn-cancelar-edicao,
-body.tema-matrix .btn-cancelar-novo {
-  background: #000000;
-
-  color: #00ff41;
-
-  border: 1px solid #00ff41;
-}
-
-
-/* =====================================================
-   MATRIX — SALVAR / ADICIONAR
-===================================================== */
-
-body.tema-matrix .btn-salvar,
-body.tema-matrix .btn-salvar-novo,
-body.tema-matrix .btn-salvar-edicao {
-  background: #000000;
-
-  color: #00ff41;
-
-  border: 1px solid #00ff41;
-}
-
-
-/* =====================================================
-   MATRIX — EDITAR
-===================================================== */
-
-body.tema-matrix .btn-editar {
-  background: #000000;
-
-  color: #00ff41;
-
-  border: 1px solid #00ff41;
-}
-
-
-/* =====================================================
-   MATRIX — EXCLUIR
-===================================================== */
-
-body.tema-matrix .btn-excluir {
-  background: #000000;
-
-  color: #00ff41;
-
-  border: 1px solid #00ff41;
-}
-
-
-/* =====================================================
    MOBILE
 ===================================================== */
 
@@ -1677,7 +1397,6 @@ body.tema-matrix .btn-excluir {
 
     overflow-x: hidden;
   }
-
 
   .container {
     width: 100%;
@@ -1693,10 +1412,9 @@ body.tema-matrix .btn-excluir {
     overflow: hidden;
   }
 
-
-  /* ===================================================
-     MENU
-  =================================================== */
+  .topo-app {
+    width: 100%;
+  }
 
   .menu-mobile {
     width: 100vw;
@@ -1730,11 +1448,6 @@ body.tema-matrix .btn-excluir {
     line-height: 9px;
   }
 
-
-  /* ===================================================
-     TABELA
-  =================================================== */
-
   .tabela-wrapper {
     flex: 1 1 auto;
 
@@ -1743,6 +1456,8 @@ body.tema-matrix .btn-excluir {
     overflow-y: auto;
 
     overflow-x: hidden;
+
+    padding-right: 1px;
   }
 
   table {
@@ -1758,9 +1473,6 @@ body.tema-matrix .btn-excluir {
     font-size: 11px;
   }
 
-
-  /* Nº */
-
   th:nth-child(1),
   td:nth-child(1) {
     width: 20px;
@@ -1770,14 +1482,9 @@ body.tema-matrix .btn-excluir {
     font-size: 10px;
   }
 
-
-  /* PRODUTO */
-
   th:nth-child(2),
   td:nth-child(2) {
     width: auto;
-
-    max-width: 15ch;
 
     white-space: nowrap;
 
@@ -1786,55 +1493,47 @@ body.tema-matrix .btn-excluir {
     text-overflow: ellipsis;
   }
 
-
-  /* QTD */
-
   th:nth-child(3),
   td:nth-child(3) {
-    width: 42px;
+    width: 48px;
+
+    min-width: 48px;
 
     white-space: nowrap;
+
+    text-align: right;
   }
-
-
-  /* VALOR */
 
   th:nth-child(4),
-  td:nth-child(4) {
-    width: 65px;
-
-    white-space: nowrap;
-  }
-
-
-  /* TOTAL */
-
+  td:nth-child(4),
   th:nth-child(5),
   td:nth-child(5) {
     width: 65px;
 
+    min-width: 65px;
+
     white-space: nowrap;
+
+    text-align: right;
   }
-
-
-  /* CHECK */
 
   th:nth-child(6),
   td:nth-child(6) {
-    width: 32px;
+    width: 34px;
 
-    padding-left: 1px;
-    padding-right: 1px;
+    min-width: 34px;
+
+    padding-left: 2px;
+    padding-right: 2px;
 
     text-align: center;
-
-    white-space: nowrap;
   }
 
+  .check-container {
+    width: 22px;
 
-  /* ===================================================
-     TOTAL
-  =================================================== */
+    height: 22px;
+  }
 
   .total {
     font-size: 14px;
@@ -1853,7 +1552,7 @@ body.tema-matrix .btn-excluir {
 
 
   /* ===================================================
-     WINDOWS 98 — TOTAL
+     MOBILE — WINDOWS 98
   =================================================== */
 
   body.tema-windows98 .total {
@@ -1874,35 +1573,44 @@ body.tema-matrix .btn-excluir {
 
 
   /* ===================================================
-     MATRIX — TABELA MOBILE
+     MOBILE — MATRIX
   =================================================== */
+
+  body.tema-matrix .topo-app {
+    background: #000000;
+
+    padding: 0;
+  }
+
+  body.tema-matrix #pesquisa {
+    width: 100%;
+
+    background: #000000;
+
+    color: #00ff41;
+
+    border-color: #00ff41;
+  }
 
   body.tema-matrix th,
   body.tema-matrix td {
-    padding: 4px 2px;
+    padding: 4px 3px;
 
     font-size: 11px;
-
-    white-space: nowrap;
-
-    word-break: normal;
   }
-
 
   body.tema-matrix th:nth-child(1),
   body.tema-matrix td:nth-child(1) {
-    width: 22px;
+    width: 20px;
 
-    padding-left: 2px;
-    padding-right: 2px;
+    min-width: 20px;
   }
-
 
   body.tema-matrix th:nth-child(2),
   body.tema-matrix td:nth-child(2) {
     width: auto;
 
-    max-width: 15ch;
+    min-width: 0;
 
     white-space: nowrap;
 
@@ -1911,47 +1619,64 @@ body.tema-matrix .btn-excluir {
     text-overflow: ellipsis;
   }
 
-
   body.tema-matrix th:nth-child(3),
   body.tema-matrix td:nth-child(3) {
-    width: 43px;
+    width: 48px;
+
+    min-width: 48px;
 
     white-space: nowrap;
 
-    word-break: normal;
+    text-align: right;
   }
-
 
   body.tema-matrix th:nth-child(4),
   body.tema-matrix td:nth-child(4) {
-    width: 70px;
+    width: 65px;
+
+    min-width: 65px;
 
     white-space: nowrap;
 
-    word-break: normal;
+    text-align: right;
   }
-
 
   body.tema-matrix th:nth-child(5),
   body.tema-matrix td:nth-child(5) {
-    width: 70px;
+    width: 65px;
+
+    min-width: 65px;
 
     white-space: nowrap;
 
-    word-break: normal;
+    text-align: right;
   }
-
 
   body.tema-matrix th:nth-child(6),
   body.tema-matrix td:nth-child(6) {
-    width: 32px;
+    width: 34px;
 
-    padding-left: 1px;
-    padding-right: 1px;
+    min-width: 34px;
+
+    padding-left: 2px;
+
+    padding-right: 2px;
 
     text-align: center;
+  }
 
-    white-space: nowrap;
+  body.tema-matrix .check-container {
+    width: 22px;
+
+    height: 22px;
+
+    margin: 0 auto;
+  }
+
+  body.tema-matrix .total {
+    background: #000000;
+
+    color: #00ff41;
   }
 
 }
@@ -1980,9 +1705,6 @@ body.tema-matrix .btn-excluir {
   }
 
 }
-
-
-
 
   </style>
 </head>
