@@ -2363,15 +2363,18 @@ body.tema-windows98 td:nth-child(6) {
 ----------------------------------------------------- */
 
 body.tema-windows98 .check-container {
-  width: 16px;
-  height: 16px;
+  position: relative;
+
+  width: 18px;
+  height: 18px;
 
   margin: auto;
 
   display: flex;
-
   align-items: center;
   justify-content: center;
+
+  cursor: pointer;
 }
 
 body.tema-windows98 .check-container input {
@@ -2379,10 +2382,12 @@ body.tema-windows98 .check-container input {
 
   opacity: 0;
 
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
 
   margin: 0;
+
+  cursor: pointer;
 }
 
 body.tema-windows98 .checkmark {
@@ -2390,8 +2395,8 @@ body.tema-windows98 .checkmark {
 
   inset: 0;
 
-  width: 16px;
-  height: 16px;
+  width: 18px;
+  height: 18px;
 
   background: #ffffff;
 
@@ -2418,17 +2423,17 @@ body.tema-windows98 .check-container input:checked + .checkmark {
 }
 
 body.tema-windows98 .checkmark::after {
-  display: none;
-
   content: "×";
+
+  display: none;
 
   position: absolute;
 
-  left: 1px;
-  top: -5px;
+  left: 2px;
+  top: 0px;
 
-  width: 12px;
-  height: 14px;
+  width: 14px;
+  height: 16px;
 
   border: none;
 
@@ -2440,11 +2445,12 @@ body.tema-windows98 .checkmark::after {
     Arial,
     sans-serif;
 
-  font-size: 14px;
-
+  font-size: 16px;
   font-weight: bold;
 
-  line-height: 14px;
+  line-height: 16px;
+
+  text-align: center;
 
   transform: none;
 }
