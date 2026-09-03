@@ -717,6 +717,16 @@ body.tema-branco .menu-mobile button {
   color: #6b7280;
 }
 
+body.tema-branco textarea {
+  background: #ffffff;
+  color: #111827;
+  border-color: #d1d5db;
+}
+
+body.tema-branco textarea::placeholder {
+  color: #6b7280;
+}
+
 
 /* =====================================================
    TEMA ESCURO
@@ -800,6 +810,16 @@ body.tema-escuro .modal-novo-item h3 {
   color: #f9fafb;
 }
 
+body.tema-escuro textarea {
+  background: #1f2937;
+  color: #f9fafb;
+  border-color: #374151;
+}
+
+body.tema-escuro textarea::placeholder {
+  color: #9ca3af;
+}
+
 
 /* =====================================================
    WINDOWS 98
@@ -859,6 +879,38 @@ body.tema-windows98 select {
 
   border-radius: 0;
 }
+
+body.tema-windows98 textarea {
+  border-radius: 0;
+
+  border-top: 2px solid #808080;
+  border-left: 2px solid #808080;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+
+  background: #ffffff;
+  color: #000000;
+
+  font-family:
+    "MS Sans Serif",
+    Tahoma,
+    Arial,
+    sans-serif;
+
+  font-size: 11px;
+
+  box-shadow: none;
+}
+
+body.tema-windows98 textarea:focus {
+  outline: 1px dotted #000000;
+  outline-offset: -3px;
+}
+
+body.tema-windows98 textarea::placeholder {
+  color: #555555;
+}
+
 
 /* =====================================================
    WINDOWS 98 — BOTÕES
@@ -1158,6 +1210,36 @@ body.tema-matrix .modal-novo-item h3 {
   color: #00ff41;
 }
 
+body.tema-matrix textarea {
+  background: #000000;
+  color: #00ff41;
+
+  border: 1px solid #00ff41;
+  border-radius: 0;
+
+  font-family: "Courier New", monospace;
+
+  text-shadow:
+    0 0 4px #00ff41;
+
+  box-shadow:
+    0 0 5px rgba(0, 255, 65, .15);
+}
+
+body.tema-matrix textarea::placeholder {
+  color: #008f11;
+}
+
+body.tema-matrix textarea:focus {
+  outline: none;
+
+  border-color: #7cff9b;
+
+  box-shadow:
+    0 0 8px rgba(0, 255, 65, .35);
+}
+
+
 
 /* =====================================================
    MATRIX — TABELA
@@ -1282,6 +1364,8 @@ body.tema-matrix td:nth-child(6) {
 
   border: 2px solid #d1d5db;
 }
+
+
 
 .tema-dark {
   background: #1f2937;
@@ -2757,6 +2841,59 @@ body.tema-windows98 .menu-mobile button:last-of-type .icone-check span {
   border-width: 0 2px 2px 0;
 }
 
+.form-edicao textarea,
+.form-novo-item textarea {
+  width: 100%;
+  min-height: 70px;
+  resize: vertical;
+
+  border-radius: 6px;
+  border: 1px solid #ddd;
+
+  padding: 8px 10px;
+
+  font-size: 13px;
+
+  box-sizing: border-box;
+
+  text-transform: none;
+}
+
+.observacao-modal {
+  display: block;
+
+  margin-top: -10px;
+  margin-bottom: 18px;
+
+  color: #6b7280;
+
+  font-size: 12px;
+  line-height: 16px;
+
+  text-align: center;
+
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+body.tema-escuro .observacao-modal {
+  color: #d1d5db;
+}
+
+body.tema-matrix .observacao-modal {
+  color: #00ff41;
+
+  text-shadow:
+    0 0 4px #00ff41;
+}
+
+body.tema-windows98 .observacao-modal {
+  color: #000000;
+
+  font-size: 11px;
+}
+
+
   </style>
 </head>
 
@@ -2976,7 +3113,9 @@ body.tema-windows98 .menu-mobile button:last-of-type .icone-check span {
 
       <h3 id="modalTitulo"></h3>
 
-      <div class="modal-botoes">
+		<div id="modalObservacao" class="observacao-modal"></div>
+
+		<div class="modal-botoes">
 
         <button
           class="btn-editar"
@@ -3040,6 +3179,11 @@ body.tema-windows98 .menu-mobile button:last-of-type .icone-check span {
           <option>Peso</option>
 
         </select>
+
+<textarea
+  id="editarObservacao"
+  placeholder="Observações"
+  maxlength="200"></textarea>
 
 
         <div class="botoes-edicao">
@@ -3159,6 +3303,12 @@ body.tema-windows98 .menu-mobile button:last-of-type .icone-check span {
           <option>Peso</option>
 
         </select>
+		
+		<textarea
+  id="novaObservacao"
+  placeholder="Observações"
+  maxlength="200"></textarea>
+
 
 
         <div class="botoes-novo-item">
@@ -3413,25 +3563,36 @@ body.tema-windows98 .menu-mobile button:last-of-type .icone-check span {
 
     function abrirModal(id) {
 
-      itemSelecionado = id;
+  itemSelecionado = id;
 
-      const item =
-        lista.find(
-          i => i.id === id
-        );
-
-
-      if (!item) return;
+  const item =
+    lista.find(
+      i => i.id === id
+    );
 
 
-      $("modalTitulo").textContent =
-        item.produto;
+  if (!item) return;
 
 
-      $("modalAcoes").style.display =
-        "flex";
+  $("modalTitulo").textContent =
+    item.produto;
 
-    }
+
+  $("modalObservacao").textContent =
+    item.observacao || "";
+
+
+  $("modalObservacao").style.display =
+    item.observacao
+      ? "block"
+      : "none";
+
+
+  $("modalAcoes").style.display =
+    "flex";
+
+}
+
 
 
     function fecharModal() {
@@ -3472,6 +3633,10 @@ body.tema-windows98 .menu-mobile button:last-of-type .icone-check span {
 
       $("editarTipo").value =
         item.tipo;
+		
+	  $("editarObservacao").value =
+  item.observacao || "";
+
 
 
       $("modalAcoes").style.display =
@@ -3549,6 +3714,12 @@ body.tema-windows98 .menu-mobile button:last-of-type .icone-check span {
 
       const tipo =
         $("editarTipo").value;
+		
+	  const observacao =
+  $("editarObservacao")
+    .value
+    .trim();
+
 
 
       if (
@@ -3576,6 +3747,10 @@ body.tema-windows98 .menu-mobile button:last-of-type .icone-check span {
 
       item.tipo =
         tipo;
+		
+		item.observacao =
+  observacao;
+
 
 
       salvarStorage();
@@ -3654,6 +3829,10 @@ body.tema-windows98 .menu-mobile button:last-of-type .icone-check span {
 
       $("novoTipo").value =
         "Unidade";
+		
+		$("novaObservacao").value =
+  "";
+
 
 
       $("modalNovoItem").style.display =
@@ -3710,6 +3889,12 @@ body.tema-windows98 .menu-mobile button:last-of-type .icone-check span {
 
       const tipo =
         $("novoTipo").value;
+		
+		const observacao =
+  $("novaObservacao")
+    .value
+    .trim();
+
 
 
       if (
@@ -3728,19 +3913,22 @@ body.tema-windows98 .menu-mobile button:last-of-type .icone-check span {
 
       const item = {
 
-        id: idAtual++,
+  id: idAtual++,
 
-        produto,
+  produto,
 
-        quantidade,
+  quantidade,
 
-        valor,
+  valor,
 
-        tipo,
+  tipo,
 
-        comprado: false
+  observacao,
 
-      };
+  comprado: false
+
+};
+
 
 
       lista.push(item);
