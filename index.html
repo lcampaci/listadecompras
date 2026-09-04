@@ -2360,26 +2360,6 @@ body.tema-windows98 tbody tr:hover td {
 }
 
 
-/* -----------------------------------------------------
-   ITEM COMPRADO
------------------------------------------------------ */
-
-body.tema-windows98 .comprado td {
-  background: #ffffff;
-
-  color: #808080;
-
-  text-decoration: line-through;
-
-  opacity: 1;
-}
-
-body.tema-windows98 .comprado:hover td {
-  background: #000080;
-
-  color: #ffffff;
-}
-
 
 /* -----------------------------------------------------
    COLUNAS
@@ -2439,110 +2419,6 @@ body.tema-windows98 td:nth-child(6) {
   text-align: center;
 
   white-space: nowrap;
-}
-
-
-/* -----------------------------------------------------
-   CHECKBOX — WINDOWS 98
------------------------------------------------------ */
-
-body.tema-windows98 .check-container {
-  position: relative;
-
-  width: 18px;
-  height: 18px;
-
-  margin: auto;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  cursor: pointer;
-}
-
-body.tema-windows98 .check-container input {
-  position: absolute;
-
-  opacity: 0;
-
-  width: 18px;
-  height: 18px;
-
-  margin: 0;
-
-  cursor: pointer;
-}
-
-body.tema-windows98 .checkmark {
-  position: absolute;
-
-  inset: 0;
-
-  width: 18px;
-  height: 18px;
-
-  background: #ffffff;
-
-  border-radius: 0;
-
-  border-top: 2px solid #808080;
-  border-left: 2px solid #808080;
-  border-right: 2px solid #ffffff;
-  border-bottom: 2px solid #ffffff;
-
-  box-shadow:
-    inset -1px -1px 0 #dfdfdf;
-
-  transition: none;
-}
-
-body.tema-windows98 .check-container input:checked + .checkmark {
-  background: #ffffff;
-
-  border-top-color: #808080;
-  border-left-color: #808080;
-  border-right-color: #ffffff;
-  border-bottom-color: #ffffff;
-}
-
-body.tema-windows98 .checkmark::after {
-  content: "×";
-
-  display: none;
-
-  position: absolute;
-
-  left: 2px;
-  top: 0px;
-
-  width: 14px;
-  height: 16px;
-
-  border: none;
-
-  color: #000000;
-
-  font-family:
-    "MS Sans Serif",
-    Tahoma,
-    Arial,
-    sans-serif;
-
-  font-size: 16px;
-  font-weight: bold;
-
-  line-height: 16px;
-
-  text-align: center;
-
-  transform: none;
-}
-
-body.tema-windows98
-.check-container input:checked
-+ .checkmark::after {
-  display: block;
 }
 
 
@@ -2892,6 +2768,180 @@ body.tema-windows98 .observacao-modal {
 
   font-size: 11px;
 }
+
+/* -----------------------------------------------------
+   ITEM COMPRADO — WINDOWS 98
+   Azul levemente opaco, estilo Matrix
+----------------------------------------------------- */
+
+body.tema-windows98 tbody tr.comprado {
+  background: rgba(0, 0, 128, 0.78);
+  color: #ffffff;
+
+  text-decoration: line-through;
+}
+
+body.tema-windows98 tbody tr.comprado td {
+  background: rgba(0, 0, 128, 0.78);
+  color: #ffffff;
+
+  text-decoration: line-through;
+
+  opacity: 1;
+}
+
+
+/* Mantém o efeito ao passar o mouse */
+
+body.tema-windows98 tbody tr.comprado:hover,
+body.tema-windows98 tbody tr.comprado:hover td {
+  background: rgba(0, 0, 128, 0.78);
+  color: #ffffff;
+}
+
+
+
+/* -----------------------------------------------------
+   CHECKBOX — WINDOWS 98
+----------------------------------------------------- */
+
+body.tema-windows98 .check-container {
+  position: relative;
+
+  width: 18px;
+  height: 18px;
+
+  margin: auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+}
+
+body.tema-windows98 .check-container input {
+  position: absolute;
+
+  opacity: 0;
+
+  width: 18px;
+  height: 18px;
+
+  margin: 0;
+
+  cursor: pointer;
+}
+
+body.tema-windows98 .checkmark {
+  position: absolute;
+
+  inset: 0;
+
+  width: 18px;
+  height: 18px;
+
+  background: #ffffff;
+
+  border-radius: 0;
+
+  border-top: 2px solid #808080;
+  border-left: 2px solid #808080;
+  border-right: 2px solid #ffffff;
+  border-bottom: 2px solid #ffffff;
+
+  box-shadow:
+    inset -1px -1px 0 #dfdfdf;
+
+  transition: none;
+}
+
+
+/* -----------------------------------------------------
+   CHECK MARCADO — CHECK BRANCO
+----------------------------------------------------- */
+
+body.tema-windows98
+.check-container input:checked
++ .checkmark {
+
+  background: #ffffff;
+
+  border-top-color: #808080;
+  border-left-color: #808080;
+  border-right-color: #ffffff;
+  border-bottom-color: #ffffff;
+}
+
+
+/* -----------------------------------------------------
+   CHECK — FORMATO NORMAL
+----------------------------------------------------- */
+
+body.tema-windows98 .checkmark::after {
+
+  content: "";
+
+  display: none;
+
+  position: absolute;
+
+  left: 5px;
+  top: 1px;
+
+  width: 5px;
+  height: 10px;
+
+  border: solid #000000;
+
+  border-width: 0 2px 2px 0;
+
+  transform: rotate(45deg);
+}
+
+
+/* Mostrar check */
+
+body.tema-windows98
+.check-container input:checked
++ .checkmark::after {
+
+  display: block;
+}
+
+/* =====================================================
+   WINDOWS 98 — ITEM MARCADO
+   Azul suave + texto branco fosforescente
+===================================================== */
+
+body.tema-windows98 tbody tr.comprado td {
+  background: #4d4d99 !important;
+
+  color: #ffffff !important;
+
+  text-decoration: line-through;
+
+  opacity: 1;
+
+  /* Brilho suave no texto */
+  text-shadow:
+    0 0 2px #ffffff,
+    0 0 4px rgba(180, 220, 255, 0.75);
+}
+
+
+/* Mantém o efeito ao passar o mouse */
+
+body.tema-windows98 tbody tr.comprado:hover td {
+  background: #4d4d99 !important;
+
+  color: #ffffff !important;
+
+  text-shadow:
+    0 0 2px #ffffff,
+    0 0 4px rgba(180, 220, 255, 0.75);
+}
+
 
 
   </style>
